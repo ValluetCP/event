@@ -1,0 +1,10 @@
+# ----------ARCHITECTURE MVC---------- #
+
+# le fichier.htaccess à la racine sert à rediriger toutes les requêtes dans le dossier view
+
+# activer la regle de reecriture d'url
+RewriteEngine On
+# rediriger vers le dossier views
+RewriteRule ^(.*)$ views/$1 [L]
+# [L] veut dire "last". On lui dit de ne pas prendre en compte le code qui suit (cf: die).
+
