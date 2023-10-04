@@ -17,7 +17,7 @@ include_once "./inc/nav.php";
             <input type="password" class="form-control text-uppercase"  name="password" >
         </div>
  
-        <button type="submit" class="btn btn-primary mt-5 mb-5" name="connect" value="connect">Se connecter</button>
+        <button type="submit" class="btn btn-primary mt-5 mb-5" name="login" value="login">Se connecter</button>
     </form>
 </div>
 

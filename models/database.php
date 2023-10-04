@@ -8,7 +8,7 @@ class Database{
         $conn = null;
 
         try {
-            $conn = new PDO("mysql:host=localhost;dbname=movies_db","root","");
+            $conn = new PDO("mysql:host=localhost;dbname=event","root","");
         } catch (PDOException $e) {
             $conn = $e->getMessage();
         }
