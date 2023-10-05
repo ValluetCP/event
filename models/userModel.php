@@ -112,7 +112,7 @@ class User{
     
 
     // methode pour changer à partir de l'id 
-    // si le client souhaite modifier ses infos personnels depuis son profil
+    // CLIENT -  modifier ses infos personnels depuis son profil
     public static function updateUserById($id,$statut,$nom,$prenom,$pseudo,$email,$password,$role){
         
         // on appel la fonction dbConnect qui est dans la class Database

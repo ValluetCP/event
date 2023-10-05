@@ -40,8 +40,8 @@ $userList = User::findAllUser();
                     <td><?= $user['prenom']; ?></td>
                     <td><?= $user['pseudo']; ?></td>
                     <td><?= $user['email']; ?></td>
-                    <td><a href="./add_actor.php?id_Acteur=<?= $actor['id_actor']; ?>">Update</a></td>
-                    <td><a href="traitement/action.php?id_Acteur_delete=<?= $actor['id_actor']; ?>">Delete</a></td>
+                    <td><a href="./inscription.php?id_user=<?= $user['id_utilisateur']; ?>">Update</a></td>
+                    <td><a href="traitement/action.php?id_user_delete=<?= $user['id_utilisateur']; ?>">Delete</a></td>
                 </tr>
             <?php } ?>
         </tbody>
