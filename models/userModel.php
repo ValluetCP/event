@@ -53,7 +53,7 @@ class User{
 
 
     // methode pour se connecter
-    public static function connexion($email,$password){
+    public static function connexion($pseudo,$password){
 
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
@@ -64,7 +64,7 @@ class User{
 
         // exécuter la requête
         try {
-            $request->execute(array($email));
+            $request->execute(array($pseudo));
 
             // récupérer le résultat de la requête dans un tableau
             $user = $request->fetch(PDO::FETCH_ASSOC);
@@ -97,7 +97,7 @@ class User{
                 setcookie("user_name", $user['name'],time() + 86400,"/","localhost", false, true);
 
                 // rediriger vers la page list_book.php
-                header("Location: http://localhost/php/WF3/POO/PROJET/biblio/list_book");
+                header("Location: http://localhost/event/views/list_user.php");
 
             }else{
                 $_SESSION['error_message'] = "Mot de passe incorrect";
@@ -108,6 +108,8 @@ class User{
             echo $e->getMessage();
         }
     }
+
+    
 
     // methode pour changer à partir de l'id 
     // si le client souhaite modifier ses infos personnels depuis son profil
