@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-10-05T14:51:00.972Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="eAkmnvoW3vTxvC-To_Nl" version="22.0.2" type="device">
+<mxfile host="app.diagrams.net" modified="2023-10-06T14:12:03.898Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="Tg5tZSrC6QsSnsJ0dMrC" version="22.0.2" type="device">
   <diagram name="Page-1" id="niFAYI7-j2DZLFPBzeHO">
-    <mxGraphModel dx="1199" dy="641" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1799" dy="961" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -71,19 +71,19 @@
           <mxGeometry x="480" y="239" width="160" height="40" as="geometry" />
         </mxCell>
         <mxCell id="huWjjuCk4hPInq8IUZ5Y-22" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=48;" parent="1" vertex="1">
-          <mxGeometry x="320" y="260" width="180" height="100" as="geometry" />
+          <mxGeometry x="320" y="250" width="180" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="huWjjuCk4hPInq8IUZ5Y-25" value="" style="endArrow=none;html=1;rounded=0;exitX=0.018;exitY=0.301;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.979;entryY=0.295;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="huWjjuCk4hPInq8IUZ5Y-22" target="huWjjuCk4hPInq8IUZ5Y-22" edge="1">
+        <mxCell id="huWjjuCk4hPInq8IUZ5Y-25" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="294.20000000000005" y="298.9799999999999" as="sourcePoint" />
-            <mxPoint x="523.8" y="298.85" as="targetPoint" />
+            <mxPoint x="330" y="273" as="sourcePoint" />
+            <mxPoint x="490" y="272" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="huWjjuCk4hPInq8IUZ5Y-26" value="Reservation" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="370" y="262" width="90" height="30" as="geometry" />
+          <mxGeometry x="363" y="247" width="90" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="huWjjuCk4hPInq8IUZ5Y-27" value="&lt;p style=&quot;line-height: 160%; font-size: 10px;&quot;&gt;&lt;font color=&quot;#333333&quot;&gt;n°reservation&lt;br&gt;user_id&lt;br&gt;event_id&lt;br&gt;&lt;/font&gt;&lt;/p&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
-          <mxGeometry x="380" y="285" width="80" height="80" as="geometry" />
+        <mxCell id="huWjjuCk4hPInq8IUZ5Y-27" value="&lt;p style=&quot;line-height: 160%; font-size: 10px;&quot;&gt;&lt;font color=&quot;#333333&quot;&gt;n°reservation&lt;br&gt;user_id&lt;br&gt;event_id&lt;br&gt;categorie_id&lt;br&gt;nbr_de_personnes&lt;/font&gt;&lt;/p&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
+          <mxGeometry x="375" y="260" width="110" height="110" as="geometry" />
         </mxCell>
         <mxCell id="huWjjuCk4hPInq8IUZ5Y-28" value="categories" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#e6d0de;gradientColor=#d5739d;strokeColor=#996185;" parent="1" vertex="1">
           <mxGeometry x="298" y="680" width="140" height="90" as="geometry" />

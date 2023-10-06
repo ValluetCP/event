@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once $_SERVER["DOCUMENT_ROOT"]."/event/models/database.php";
 
@@ -28,7 +27,7 @@ class Categorie{
     }
 
 
-    // methode pour tout afficher les évènements
+    // methode pour tout afficher les categories
     public static function findAllCategorie()
     {
 
@@ -51,8 +50,31 @@ class Categorie{
         return $categorieList;
     }
 
+    // methode pour tout afficher les categories
+    public static function findUsedCategorie()
+    {
+
+        // on appel la fonction dbConnect qui est dans la class Database
+        $db = Database::dbConnect();
+
+        // preparation de la requête
+        $request = $db->prepare("SELECT * FROM `categorie` c INNER JOIN events e ON e.categorie_id = c.id_categorie group by e.categorie_id");
+
+        // exécuter la requête
+        $categorieList = null;
+        try {
+            $request->execute();
+
+            // récupère le résultat dans un tableau
+            $categorieList = $request->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        return $categorieList;
+    }
+
     // methode pour changer à partir de l'id 
-    // ADMIN -  modifier un évènement
+    // ADMIN -  modifier une categorie
     public static function updateCategorieById($id,$categorieName){
         
         // on appel la fonction dbConnect qui est dans la class Database
@@ -66,11 +88,30 @@ class Categorie{
             $request->execute(array($categorieName,$id));
 
             // rediriger vers la page list_event.php
-            header("Location: http://localhost/event/views/list_event.php");
+            header("Location: http://localhost/event/views/list_categorie.php");
             
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
 
+    }
+
+
+    // methode pour supprimer une categorie
+    public static function deleteCategorieById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("DELETE FROM categorie WHERE id_categorie=?");
+        //executer la requete
+
+        try {
+            $request->execute(array($id));
+            // recuperer le resultat dans un tableau
+            header("Location: http://localhost/event/views/list_categorie.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
     }
 }

@@ -12,7 +12,6 @@ class User{
 
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
-
         // preparation de la requête
         $request =$db->prepare("INSERT INTO `users`(`nom`, `prenom`, `pseudo`, `email`, `mdp`, `role`, `statut`) VALUES (?,?,?,?,?,?,?)");
 
@@ -68,18 +67,18 @@ class User{
 
             // récupérer le résultat de la requête dans un tableau
             $user = $request->fetch(PDO::FETCH_ASSOC);
-            // var_dump($user['name']);
-            // die;
-
+            // var_dump($password);
+            // var_dump($user['mdp']);
+            // $password2 = password_hash($password, PASSWORD_DEFAULT);
+            var_dump(password_verify($password, $user['mdp']));die;
             // vérifier si l'email existe dans la base de donnée
             if(empty($user)){
                 $_SESSION['error_message'] = "Cet email n'existe pas";
                 // rediriger vers la page précédente
-                header("location:". $_SERVER['HTTP_REFERER']);
-    
+                header("location:". $_SERVER['HTTP_REFERER']);    
             // vérifier si le mot de passe est correct
-            }else if(password_verify($password, $user['password'])){
-
+            }else if(password_verify($password, $user['mdp'])){
+                
                 // il a taper le bon mail et le bon mot de passe
                 // version avec $_COOKIE
                 setcookie("id_user", $user['id_user'],time() + 86400,"/","localhost", false, true);
@@ -89,13 +88,12 @@ class User{
 
                 // version avec $_COOKIE
                 setcookie("user_role", $user['role'],time() + 86400,"/","localhost", false, true);
-
+                
                 // version avec $_SESSION
                 // $_SESSION["user_role"] = $user["user_role"];
 
                 // version avec $_COOKIE
                 setcookie("user_name", $user['name'],time() + 86400,"/","localhost", false, true);
-
                 // rediriger vers la page list_book.php
                 header("Location: http://localhost/event/views/list_user.php");
 

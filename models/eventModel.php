@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once $_SERVER["DOCUMENT_ROOT"]."/event/models/database.php";
 
@@ -35,7 +34,7 @@ class Event{
         $db = Database::dbConnect();
 
         // preparation de la requête
-        $request = $db->prepare("SELECT * FROM `events`");
+        $request = $db->prepare("SELECT * FROM `events` e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie;");
 
         // exécuter la requête
         $eventList = null;
@@ -49,6 +48,28 @@ class Event{
         }
         return $eventList;
     }
+
+    
+    // methode pour rechercher un évènement par id
+    public static function findEventById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("SELECT * FROM events WHERE id_evenement=?");
+        //executer la requete
+        try {
+            $request->execute(array($id));;
+            // recuperer le resultat dans un tableau
+            $event = $request->fetch();
+
+            return $event;
+
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
 
     // methode pour changer à partir de l'id 
     // ADMIN -  modifier un évènement
@@ -71,6 +92,25 @@ class Event{
             echo $e->getMessage();
         }
 
+    }
+
+    
+    // methode pour supprimer une categorie
+    public static function deleteEventById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("DELETE FROM events WHERE id_evenement=?");
+        //executer la requete
+
+        try {
+            $request->execute(array($id));
+            // recuperer le resultat dans un tableau
+            header("Location: http://localhost/event/views/list_event.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
     }
 
 }

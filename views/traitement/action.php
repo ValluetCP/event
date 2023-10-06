@@ -25,7 +25,8 @@ if(isset($_POST['register'])){
     $mdp = htmlspecialchars($_POST['mdp']);
     $password = password_hash($mdp, PASSWORD_DEFAULT);
     $role = htmlspecialchars($_POST['role']);
-
+    // var_dump($mdp);
+    // var_dump($password);
     // apeler la methode inscription de la classe User
     User::addUser($statut,$nom,$prenom,$pseudo,$email,$password,$role);
     // cette syntaxe uniquement pour appeler les méthodes static.
@@ -49,7 +50,7 @@ if(isset($_POST['login'])){
 // si le client souhaite modifier ses infos personnels depuis son profil
 
 if (isset($_POST['update_user'])) {
-    $id = htmlspecialchars($_POST['id']);
+    $id = htmlspecialchars($_POST['id_evenement']);
     $statut = htmlspecialchars($_POST['statut']);
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
@@ -91,7 +92,7 @@ if(isset($_POST['add_event'])){
     $prix = htmlspecialchars($_POST['prix']);
     $resume = htmlspecialchars($_POST['resume']);
     $nbr_place = htmlspecialchars($_POST['nbr_place']);
-    $categorie_id = htmlspecialchars($_POST['categorie_id']);
+    $categorie_id = htmlspecialchars($_POST['categorie']);
 
     // apeler la methode inscription de la classe Event
     Event::addEvent($titre,$duree,$prix,$resume,$nbr_place,$categorie_id);
@@ -116,6 +117,18 @@ if (isset($_POST['update_event'])) {
     Event::updateEventById($id,$titre,$duree,$prix,$resume,$nbr_place,$categorie_id);
 
 }
+
+
+// METHOD GET
+
+
+if (isset($_GET['id_event_delete'])) {
+    // identifiant du event
+    $id = $_GET['id_event_delete'];
+    // appel de la methode deleteEventById
+    $event = Event::deleteEventById($id);
+}
+
 
 // ------------------ CATEGORIE ------------------//
 
@@ -147,6 +160,17 @@ if (isset($_POST['update_categorie'])) {
     // apeler la methode inscription de la classe Categorie
     Categorie::updateCategorieById($id,$categorieName);
 
+}
+
+
+// METHOD GET
+
+
+if (isset($_GET['id_categorie_delete'])) {
+    // identifiant du categorie
+    $id = $_GET['id_categorie_delete'];
+    // appel de la methode deleteCategorieById
+    $categorie = Categorie::deleteCategorieById($id);
 }
 
 

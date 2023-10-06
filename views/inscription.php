@@ -41,7 +41,7 @@ include_once "./inc/nav.php";
         
         <div class="form-group  mb-3">
             <label class="m-2" id="mdp">Mot de passe</label>
-            <input type="password" class="form-control text-uppercase"  name="mdp" >
+            <input type="password" class="form-control"  name="mdp" >
         </div>
 
         <div class="form-group mt-5 mb-5 d-flex justify-content-around">
