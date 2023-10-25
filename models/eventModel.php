@@ -56,7 +56,7 @@ class Event{
         $db = Database::dbConnect();
 
         // preparer la requete
-        $request = $db->prepare("SELECT * FROM events WHERE id_evenement=?");
+        $request = $db->prepare("SELECT * FROM events e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie WHERE id_evenement=?");
         //executer la requete
         try {
             $request->execute(array($id));;
@@ -107,7 +107,7 @@ class Event{
         try {
             $request->execute(array($id));
             // recuperer le resultat dans un tableau
-            header("Location: http://localhost/event/views/list_event.php");
+            header("Location: http://localhost/event/views/admin_list_event.php");
         } catch (PDOException $e) {
             $e->getMessage();
         }

@@ -83,6 +83,7 @@ if (isset($_GET['id_user_delete'])) {
 //  Afficher la Liste des évènements - SELECT ALL
 // Event::findAllEvent();
 // return $eventList;
+// Event::findEventById($id);
 
 // Ajouter un évènement  - INSERT INTO 
 // inscription.php

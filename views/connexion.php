@@ -8,8 +8,8 @@ include_once "./inc/nav.php";
     <form action="./traitement/action.php" method="post">
 
         <div class="form-group  mb-3">
-            <label class="m-2" id="pseudo">Pseudo</label>
-            <input type="text" class="form-control"  name="pseudo" >
+            <label class="m-2" id="email">Email</label>
+            <input type="email" class="form-control"  name="email" >
         </div>
         
         <div class="form-group  mb-3">
