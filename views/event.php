@@ -10,7 +10,7 @@ $ficheEvent = Event::findEventById($eventId);
 ?>
 
 <div class="container">
-    <h1 class="m-5">évènements (admin)</h1>
+    <h1 class="m-5">évènements</h1>
     <!-- pour  le comparer avec le nombre de place -->
     
         <h2><?= $ficheEvent['titre']; ?></h2>

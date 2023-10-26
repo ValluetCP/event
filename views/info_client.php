@@ -6,7 +6,7 @@ $userList = User::findAllUser();
 ?>
 
 <div class="container">
-    <h1 class="m-5">La liste des utilisateurs (admin)</h1>
+    <h1 class="m-5">Liste des utilisateurs</h1>
     <!-- pour  le comparer avec le nombre de place -->
 
     <table class="table">
@@ -16,8 +16,19 @@ $userList = User::findAllUser();
                 <th>Identifiant</th>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Pseudo</th>
-                <th>Email</th>
+                
+                <!-- Table event -->
+                <th>Categorie</th>
+                <th>Titre</th>
+                
+                <!-- Table date et heure -->
+                <th>Date</th>
+                <th>Heure</th>
+
+                <!-- Table modification et suppression -->
+                <th>Update</th>
+                <th>Delete</th>
+                <!-- (par exemple : si l'event est annulé ou reporté) -->
                 
             </tr>
         </thead>
@@ -29,7 +40,8 @@ $userList = User::findAllUser();
                     <td><?= $user['prenom']; ?></td>
                     <td><?= $user['pseudo']; ?></td>
                     <td><?= $user['email']; ?></td>
-                    <td><a class="lien" href="./user.php?book=<?= $user['id_utilisateur']; ?>">Consulter son profil</a></td>
+                    <td><a href="./inscription.php?id_user=<?= $user['id_utilisateur']; ?>">Update</a></td>
+                    <td><a href="traitement/action.php?id_user_delete=<?= $user['id_utilisateur']; ?>">Delete</a></td>
                 </tr>
             <?php } ?>
         </tbody>

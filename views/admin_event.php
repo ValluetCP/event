@@ -22,7 +22,7 @@ $ficheEvent = Event::findEventById($eventId);
         <p><?= $ficheEvent['nbr_place']; ?></p>
         <p><?= $ficheEvent['categorie_name']; ?></p>
 
-        <a class="lien" href="./client_event.php?event=<?= $ficheEvent['id_evenement']; ?>">Consulter</a>
+        <a class="lien" href="./event.php?event=<?= $ficheEvent['id_evenement']; ?>">Consulter (visualisation)</a>
         <a href="./add_event.php?id_event_update=<?= $ficheEvent['id_evenement']; ?>">Update</a>
         <a href="traitement/action.php?id_event_delete=<?= $ficheEvent['id_evenement']; ?>">Delete</a>
 </div>

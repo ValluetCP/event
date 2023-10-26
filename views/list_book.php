@@ -27,6 +27,7 @@ $listEvent = Event::findAllEvent();
                     <td><?= $event['titre']; ?></td>
                     <td><?= $event['nbr_place']; ?></td>
                     <!-- Ajouter le nombre de particpant par évènement -->
+                    
                     <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
                 </tr>
             <?php } ?>

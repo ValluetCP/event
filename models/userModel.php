@@ -150,5 +150,26 @@ class User{
         }
     }
 
+    // methode pour rechercher un user par id
+    public static function findUserById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("SELECT * FROM users u LEFT JOIN events e ON u.categorie_id = c.id_categorie WHERE id_utilisateur=?");
+        //executer la requete
+        try {
+            $request->execute(array($id));;
+            // recuperer le resultat dans un tableau
+            $event = $request->fetch();
+            return $event;
+
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
+
+
     
 }

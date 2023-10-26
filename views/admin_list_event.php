@@ -6,7 +6,7 @@ $listEvent = Event::findAllEvent();
 ?>
 
 <div class="container">
-    <h1 class="m-5">Liste des évènements</h1>
+    <h1 class="m-5">Liste des évènements (ADMIN)</h1>
     <!-- pour  le comparer avec le nombre de place -->
 
     <table class="table">
@@ -26,7 +26,7 @@ $listEvent = Event::findAllEvent();
                     <td><?= $event['id_evenement']; ?></td>
                     <td><?= $event['titre']; ?></td>
                     <td><?= $event['categorie_name']; ?></td>
-
+                    <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
                     <td><a href="./add_event.php?id_event_update=<?= $event['id_evenement']; ?>">Modifier</a></td>
                     <td><a href="traitement/action.php?id_event_delete=<?= $event['id_evenement']; ?>">Supprimer</a></td>
                 </tr>

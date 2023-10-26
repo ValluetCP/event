@@ -26,6 +26,7 @@ class Event{
         }
     }
 
+
     // methode pour tout afficher les évènements
     public static function findAllEvent()
     {
@@ -62,7 +63,6 @@ class Event{
             $request->execute(array($id));;
             // recuperer le resultat dans un tableau
             $event = $request->fetch();
-
             return $event;
 
         } catch (PDOException $e) {
@@ -114,3 +114,4 @@ class Event{
     }
 
 }
+
