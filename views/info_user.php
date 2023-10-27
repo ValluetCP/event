@@ -1,4 +1,5 @@
 <?php
+// session_start();
 include_once "./inc/header.php";
 include_once "./inc/nav.php";
 require_once "../models/userModel.php";
@@ -44,6 +45,7 @@ $userList = User::findAllUser();
                     <td><a href="traitement/action.php?id_user_delete=<?= $user['id_utilisateur']; ?>">Delete</a></td>
                 </tr>
             <?php } ?>
+            <h3><?= $_SESSION["name"] ?></h3>
         </tbody>
     </table>
 </div>

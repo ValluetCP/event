@@ -1,8 +1,8 @@
-
+<?php session_start(); ?>
     <nav>
         <a href="http://localhost/event/index.php">Page d'accueil</a>
 
-        <?php if(isset($_COOKIE['user_role']) && $_COOKIE['user_role'] == "admin"){ ?>
+        <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
 
             <!-- --------- Pour les roles 'ADMIN' --------- -->
 
@@ -34,14 +34,8 @@
             <a href="http://localhost/event/views/inscription.php">Inscription</a>
 
             <a href="http://localhost/event/views/connexion.php">Connexion</a>
-            
-            <!-- La liste des évènements  -->
-            <a href="http://localhost/event/views/list_event.php">Liste des évènements</a>
 
-        <?php }else { ?>
-
-
-
+        <?php } else { ?>
 
             <!-- --------- Pour les roles 'CLIENT' --------- -->
 

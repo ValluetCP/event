@@ -23,7 +23,10 @@ if(isset($_POST['register'])){
     $pseudo = htmlspecialchars($_POST['pseudo']);
     $email = htmlspecialchars($_POST['email']);
     $mdp = htmlspecialchars($_POST['mdp']);
+    // $2y$10$g4tOfTKgXZ4fKgKDC5QQROV0Qg5.VgJo8Qy2fjxCFdIL9JG3DWBSq
+    // $2y$10$8RvIgBpQrf8H8rTk94Cp3eaaubQZiwDC76/BC4rcbkC
     $password = password_hash($mdp, PASSWORD_DEFAULT);
+    
     $role = htmlspecialchars($_POST['role']);
     // var_dump($mdp);
     // var_dump($password);
@@ -174,6 +177,26 @@ if (isset($_GET['id_categorie_delete'])) {
     $categorie = Categorie::deleteCategorieById($id);
 }
 
+
+
+// ------------------ BOOK - Réservation ------------------//
+
+
+//  Afficher la Liste des réservations - SELECT ALL
+// Event::findAllBook();
+// return $bookList;
+// Event::findBookById($id);
+
+
+// Ajouter une réservation  - INSERT INTO
+// event.php
+if(isset($_POST['addBook'])){
+    $idUser = $_SESSION(['id_user']);
+    $idEvent = htmlspecialchars($_POST['id_event']);
+    
+    // apeler la methode book de la classe User
+    Book::addBook($userId,$idEvent);
+}
 
 
 

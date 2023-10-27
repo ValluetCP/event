@@ -1,6 +1,6 @@
 <?php
 // Page - Affiche un évènement (côté CLIENT)
-
+// session_start();
 include_once "./inc/header.php";
 include_once "./inc/nav.php";
 require_once "../models/eventModel.php";
@@ -22,7 +22,11 @@ $ficheEvent = Event::findEventById($eventId);
         <p><?= $ficheEvent['nbr_place']; ?></p>
         <p><?= $ficheEvent['categorie_name']; ?></p>
 
-        <a href="./list_book.php?book=<?= $ficheEvent['id_evenement']; ?>" class="btn btn-outline-warning">Ajouter cette évènement</a>
+        <form action="" method="POST">
+            <input type="hidden" name="id_event" value="<?= $ficheEvent['id_evenement']; ?>">
+            <button href="./list_book.php?book=<?= $ficheEvent['id_evenement']; ?>" class="btn btn-outline-warning">Réserver</button>
+        </form>
+
 </div>
 
 <script>
