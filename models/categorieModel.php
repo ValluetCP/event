@@ -1,6 +1,7 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"]."/event/models/database.php";
+// require_once $_SERVER["DOCUMENT_ROOT"]."/event/models/database.php";
+require_once __DIR__."./database.php";
 
 class Categorie{
     // pour la méthode static, pas besoin de déclarer une variable à l'inverse des contructeurs
@@ -19,7 +20,8 @@ class Categorie{
             $request->execute(array($categorieName));
 
             // rediriger vers la page list_user.php
-            header("Location: http://localhost/event/views/list_categorie.php");
+            // header("Location: http://localhost/event/views/list_categorie.php");
+            header("Location: http://event.com/views/list_categorie.php");
             
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -88,7 +90,7 @@ class Categorie{
             $request->execute(array($categorieName,$id));
 
             // rediriger vers la page list_event.php
-            header("Location: http://localhost/event/views/list_categorie.php");
+            header("Location: http://event.com/views/list_categorie.php");
             
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -109,7 +111,7 @@ class Categorie{
         try {
             $request->execute(array($id));
             // recuperer le resultat dans un tableau
-            header("Location: http://localhost/event/views/list_categorie.php");
+            header("Location: http://event.com/views/list_categorie.php");
         } catch (PDOException $e) {
             $e->getMessage();
         }

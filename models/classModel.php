@@ -1,6 +1,8 @@
 <?php
 
-require_once $_SERVER["DOCUMENT_ROOT"]."/chemin_base_de_donnee.php";
+// require_once $_SERVER["DOCUMENT_ROOT"]."/chemin_base_de_donnee.php";
+// Autre syntaxe
+require_once __DIR__."/chemin_base_de_donnee.php";
 
 class NomDeLaClass{
 
