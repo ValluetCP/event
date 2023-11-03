@@ -82,7 +82,7 @@ class User
                 header("location:" . $_SERVER['HTTP_REFERER']);
                 // vérifier si le mot de passe est correct
                 
-            } else if(password_verify($password, $user['mdp'])) {  
+            } else if(password_verify($password, $user['mdp'])) { 
                     // il a taper le bon mail et le bon mot de passe
                     // version avec $_COOKIE
                     //setcookie("id_user", $user['id_user'],time() + 86400,"/","localhost", false, true);
@@ -101,8 +101,10 @@ class User
 
                     $_SESSION["user_name"] = $user["nom"];
                     // rediriger vers la page list_book.php
-                    header("Location: http://localhost/event/views/list_user.php");
-                    return $user;
+                    if($user['role'] == 'admin')                    
+                        header("Location: http://localhost/event/views/add_categorie.php");
+                    else 
+                        header("Location: http://localhost/event/views/info_user.php");
                 } else {
                     $_SESSION['error_message'] = "Mot de passe incorrect";
                     // rediriger vers la page précédente
