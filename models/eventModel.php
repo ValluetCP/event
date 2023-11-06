@@ -93,7 +93,7 @@ class Event{
 
 
             // rediriger vers la page list_event.php
-            // header("Location: http://localhost/event/views/list_event.php");
+            header("Location: http://localhost/event/views/admin_list_event.php");
 
             
         } catch (PDOException $e) {

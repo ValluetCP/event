@@ -109,7 +109,8 @@ if(isset($_POST['add_event'])){
 // ADMIN - Changer et modifier des infos du site - UPDATE
 
 if (isset($_POST['update_event'])) {
-    $id = htmlspecialchars($_POST['id']);
+    // Pour les id se référer au name du formulaire
+    $id = htmlspecialchars($_POST['id_evenement']);
     $titre = htmlspecialchars($_POST['titre']);
     $duree = htmlspecialchars($_POST['duree']);
     $prix = htmlspecialchars($_POST['prix']);

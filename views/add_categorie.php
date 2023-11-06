@@ -23,9 +23,11 @@ if (isset($_GET['id_categorie_update'])) {
             <label class="m-2" id="categorie_name">nom de la catégorie</label>
             <input type="text" class="form-control"  name="categorie_name" value="<?= !empty($categorie) ? $categorie["categorie_name"] : "" ?>" >
         </div>
+
+        <!-- Pour les id se référer à la bdd -->
         <input type="hidden" class="form-control text-uppercase" name="id_categorie" value="<?= !empty($categorie) ? $categorie["id_categorie"] : "" ?>">
  
-        <button type="submit" class="btn btn-primary mt-5 mb-5" name="<?= !empty($categorie) ? "update_categorie" : "add_categorie" ?>" value="add_categorie"><?= !empty($categorie) ? "Modifier" : "Ajouter" ?> Catégorie</button>
+        <button type="submit" class="btn btn-primary mt-5 mb-5" name="<?= !empty($categorie) ? "update_categorie" : "add_categorie" ?>" value="add_categorie"><?= !empty($categorie) ? "Modifier" : "Ajouter" ?> une Catégorie</button>
     </form>
 </div>
 
