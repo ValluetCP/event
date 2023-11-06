@@ -1,6 +1,8 @@
 <?php
+// session_start();
 
-require_once __DIR__."/database.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/event/models/database.php";
+// require_once __DIR__."/database.php";
 
 class Event{
     // pour la méthode static, pas besoin de déclarer une variable à l'inverse des contructeurs
@@ -19,7 +21,11 @@ class Event{
             $request->execute(array($titre,$duree,$prix,$resume,$nbr_place,$categorie_id));
 
             // rediriger vers la page list_user.php
-            header("Location: http://localhost/event/views/list_event.php");
+            // header("Location: http://localhost/event/views/list_event.php");
+            if($_SESSION['user_role'] == 'admin')                    
+                        header("Location: http://localhost/event/views/admin_list_event.php");
+                    else 
+                        header("Location: http://localhost/event/views/list_event.php");
             
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -85,8 +91,10 @@ class Event{
         try {
             $request->execute(array($titre,$duree,$prix,$resume,$nbr_place,$categorie_id,$id));
 
+
             // rediriger vers la page list_event.php
-            header("Location: http://localhost/event/views/list_event.php");
+            // header("Location: http://localhost/event/views/list_event.php");
+
             
         } catch (PDOException $e) {
             echo $e->getMessage();

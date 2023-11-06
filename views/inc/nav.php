@@ -4,44 +4,50 @@
 
         <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
 
+
             <!-- --------- Pour les roles 'ADMIN' --------- -->
 
+            <!-- Home  -->
+            <a href="http://localhost/event/views/home.php">Accueil</a>
+            
+            <!-- Menu principale 'ADMIN' - profil (espace personnelle) -->
+            <a href="http://localhost/event/views/home_admin.php">Espace ADMIN</a>
+            <a href="http://localhost/event/views/info_user.php">Informations personnelles</a>
 
-            <!-- Menu principale 'ADMIN' - profil -->
-            <a href="http://localhost/event/views/admin.php">Administrateur</a>
-
+            <!-- La liste des évènements  -->
+            <a href="http://localhost/event/views/admin_list_event.php">Liste des évènements</a>
             <!-- Ajouter un évènement sur la plateforme -->
             <a href="http://localhost/event/views/add_event.php">Ajouter un évènement</a>
             
-            <!-- Modifier les informations de l'évènement -->
+            <!-- Modifier les informations d'un évènement -->
             <a href="http://localhost/event/views/modif_event.php">Modifier un évènement</a>
             
-            <!-- Modifier les informations de l'évènement -->
+           <!-- Liste des catégories -->
+           <a href="http://localhost/event/views/list_categorie.php">Liste de catégories</a>
+            
+            <!-- Ajouter une catégorie -->
             <a href="http://localhost/event/views/add_categorie.php">Ajouter une categorie</a>
              
-            <!-- Modifier les informations de l'évènement -->
+            <!-- Modifier une catégorie -->
             <a href="http://localhost/event/views/modif_categorie.php">Modifier une catégorie</a>
-             
-            <!-- Modifier les informations de l'évènement -->
-            <a href="http://localhost/event/views/list_categorie.php">Liste de catégorie</a>
+
+           <!-- Liste des utilisateurs -->
+           <a href="http://localhost/event/views/list_categorie.php">Liste de catégories</a>
+
+           <!-- Se déconnecter  -->
+           <a href="http://localhost/event/views/logout.php">Déconnexion</a>
 
 
-            <!-- -------- IDEM (valable pour admin et client )-------- -->
 
-            <!-- La liste des évènements  -->
-            <a href="http://localhost/event/views/list_event.php">Liste des évènements</a>
 
-            <a href="http://localhost/event/views/inscription.php">Inscription</a>
-
-            <a href="http://localhost/event/views/connexion.php">Connexion</a>
-
-        <?php } else { ?>
+        <?php } elseif(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "client"){ ?>
 
             <!-- --------- Pour les roles 'CLIENT' --------- -->
 
 
-            <!-- Menu principale 'CLIENT' - profil  -->
-            <a href="http://localhost/event/views/profil.php">Mon profil</a>
+            <!-- Menu principale 'CLIENT' - profil (espace personnelle) -->
+            <a href="http://localhost/event/views/home_client.php">Espace CLIENT</a>
+            <a href="http://localhost/event/views/info_user.php">Informations personnelles</a>
 
 
             <!-- Sous-Menu 'CLIENT'  -->
@@ -61,12 +67,22 @@
             <!-- La liste des évènements  -->
             <a href="http://localhost/event/views/list_event">Liste des évènements</a>
 
-            <!-- S'incrire  -->
-            <a href="http://localhost/event/views/inscription.php">Inscription</a>
+            <!-- Se déconnecter  -->
+            <a href="http://localhost/event/views/logout.php">Déconnexion</a>
 
-            <!-- Se connecter  -->
-            <a href="http://localhost/event/views/connexion.php">Connexion</a>
- 
-
+            
+            <?php } else { ?>
+                
+                <!-- Home  -->
+                <a href="http://localhost/event/views/home.php">Accueil</a>
+                
+                <!-- S'incrire  -->
+                <a href="http://localhost/event/views/inscription.php">Inscription</a>
+    
+                <!-- Se connecter  -->
+                <a href="http://localhost/event/views/connexion.php">Connexion</a>
+    
+                <!-- Réservations  -->
+                <a href="http://localhost/event/views/connexion.php">Réservations</a>
         <?php } ?>
     </nav>

@@ -20,8 +20,8 @@ class Categorie{
             $request->execute(array($categorieName));
 
             // rediriger vers la page list_user.php
-            // header("Location: http://localhost/event/views/list_categorie.php");
-            header("Location: http://event.com/views/list_categorie.php");
+            header("Location: http://localhost/event/views/list_categorie.php");
+            // header("Location: http://event.com/views/list_categorie.php");
             
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -52,7 +52,7 @@ class Categorie{
         return $categorieList;
     }
 
-    // methode pour tout afficher les categories
+    // methode pour joindre User et Events
     public static function findUsedCategorie()
     {
 
@@ -90,7 +90,7 @@ class Categorie{
             $request->execute(array($categorieName,$id));
 
             // rediriger vers la page list_event.php
-            header("Location: http://event.com/views/list_categorie.php");
+            header("Location: http://localhost/event/views/list_categorie.php");
             
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -111,7 +111,25 @@ class Categorie{
         try {
             $request->execute(array($id));
             // recuperer le resultat dans un tableau
-            header("Location: http://event.com/views/list_categorie.php");
+            header("Location: http://localhost/event/views/list_categorie.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
+    // methode pour rechercher une categorie par id
+    public static function findCategorieById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("SELECT * FROM categorie WHERE id_categorie=?");
+        //executer la requete
+        try {
+            $request->execute(array($id));;
+            // recuperer le resultat dans un tableau
+            $categorie = $request->fetch();
+            return $categorie;
         } catch (PDOException $e) {
             $e->getMessage();
         }

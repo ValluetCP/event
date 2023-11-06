@@ -140,7 +140,7 @@ if (isset($_GET['id_event_delete'])) {
 //  Afficher la Liste des catégories - SELECT ALL
 // Categorie::findAllCategorie();
 // return $categorieList;
-
+// findCategorieById
 
 // Ajouter une catégorie  - INSERT INTO 
 // add_categorie.php
@@ -158,7 +158,7 @@ if(isset($_POST['add_categorie'])){
 // ADMIN - Changer et modifier des infos du site - UPDATE
 
 if (isset($_POST['update_categorie'])) {
-    $id = htmlspecialchars($_POST['id']);
+    $id = htmlspecialchars($_POST['id_categorie']);
     $categorieName = htmlspecialchars($_POST['categorie_name']);
 
     // apeler la methode inscription de la classe Categorie

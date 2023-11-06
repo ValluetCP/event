@@ -1,8 +1,8 @@
 <?php
-// session_start();
+session_start();
 
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/event/models/database.php";
-require_once __DIR__."/database.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/event/models/database.php";
+// require_once __DIR__."/database.php";
 
 class User
 {
@@ -100,11 +100,14 @@ class User
                     // setcookie("user_name", $user['name'],time() + 86400,"/","localhost", false, true);
 
                     $_SESSION["user_name"] = $user["nom"];
-                    // rediriger vers la page list_book.php
-                    if($user['role'] == 'admin')                    
-                        header("Location: http://localhost/event/views/add_categorie.php");
-                    else 
-                        header("Location: http://localhost/event/views/info_user.php");
+
+                    // rediriger vers la page home.php
+                    header("Location: http://localhost/event/views/home.php");
+
+                    // if($user['role'] == 'admin')                    
+                    //     header("Location: http://localhost/event/views/add_categorie.php");
+                    // else 
+                    //     header("Location: http://localhost/event/views/info_user.php");
                 } else {
                     $_SESSION['error_message'] = "Mot de passe incorrect";
                     // rediriger vers la page précédente

@@ -7,7 +7,7 @@ $userList = User::findAllUser();
 ?>
 
 <div class="container">
-    <h1 class="m-5">Liste des utilisateurs</h1>
+    <h1 class="m-5">Mes informations personnelles</h1>
     <!-- pour  le comparer avec le nombre de place -->
 
     <table class="table">
