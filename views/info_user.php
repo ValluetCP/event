@@ -1,55 +1,44 @@
 <?php
-// session_start();
 include_once "./inc/header.php";
 include_once "./inc/nav.php";
 require_once "../models/userModel.php";
 $userList = User::findAllUser();
+// $_SESSION["user_role"] = $user["role"];
+$user["role"] = $_SESSION["user_role"];
+
+
 ?>
 
 <div class="container">
-    <h1 class="m-5">Mes informations personnelles</h1>
-    <!-- pour  le comparer avec le nombre de place -->
+<h1 class="m-5">Mes informations personnelles</h1>
+    <form action="./traitement/action.php" method="post">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <!-- Table user -->
-                <th>Identifiant</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                
-                <!-- Table event -->
-                <th>Categorie</th>
-                <th>Titre</th>
-                
-                <!-- Table date et heure -->
-                <th>Date</th>
-                <th>Heure</th>
+        <div class="form-group  mb-3">
+            <label class="m-2" id="nom">Nom</label>
+            <input type="text" class="form-control text-uppercase"  name="nom" value="<?= $_SESSION["user_name"] ?>" disabled>
+        </div>
 
-                <!-- Table modification et suppression -->
-                <th>Update</th>
-                <th>Delete</th>
-                <!-- (par exemple : si l'event est annulé ou reporté) -->
-                
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($userList as $user){ ?>
-                <tr>
-                    <td><?= $user['id_utilisateur']; ?></td>
-                    <td><?= $user['nom']; ?></td>
-                    <td><?= $user['prenom']; ?></td>
-                    <td><?= $user['pseudo']; ?></td>
-                    <td><?= $user['email']; ?></td>
-                    <td><a href="./inscription.php?id_user=<?= $user['id_utilisateur']; ?>">Update</a></td>
-                    <td><a href="traitement/action.php?id_user_delete=<?= $user['id_utilisateur']; ?>">Delete</a></td>
-                </tr>
-            <?php } ?>
-            <h3><?= $_SESSION["name"] ?></h3>
-        </tbody>
-    </table>
+        <div class="form-group  mb-3">
+            <label class="m-2" id="prenom">Prénom</label>
+            <input type="text" class="form-control"  name="prenom" value="<?= $_SESSION["user_firstName"] ?>" disabled>
+        </div>
+
+        <div class="form-group  mb-3">
+            <label class="m-2" id="pseudo">Pseudo</label>
+            <input type="text" class="form-control"  name="pseudo" value="<?= $_SESSION["user_pseudo"] ?>"  disabled>
+        </div>
+
+        <div class="form-group  mb-3">
+            <label class="m-2" id="email">Email</label>
+            <input type="email" class="form-control"  name="email" value="<?= $_SESSION["user_email"] ?>" disabled>
+        </div>
+
+        <!-- BOUTON modifier / valider -->
+        <a class="lien btn" href="./info_user.php?id_user_update=<?= $event['id_utilisateur']; ?>">Modifier</a>
+        <!-- <button type="submit" class="btn btn-primary mt-5 mb-5" name="update_user" value=""  onclick="window.location.href = 'https://fr.w3docs.com/';">Modifier mon profil</button> -->
+
+    </form>
 </div>
-
 
 <?php
 include_once "./inc/footer.php";

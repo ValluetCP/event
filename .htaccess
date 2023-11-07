@@ -4,6 +4,11 @@
 
 # activer la regle de reecriture d'url
 RewriteEngine On
+
+# Ignorer les réécritures pour le dossier "form"
+RewriteRule ^form/ - [L]
+RewriteRule ^controller/ - [L]
+
 # rediriger vers le dossier views
 RewriteRule ^(.*)$ views/$1 [L]
 # [L] veut dire "last". On lui dit de ne pas prendre en compte le code qui suit (cf: die).

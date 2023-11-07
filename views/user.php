@@ -4,9 +4,13 @@
 include_once "./inc/header.php";
 include_once "./inc/nav.php";
 require_once "../models/bookModel.php";
+require_once "../models/userModel.php";
 // $listBook = Book::findAllbook();
 $bookId = $_GET['book'];
 $ficheBook = Book::findBookById($bookId);
+
+// $user = $_GET['user'];
+// $ficheEvent = User::findUserById($eventId);
 ?>
 
 <div class="container">

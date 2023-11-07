@@ -1,6 +1,6 @@
 <?php session_start(); ?>
     <nav>
-        <a href="http://localhost/event/index.php">Page d'accueil</a>
+        <!-- <a href="http://localhost/event/index.php">Page d'accueil</a> -->
 
         <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
 
@@ -17,22 +17,22 @@
             <!-- La liste des évènements  -->
             <a href="http://localhost/event/views/admin_list_event.php">Liste des évènements</a>
             <!-- Ajouter un évènement sur la plateforme -->
-            <a href="http://localhost/event/views/add_event.php">Ajouter un évènement</a>
+            <!-- <a href="http://localhost/event/views/add_event.php">Ajouter un évènement</a> -->
             
             <!-- Modifier les informations d'un évènement -->
-            <a href="http://localhost/event/views/modif_event.php">Modifier un évènement</a>
+            <!-- <a href="http://localhost/event/views/modif_event.php">Modifier un évènement</a> -->
             
            <!-- Liste des catégories -->
            <a href="http://localhost/event/views/list_categorie.php">Liste de catégories</a>
             
             <!-- Ajouter une catégorie -->
-            <a href="http://localhost/event/views/add_categorie.php">Ajouter une categorie</a>
+            <!-- <a href="http://localhost/event/views/add_categorie.php">Ajouter une categorie</a> -->
              
             <!-- Modifier une catégorie -->
-            <a href="http://localhost/event/views/modif_categorie.php">Modifier une catégorie</a>
+            <!-- <a href="http://localhost/event/views/modif_categorie.php">Modifier une catégorie</a> -->
 
            <!-- Liste des utilisateurs -->
-           <a href="http://localhost/event/views/list_categorie.php">Liste de catégories</a>
+           <a href="http://localhost/event/views/list_user.php">Liste des utilisateurs</a>
 
            <!-- Se déconnecter  -->
            <a href="http://localhost/event/views/logout.php">Déconnexion</a>

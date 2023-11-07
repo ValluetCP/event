@@ -12,6 +12,7 @@ require_once "../../models/categorieModel.php";
 // Afficher la Liste des utilisateurs - SELECT ALL
 // User::findAllUser();
 // return $userList;
+// User::findUserById
 
 
 // Ajouter un utilisateur  - INSERT INTO

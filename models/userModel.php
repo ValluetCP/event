@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/event/models/database.php";
 // require_once __DIR__."/database.php";
@@ -100,6 +100,10 @@ class User
                     // setcookie("user_name", $user['name'],time() + 86400,"/","localhost", false, true);
 
                     $_SESSION["user_name"] = $user["nom"];
+                    $_SESSION["user_firstName"] = $user["prenom"];
+                    $_SESSION["user_pseudo"] = $user["pseudo"];
+                    $_SESSION["user_email"] = $user["email"];
+                    $_SESSION["user_email"] = $user["mdp"];
 
                     // rediriger vers la page home.php
                     header("Location: http://localhost/event/views/home.php");
@@ -172,8 +176,8 @@ class User
         try {
             $request->execute(array($id));;
             // recuperer le resultat dans un tableau
-            $event = $request->fetch();
-            return $event;
+            $user = $request->fetch();
+            return $user;
         } catch (PDOException $e) {
             $e->getMessage();
         }

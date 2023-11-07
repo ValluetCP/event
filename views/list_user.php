@@ -18,7 +18,7 @@ $userList = User::findAllUser();
                 <th>Prénom</th>
                 <th>Pseudo</th>
                 <th>Email</th>
-                
+                <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +30,8 @@ $userList = User::findAllUser();
                     <td><?= $user['pseudo']; ?></td>
                     <td><?= $user['email']; ?></td>
                     <td><a class="lien" href="./user.php?book=<?= $user['id_utilisateur']; ?>">Consulter son profil</a></td>
+                    <!-- <td><a href="./add_user.php?id_user_update=<?= $user['id_utilisateur']; ?>">Modifier</a></td> -->
+                    <!-- <td><a href="traitement/action.php?id_user_delete=<?= $user['id_utilisateur']; ?>">Supprimer</a></td> -->
                 </tr>
             <?php } ?>
         </tbody>
