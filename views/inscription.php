@@ -7,7 +7,7 @@ include_once "./inc/nav.php";
     <h1 class="m-5">Inscription</h1>
     <form action="./traitement/action.php" method="post">
 
-        <div class="form-group mt-5 mb-5 d-flex justify-content-around">
+        <!-- <div class="form-group mt-5 mb-5 d-flex justify-content-around">
             <label class="me-xl-5">Statut :</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="statut" id="particulier" value="particulier">
@@ -17,7 +17,7 @@ include_once "./inc/nav.php";
                 <input class="form-check-input" type="radio" name="statut" id="entreprise" value="entreprise">
                 <label class="form-check-label">entreprise</label>
             </div>
-        </div>
+        </div> -->
         
         <div class="form-group  mb-3">
             <label class="m-2" id="nom">Nom</label>
@@ -44,7 +44,7 @@ include_once "./inc/nav.php";
             <input type="password" class="form-control"  name="mdp" >
         </div>
 
-        <div class="form-group mt-5 mb-5 d-flex justify-content-around">
+        <!-- <div class="form-group mt-5 mb-5 d-flex justify-content-around">
             <label class="me-xl-5">Role :</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="role" id="admin" value="admin">
@@ -55,7 +55,7 @@ include_once "./inc/nav.php";
                 <label class="form-check-label">client</label>
             </div>
         </div>
- 
+  -->
         <button type="submit" class="btn btn-primary mt-5 mb-5" name="register" value="register">S'inscrire</button>
     </form>
 </div>

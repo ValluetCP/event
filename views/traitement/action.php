@@ -1,9 +1,10 @@
-
 <?php
+session_start();
 // require_once "../../models/classModel.php";
 require_once "../../models/userModel.php";
 require_once "../../models/eventModel.php";
 require_once "../../models/categorieModel.php";
+
 
 
 // ------------------ USER ------------------//
@@ -18,7 +19,7 @@ require_once "../../models/categorieModel.php";
 // Ajouter un utilisateur  - INSERT INTO
 // inscription.php
 if(isset($_POST['register'])){
-    $statut = htmlspecialchars($_POST['statut']);
+    // $statut = htmlspecialchars($_POST['statut']);
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $pseudo = htmlspecialchars($_POST['pseudo']);
@@ -28,14 +29,10 @@ if(isset($_POST['register'])){
     // $2y$10$8RvIgBpQrf8H8rTk94Cp3eaaubQZiwDC76/BC4rcbkC
     $password = password_hash($mdp, PASSWORD_DEFAULT);
     
-    $role = htmlspecialchars($_POST['role']);
-    // var_dump($mdp);
-    // var_dump($password);
     // apeler la methode inscription de la classe User
-    User::addUser($statut,$nom,$prenom,$pseudo,$email,$password,$role);
-    // cette syntaxe uniquement pour appeler les méthodes static.
-    // la méthode inscription étant static donc on utilise le nom de la classe suivi de "::" ensuite le nom de la méthode qui est inscriptions.
-
+    // User::addUser($statut,$nom,$prenom,$pseudo,$email,$password,$role);
+    User::addUser($nom,$prenom,$pseudo,$email,$password);
+    
 }
 
 
@@ -54,18 +51,17 @@ if(isset($_POST['login'])){
 // si le client souhaite modifier ses infos personnels depuis son profil
 
 if (isset($_POST['update_user'])) {
-    $id = htmlspecialchars($_POST['id_evenement']);
-    $statut = htmlspecialchars($_POST['statut']);
+    // $statut = htmlspecialchars($_POST['statut']);
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $pseudo = htmlspecialchars($_POST['pseudo']);
     $email = htmlspecialchars($_POST['email']);
-    $mdp = htmlspecialchars($_POST['mdp']);
-    $password = password_hash($mdp, PASSWORD_DEFAULT);
-    $role = htmlspecialchars($_POST['role']);
+    // $mdp = htmlspecialchars($_POST['mdp']);
+    // $password = password_hash($mdp, PASSWORD_DEFAULT);
+    // $role = htmlspecialchars($_POST['role']);
 
     // apeler la methode inscription de la classe User
-    User::updateUserById($id,$statut,$nom,$prenom,$pseudo,$email,$password,$role);
+    User::updateUserById($nom,$prenom,$pseudo,$email);
 
 }
 
@@ -93,14 +89,14 @@ if (isset($_GET['id_user_delete'])) {
 // inscription.php
 if(isset($_POST['add_event'])){
     $titre = htmlspecialchars($_POST['titre']);
-    $duree = htmlspecialchars($_POST['duree']);
+    // $duree = htmlspecialchars($_POST['duree']);
     $prix = htmlspecialchars($_POST['prix']);
     $resume = htmlspecialchars($_POST['resume']);
-    $nbr_place = htmlspecialchars($_POST['nbr_place']);
+    // $nbr_place = htmlspecialchars($_POST['nbr_place']);
     $categorie_id = htmlspecialchars($_POST['categorie']);
 
     // apeler la methode inscription de la classe Event
-    Event::addEvent($titre,$duree,$prix,$resume,$nbr_place,$categorie_id);
+    Event::addEvent($titre,$prix,$resume,$categorie_id);
     // cette syntaxe uniquement pour appeler les méthodes static.
     // la méthode addEvent étant static donc on utilise le nom de la classe suivi de "::" ensuite le nom de la méthode qui est addEvent.
 

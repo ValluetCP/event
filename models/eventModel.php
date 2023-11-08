@@ -8,17 +8,17 @@ class Event{
     // pour la méthode static, pas besoin de déclarer une variable à l'inverse des contructeurs
 
     // methode pour inscrire un évènement
-    public static function addEvent($titre,$duree,$prix,$resume,$nbr_place,$categorie_id){
+    public static function addEvent($titre,$prix,$resume,$categorie_id){
 
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
 
         // preparation de la requête
-        $request =$db->prepare("INSERT INTO `events`(`titre`, `duree`, `prix`, `resume`, `nbr_place`, `categorie_id`) VALUES (?,?,?,?,?,?)");
+        $request =$db->prepare("INSERT INTO `events`(`titre`, `prix`, `resume`, `categorie_id`) VALUES (?,?,?,?)");
 
         // exécuter la requête
         try {
-            $request->execute(array($titre,$duree,$prix,$resume,$nbr_place,$categorie_id));
+            $request->execute(array($titre,$prix,$resume,$categorie_id));
 
             // rediriger vers la page list_user.php
             // header("Location: http://localhost/event/views/list_event.php");

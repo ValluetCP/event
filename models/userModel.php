@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/event/models/database.php";
 // require_once __DIR__."/database.php";
@@ -10,20 +10,20 @@ class User
     // pour la méthode static, pas besoin de déclarer une variable à l'inverse des contructeurs
 
     // methode pour s'inscrire
-    public static function addUser($statut, $nom, $prenom, $pseudo, $email, $password, $role)
+    public static function addUser($nom,$prenom,$pseudo,$email,$password)
     {
 
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
         // preparation de la requête
-        $request = $db->prepare("INSERT INTO `users`(`nom`, `prenom`, `pseudo`, `email`, `mdp`, `role`, `statut`) VALUES (?,?,?,?,?,?,?)");
+        $request = $db->prepare("INSERT INTO `users`(`nom`, `prenom`, `pseudo`, `email`, `mdp`) VALUES (?,?,?,?,?)");
 
         // exécuter la requête
         try {
-            $request->execute(array($nom, $prenom, $pseudo, $email, $password, $role, $statut));
+            $request->execute(array($nom, $prenom, $pseudo, $email, $password));
 
             // rediriger vers la page list_user.php
-            header("Location: http://localhost/event/views/list_user.php");
+            header("Location: http://localhost/event/views/connexion.php");
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -87,6 +87,10 @@ class User
                     // version avec $_COOKIE
                     //setcookie("id_user", $user['id_user'],time() + 86400,"/","localhost", false, true);
 
+                    // $_SESSION["user"] = $user;
+                    //<?= $_SESSION["user"]["id_user"] syntaxe dans les fichiers où je l'appel
+
+
                     // version avec $_SESSION
                     $_SESSION["id_user"] = $user["id_utilisateur"];
 
@@ -103,7 +107,7 @@ class User
                     $_SESSION["user_firstName"] = $user["prenom"];
                     $_SESSION["user_pseudo"] = $user["pseudo"];
                     $_SESSION["user_email"] = $user["email"];
-                    $_SESSION["user_email"] = $user["mdp"];
+                    
 
                     // rediriger vers la page home.php
                     header("Location: http://localhost/event/views/home.php");
@@ -127,18 +131,22 @@ class User
 
     // methode pour changer à partir de l'id 
     // CLIENT -  modifier ses infos personnels depuis son profil
-    public static function updateUserById($id, $statut, $nom, $prenom, $pseudo, $email, $password, $role)
+    public static function updateUserById($nom,$prenom,$pseudo,$email)
     {
 
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
 
         // preparation de la requête
-        $request = $db->prepare("UPDATE users SET nom = ?, prenom = ?, pseudo = ?, email = ?, mdp = ?, role = ?, statut = ? WHERE id_utilisateur = ? ");
-
+        $request = $db->prepare("UPDATE users SET nom = ?, prenom = ?, pseudo = ?, email = ? WHERE id_utilisateur = ? ");
         // exécuter la requête
         try {
-            $request->execute(array($nom, $prenom, $pseudo, $email, $password, $role, $statut, $id));
+            $request->execute(array($nom, $prenom, $pseudo, $email, $_SESSION["id_user"]));
+            
+            $_SESSION["user_name"] = $nom;
+            $_SESSION["user_firstName"] = $prenom;
+            $_SESSION["user_pseudo"] = $pseudo;
+            $_SESSION["user_email"] = $email;
 
             // rediriger vers la page list_user.php
             header("Location: http://localhost/event/views/list_user.php");
@@ -159,7 +167,7 @@ class User
         try {
             $request->execute(array($id));
             // recuperer le resultat dans un tableau
-            header("Location: http://localhost/event/views/list_user.php");
+            header("Location: http://localhost/event/views/admin_list_user.php");
         } catch (PDOException $e) {
             $e->getMessage();
         }

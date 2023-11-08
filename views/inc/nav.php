@@ -1,18 +1,20 @@
-<?php session_start(); ?>
+
     <nav>
         <!-- <a href="http://localhost/event/index.php">Page d'accueil</a> -->
+
+        <!-- Home  -->
+        <a href="http://localhost/event/views/home.php">Accueil</a>
+
 
         <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
 
 
             <!-- --------- Pour les roles 'ADMIN' --------- -->
 
-            <!-- Home  -->
-            <a href="http://localhost/event/views/home.php">Accueil</a>
             
             <!-- Menu principale 'ADMIN' - profil (espace personnelle) -->
             <a href="http://localhost/event/views/home_admin.php">Espace ADMIN</a>
-            <a href="http://localhost/event/views/info_user.php">Informations personnelles</a>
+            <a href="http://localhost/event/views/info_user.php?id=<?= $_SESSION["id_user"]; ?>">Informations personnelles</a>
 
             <!-- La liste des évènements  -->
             <a href="http://localhost/event/views/admin_list_event.php">Liste des évènements</a>
@@ -53,13 +55,13 @@
             <!-- Sous-Menu 'CLIENT'  -->
 
             <!-- La liste des évènements auxquels il participe (consulter, modifier et annuler) -->
-            <a href="http://localhost/event/views/my_event.php">Mes évènements</a>
+            <a href="http://localhost/event/views/my_event.php">Mes réservations</a>
             
             <!-- Les favoris  -->
-            <a href="http://localhost/event/views/list_favoris">Liste des favoris</a>
+            <!-- <a href="http://localhost/event/views/list_favoris">Liste des favoris</a> -->
             
             <!-- Liste des historiques -->
-            <a href="http://localhost/event/views/list_historique">Liste des historiques</a>
+            <!-- <a href="http://localhost/event/views/list_historique">Liste des historiques</a> -->
               
 
             <!-- ---------IDEM (valable pour client et admin)--------- -->
@@ -72,9 +74,6 @@
 
             
             <?php } else { ?>
-                
-                <!-- Home  -->
-                <a href="http://localhost/event/views/home.php">Accueil</a>
                 
                 <!-- S'incrire  -->
                 <a href="http://localhost/event/views/inscription.php">Inscription</a>

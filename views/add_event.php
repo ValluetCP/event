@@ -27,10 +27,10 @@ if (isset($_GET['id_event_update'])) {
             <input type="text" class="form-control"  name="titre" value="<?= !empty($event) ? $event["titre"] : "" ?>">
         </div>
         
-        <div class="form-group  mb-3">
+        <!-- <div class="form-group  mb-3">
             <label class="m-2" id="duree">Durée</label>
             <input type="text" class="form-control"  name="duree" value="<?= !empty($event) ? $event["duree"] : "" ?>" >
-        </div>
+        </div> -->
 
         <div class="form-group  mb-3">
             <label class="m-2" id="prix">Tarif</label>
@@ -42,10 +42,10 @@ if (isset($_GET['id_event_update'])) {
             <input type="text" class="form-control"  name="resume" value="<?= !empty($event) ? $event["resume"] : "" ?>" >
         </div>
         
-        <div class="form-group  mb-3">
+        <!-- <div class="form-group  mb-3">
             <label class="m-2" id="nbr_place">Nombre de place</label>
             <input type="number" class="form-control"  name="nbr_place" value="<?= !empty($event) ? $event["nbr_place"] : "" ?>" >
-        </div>
+        </div> -->
         
         <!-- Table categories (clé étrangère) - récupérer les infos -->
         <div class="form-group mb-3">

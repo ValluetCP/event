@@ -14,27 +14,31 @@ require_once "../models/userModel.php";
 
         <div class="form-group  mb-3">
             <label class="m-2" id="nom">Nom</label>
-            <input type="text" class="form-control text-uppercase"  name="nom" value="<?= $_SESSION["user_name"] ?>" disabled>
+            <input type="text" class="form-control text-uppercase"  name="nom" value="<?= $_SESSION["user_name"] ?>">
             
         </div>
 
         <div class="form-group  mb-3">
             <label class="m-2" id="prenom">Prénom</label>
-            <input type="text" class="form-control"  name="prenom" value="<?= $_SESSION["user_firstName"] ?>" disabled>
+            <input type="text" class="form-control"  name="prenom" value="<?= $_SESSION["user_firstName"] ?>">
         </div>
 
         <div class="form-group  mb-3">
             <label class="m-2" id="pseudo">Pseudo</label>
-            <input type="text" class="form-control"  name="pseudo" value="<?= $_SESSION["user_pseudo"] ?>"  disabled>
+            <input type="text" class="form-control"  name="pseudo" value="<?= $_SESSION["user_pseudo"] ?>">
         </div>
 
         <div class="form-group  mb-3">
             <label class="m-2" id="email">Email</label>
-            <input type="email" class="form-control"  name="email" value="<?= $_SESSION["user_email"] ?>" disabled>
+            <input type="email" class="form-control"  name="email" value="<?= $_SESSION["user_email"] ?>">
         </div>
 
-        <!-- BOUTON modifier / valider -->
-        <a class="lien btn" href="./update_user.php">Modifier</a>
+        <!--         
+        <div class="form-group  mb-3">
+            <label class="m-2" id="mdp">Mot de passe</label>
+            <input type="password" class="form-control"  name="mdp" >
+        </div> -->
+        <button type="submit" class="btn btn-primary mt-5 mb-5" name="update_user" value="register">Valider</button>    
 
     </form>
 </div>
