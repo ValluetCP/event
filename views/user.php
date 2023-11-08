@@ -35,7 +35,7 @@ $ficheBook = Book::findBookById($bookId);
         </tr>
     </table><br><br>
 
-    <h3>Historique</h3>
+    <!-- <h3>Historique</h3>
     <table class="table">
         <tr>
             <th>Identifiant</th>
@@ -45,7 +45,7 @@ $ficheBook = Book::findBookById($bookId);
             <td><?= $ficheBook['id_evenement']; ?></td>
             <td><?= $ficheBook['titre']; ?></td>
         </tr>
-    </table><br><br>
+    </table><br><br> -->
 
 </div>
 
