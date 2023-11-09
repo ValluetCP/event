@@ -38,11 +38,39 @@ require_once "../models/userModel.php";
             <label class="m-2" id="mdp">Mot de passe</label>
             <input type="password" class="form-control"  name="mdp" >
         </div> -->
-        <button type="submit" class="btn btn-primary mt-5 mb-5" name="update_user" value="register">Valider</button>    
 
+        <div class="d-flex">
+            <button type="submit" class="btn btn-primary mt-5 mb-5 me-2" name="update_user">Valider</button>   
+    
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary  mt-5 mb-5 mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Annuler
+            </button>
+        </div>
     </form>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Annulation</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+            En cliquant sur le bouton "quitter cette page", ces informations ne seront pas enregistrées et vos modifications ne seront pas prises en compte.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Revenir sur la page</button>
+        <a class="btn btn-primary" href="./info_user.php" role="button">Quitter cette page</a>
+        <!-- <button type="button" class="btn btn-primary">Quitter cette page</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 <?php
 include_once "./inc/footer.php";
 ?>

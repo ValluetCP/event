@@ -18,6 +18,7 @@
 
             <!-- La liste des évènements  -->
             <a href="http://localhost/event/views/admin_list_event.php">Liste des évènements</a>
+
             <!-- Ajouter un évènement sur la plateforme -->
             <!-- <a href="http://localhost/event/views/add_event.php">Ajouter un évènement</a> -->
             
@@ -28,7 +29,7 @@
            <a href="http://localhost/event/views/list_categorie.php">Liste de catégories</a>
             
             <!-- Ajouter une catégorie -->
-            <!-- <a href="http://localhost/event/views/add_categorie.php">Ajouter une categorie</a> -->
+            <a href="http://localhost/event/views/add_categorie.php">Ajouter une categorie</a>
              
             <!-- Modifier une catégorie -->
             <!-- <a href="http://localhost/event/views/modif_categorie.php">Modifier une catégorie</a> -->

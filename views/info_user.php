@@ -37,7 +37,17 @@ require_once "../models/userModel.php";
         <a class="lien btn" href="./update_user.php">Modifier</a>
 
     </form>
+
 </div>
+
+
+<!-- <script>
+    const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+    myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus()
+    })
+</script> -->
 
 <?php
 include_once "./inc/footer.php";

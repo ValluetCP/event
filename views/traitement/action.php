@@ -4,6 +4,7 @@ session_start();
 require_once "../../models/userModel.php";
 require_once "../../models/eventModel.php";
 require_once "../../models/categorieModel.php";
+require_once "../../models/bookModel.php";
 
 
 
@@ -188,12 +189,13 @@ if (isset($_GET['id_categorie_delete'])) {
 
 // Ajouter une réservation  - INSERT INTO
 // event.php
-if(isset($_POST['addBook'])){
-    $idUser = $_SESSION(['id_user']);
+if(isset($_POST['add_book'])){
+    $idUser = $_SESSION['id_user'];
     $idEvent = htmlspecialchars($_POST['id_event']);
-    
+    echo $idUser;
+    echo $idEvent;
     // apeler la methode book de la classe User
-    Book::addBook($userId,$idEvent);
+    Book::addBook($idUser,$idEvent);
 }
 
 

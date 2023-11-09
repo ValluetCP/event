@@ -149,7 +149,12 @@ class User
             $_SESSION["user_email"] = $email;
 
             // rediriger vers la page list_user.php
-            header("Location: http://localhost/event/views/list_user.php");
+            header("Location: http://localhost/event/views/info_user.php");
+
+            //  if($_SESSION["user_role"] == 'admin')                    
+            //             header("Location: http://localhost/event/views/add_categorie.php");
+            //         else 
+            //             header("Location: http://localhost/event/views/info_user.php");
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

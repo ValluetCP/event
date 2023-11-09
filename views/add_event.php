@@ -19,7 +19,7 @@ if (isset($_GET['id_event_update'])) {
 
 <div class="container">
     <h1 class="m-5">Evénements</h1>
-    <h2 class="m-5"><?= !empty($event) ? "Modifier les informations de l'événement'" : "Ajouter un événement" ?></h2>
+    <h2 class="m-5"><?= !empty($event) ? "Modifier les informations de l'événement" : "Ajouter un événement" ?></h2>
     <form action="./traitement/action.php" method="post" enctype="multipart/form-data">
         
         <div class="form-group  mb-3">
@@ -65,7 +65,7 @@ if (isset($_GET['id_event_update'])) {
 
         
  
-        <button type="submit" class="btn btn-primary mt-5 mb-5" name="<?= !empty($categorie) ? "update_event" : "add_event" ?>" value="add_event"><?= !empty($categorie) ? "Modifier" : "Ajouter" ?> un évènement</button>
+        <button type="submit" class="btn btn-primary mt-5 mb-5" name="<?= !empty($event) ? "update_event" : "add_event" ?>" value="add_event"><?= !empty($event) ? "Sauvegarder" : "Valider" ?></button>
     </form>
 </div>
 

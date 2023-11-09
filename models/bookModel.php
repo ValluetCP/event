@@ -25,7 +25,7 @@ class Book{
 
 
         // methode pour inscrire une réservation
-    public static function addBook($userId,$eventId){
+    public static function addBook($idUser,$eventId){
 
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
@@ -35,10 +35,10 @@ class Book{
 
         // exécuter la requête
         try {
-            $request->execute(array($userId,$eventId));
+            $request->execute(array($idUser,$eventId));
 
             // rediriger vers la page list_user.php
-            header("Location: http://localhost/event/views/list_book.php");
+            // header("Location: http://localhost/event/views/list_book.php");
             
         } catch (PDOException $e) {
             echo $e->getMessage();
