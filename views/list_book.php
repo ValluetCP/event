@@ -1,8 +1,9 @@
 <?php
 include_once "./inc/header.php";
 include_once "./inc/nav.php";
-require_once "../models/eventModel.php";
-$listEvent = Event::findAllEvent();
+require_once "../models/bookModel.php";
+// $listEvent = Event::findAllEvent();
+$bookList = Book::findAllBook();
 ?>
 
 <div class="container">
@@ -21,11 +22,11 @@ $listEvent = Event::findAllEvent();
             </tr>
         </thead>
         <tbody>
-            <?php foreach($listEvent as $event){ ?>
+            <?php foreach($bookList as $book){ ?>
                 <tr>
-                    <td><?= $event['categorie_name']; ?></td>
-                    <td><?= $event['titre']; ?></td>
-                    <td><?= $event['nbr_place']; ?></td>
+                    <td><?= $book['categorie_name']; ?></td>
+                    <td><?= $book['titre']; ?></td>
+                    <!-- <td><?= $book['nbr_place']; ?></td> -->
                     <!-- Ajouter le nombre de particpant par évènement -->
                     
                     <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>

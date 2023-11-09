@@ -38,7 +38,7 @@ class Book{
             $request->execute(array($idUser,$eventId));
 
             // rediriger vers la page list_user.php
-            // header("Location: http://localhost/event/views/list_book.php");
+            header("Location: http://localhost/event/views/list_book.php");
             
         } catch (PDOException $e) {
             echo $e->getMessage();

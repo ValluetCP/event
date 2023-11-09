@@ -56,7 +56,7 @@
             <!-- Sous-Menu 'CLIENT'  -->
 
             <!-- La liste des évènements auxquels il participe (consulter, modifier et annuler) -->
-            <a href="http://localhost/event/views/my_event.php" data-bs-toggle="modal" data-bs-target="#exampleModal">Mes réservations</a>
+            <a href="http://localhost/event/views/my_event.php">Mes réservations</a>
             
             <!-- Les favoris  -->
             <!-- <a href="http://localhost/event/views/list_favoris">Liste des favoris</a> -->
@@ -83,7 +83,7 @@
                 <a href="http://localhost/event/views/connexion.php">Connexion</a>
     
                 <!-- Réservations  -->
-                <a href="http://localhost/event/views/connexion.php">Réservations</a>
+                <a href="http://localhost/event/views/connexion.php" data-bs-toggle="modal" data-bs-target="#exampleModal">Réservations</a>
         <?php } ?>
         <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
