@@ -34,7 +34,10 @@ require_once "../models/userModel.php";
         </div>
 
         <!-- BOUTON modifier / valider -->
-        <a class="lien btn" href="./update_user.php">Modifier</a>
+        <div class="d-flex">
+            <a class="lien btn btn-primary" href="./home.php">Quitter</a>
+            <a class="lien btn btn-primary mx-2" href="./update_user.php">Modifier</a>
+        </div>
 
     </form>
 

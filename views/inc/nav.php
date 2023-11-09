@@ -56,7 +56,7 @@
             <!-- Sous-Menu 'CLIENT'  -->
 
             <!-- La liste des évènements auxquels il participe (consulter, modifier et annuler) -->
-            <a href="http://localhost/event/views/my_event.php">Mes réservations</a>
+            <a href="http://localhost/event/views/my_event.php" data-bs-toggle="modal" data-bs-target="#exampleModal">Mes réservations</a>
             
             <!-- Les favoris  -->
             <!-- <a href="http://localhost/event/views/list_favoris">Liste des favoris</a> -->
@@ -85,4 +85,24 @@
                 <!-- Réservations  -->
                 <a href="http://localhost/event/views/connexion.php">Réservations</a>
         <?php } ?>
+        <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Une inscription?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+        Pour participer à nos événements , vous devez être détenteur d’un compte. Veuillez vous connecter ou bien vous inscrire.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" href="../inscription.php" role="button">Je m'inscris</a>
+        <a class="btn btn-primary" href="../connexion.php" role="button">Je me connecte</a>
+      </div>
+    </div>
+  </div>
+</div>
     </nav>
