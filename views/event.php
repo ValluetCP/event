@@ -14,7 +14,7 @@ $ficheEvent = Event::findEventById($eventId);
     <!-- pour  le comparer avec le nombre de place -->
     
         <h2><?= $ficheEvent['titre']; ?></h2>
-        <p>Identifiant : <?= $ficheEvent['id_evenement']; ?></p>
+        <!-- <p>Identifiant : <?= $ficheEvent['id_evenement']; ?></p> -->
         <p>Catégorie : <?= $ficheEvent['categorie_name']; ?></p>
         <p>Titre : <?= $ficheEvent['titre']; ?></p>
         <!-- <p><?= $ficheEvent['duree']; ?></p> -->
@@ -24,14 +24,13 @@ $ficheEvent = Event::findEventById($eventId);
 
         <form action="./traitement/action.php" method="POST">
             <label for="">Choisir le nombre de place :</label>
-            <select name="" id="">
-                <?php for( $i = 1; $i < 10; $i++){ ?>
+            <select name="nb_place" id="">
+                <?php for( $i = 1; $i < 5; $i++){ ?>
                     <option value="<?= $i; ?>"><?= $i; ?></option>
                 <?php } ?>   
             </select><br><br>
 
             <!-- <p>Montant total : <?= $prix; ?></p> -->
-
             <input type="hidden" name="id_event" value="<?= $ficheEvent['id_evenement']; ?>">
             <button href="./list_book.php?book=<?= $ficheEvent['id_evenement']; ?>" class="btn btn-outline-warning" name="add_book">Réserver</button>
 

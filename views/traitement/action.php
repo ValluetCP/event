@@ -119,6 +119,8 @@ if (isset($_POST['update_event'])) {
     // apeler la methode inscription de la classe User
     Event::updateEventById($id,$titre,$duree,$prix,$resume,$nbr_place,$categorie_id);
 
+    
+    // CALCUL TARIF
 }
 
 
@@ -131,6 +133,10 @@ if (isset($_GET['id_event_delete'])) {
     // appel de la methode deleteEventById
     $event = Event::deleteEventById($id);
 }
+
+
+
+
 
 
 // ------------------ CATEGORIE ------------------//

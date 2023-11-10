@@ -1,4 +1,5 @@
 <?php
+// session_start();
 require_once $_SERVER["DOCUMENT_ROOT"]."/event/models/database.php";
 // require_once "./models/database.php";
 
@@ -54,12 +55,12 @@ class Book{
         $db = Database::dbConnect();
 
         // preparation de la requête
-        $request = $db->prepare("SELECT * FROM `users` u LEFT JOIN reservation r ON u.id_utilisateur= r.user_id LEFT JOIN events e ON r.event_id = e.id_evenement");
+        $request = $db->prepare("SELECT * FROM `users` u JOIN reservation r ON u.id_utilisateur= r.user_id JOIN events e ON r.event_id = e.id_evenement JOIN categorie c ON e.categorie_id= c.id_categorie WHERE u.id_utilisateur = ?");
 
         // exécuter la requête
         $bookList = null;
         try {
-            $request->execute();
+            $request->execute([$_SESSION["id_user"]]);
 
             // récupère le résultat dans un tableau
             $bookList = $request->fetchAll(PDO::FETCH_ASSOC);
