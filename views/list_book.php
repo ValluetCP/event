@@ -3,7 +3,7 @@ include_once "./inc/header.php";
 include_once "./inc/nav.php";
 require_once "../models/bookModel.php";
 // $listEvent = Event::findAllEvent();
-$bookList = Book::findAllBook();
+$bookList = Book::findAllBookByIdUser();
 ?>
 
 <div class="container">
@@ -14,11 +14,12 @@ $bookList = Book::findAllBook();
         <thead>
             <tr>
                 <!-- Table Event -->
-                <th>Titre de l'évènement</th>
-                <!-- <th>Catégorie</th> -->
+                <th>Date</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
                 <th>Résumé</th>
                 <th>Prix</th>
-                <!-- <th>Nombre de place</th> -->
+                <th>Nombre de place</th>
                 <th>Action</th>
                 
             </tr>
@@ -26,18 +27,14 @@ $bookList = Book::findAllBook();
         <tbody>
             <?php foreach($bookList as $book){ ?>
                 <tr>
+                    <td><?= date('d-m-Y', strtotime($book['date_event']));  ?></td>
                     <td><?= $book['titre']; ?></td>
                     <td><?= $book['categorie_name']; ?></td>
                     <td><?= $book['resume']; ?></td>
                     <td><?= $book['prix']; ?></td>
-                    <!-- <td><?= $book['nbr_place']; ?></td> -->
+                    <td><?= $book['place_reserve']; ?></td>
                     <!-- Ajouter le nombre de particpant par évènement -->
-                    <?php if(!empty($_POST['add_book'])){ ?>
-                            <td><?= $_POST['nb_place']; ?></td>
-                    <?php }  ?>                      
-
-                    
-                    <td><a class="lien" href="./event.php?event=<?= $book['id_evenement']; ?>">Consulter</a></td>
+                   <td><a class="lien" href="./event.php?event=<?= $book['id_evenement']; ?>">Consulter</a></td>
                 </tr>
             <?php } ?>
         </tbody>

@@ -26,17 +26,17 @@ class Book{
 
 
         // methode pour inscrire une réservation
-    public static function addBook($idUser,$eventId){
+    public static function addBook($idUser,$eventId,$placeReserve){
 
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
 
         // preparation de la requête
-        $request =$db->prepare("INSERT INTO `reservation`(`user_id`, `event_id`) VALUES (?,?)");
+        $request =$db->prepare("INSERT INTO `reservation`(`user_id`, `event_id`, `place_reserve`) VALUES (?,?,?)");
 
         // exécuter la requête
         try {
-            $request->execute(array($idUser,$eventId));
+            $request->execute(array($idUser,$eventId,$placeReserve));
 
             // rediriger vers la page list_user.php
             header("Location: http://localhost/event/views/list_book.php");
@@ -48,7 +48,7 @@ class Book{
 
 
     // methode pour tout afficher les évènements
-    public static function findAllBook()
+    public static function findAllBookByIdUser()
     {
 
         // on appel la fonction dbConnect qui est dans la class Database

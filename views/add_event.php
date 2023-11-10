@@ -33,13 +33,23 @@ if (isset($_GET['id_event_update'])) {
         </div> -->
 
         <div class="form-group  mb-3">
-            <label class="m-2" id="prix">Tarif</label>
+            <label class="m-2" id="prix">tarif</label>
             <input type="number" class="form-control"  name="prix" value="<?= !empty($event) ? $event["prix"] : "" ?>" >
         </div>
         
         <div class="form-group  mb-3">
-            <label class="m-2" id="resume">Résumé</label>
+            <label class="m-2" id="resume">résumé</label>
             <input type="text" class="form-control"  name="resume" value="<?= !empty($event) ? $event["resume"] : "" ?>" >
+        </div>
+        
+        <div class="form-group  mb-3">
+            <label class="m-2" id="date_event">date : </label>
+            <input type="date" class="form-control"  name="date_event" value="<?= !empty($event) ? $event["date_event"] : "" ?>" >
+        </div>
+        
+        <div class="form-group  mb-3">
+            <label class="m-2" id="nbr_place">nombre de place</label>
+            <input type="number" class="form-control"  name="nbr_place" value="<?= !empty($event) ? $event["nbr_place"] : "" ?>">
         </div>
         
         <!-- <div class="form-group  mb-3">
