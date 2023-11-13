@@ -7,3 +7,8 @@ h2{
     margin-bottom: 30px;
     margin-top: 40px;
 }
+
+.event-passe td{
+    color: #888; /* Couleur du texte grise */
+    background-color: #f2f2f2; /* Couleur de fond grise */
+}

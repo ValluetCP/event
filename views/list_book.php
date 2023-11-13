@@ -64,7 +64,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
             <?php foreach($bookList as $book) {
                 // Comparer la date de l'événement avec la date actuelle
                 if ($book['date_event'] < $currentDate) { ?>
-                    <tr>
+                    <tr class="reservation-passe">
                         <td><?= date('d-m-Y', strtotime($book['date_event'])); ?></td>
                         <td><?= $book['titre']; ?></td>
                         <td><?= $book['categorie_name']; ?></td>

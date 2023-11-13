@@ -39,7 +39,7 @@ $placesDisponibles = $ficheEvent['nbr_place'] - $totalPlacesReservees;
         <p>Tarif : <?= $ficheEvent['prix']; ?></p>
 
         <p>Place total : <?= !empty($ficheEvent) ? $ficheEvent["nbr_place"] : "0" ?></p>
-        
+
         <p>Nombre de places réservées :  <?= !empty($totalPlacesReservees) ? $totalPlacesReservees: "0" ?></p>
        
         <p>Places disponibles : <?= $placesDisponibles; ?></p>
@@ -58,7 +58,18 @@ $placesDisponibles = $ficheEvent['nbr_place'] - $totalPlacesReservees;
 
             <!-- <p>Montant total : <?= $prix; ?></p> -->
             <input type="hidden" name="id_event" value="<?= $ficheEvent['id_evenement']; ?>">
-            <button type="submit" class="btn btn-outline-warning" name="add_book">Réserver</button>
+
+            <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
+<!-- 
+                <button type="submit" class="btn btn-outline-warning" name="add_book">Revenir à la liste</button> -->
+
+                <a class="btn btn-outline-warning" href="./list_event.php">Revenir à la liste des évènements</a>
+
+            <?php } else{ ?>
+
+                <button type="submit" class="btn btn-outline-warning" name="add_book">Réserver</button>
+
+            <?php } ?>
 
         </form>
         <?php } else {?>
