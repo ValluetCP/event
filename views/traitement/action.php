@@ -98,8 +98,42 @@ if(isset($_POST['add_event'])){
     $nbrPlace = htmlspecialchars($_POST['nbr_place']);
     $categorie_id = htmlspecialchars($_POST['categorie']);
 
+     // ----------  RECUPERER L'IMAGE ---------- //
+
+    /*objectif : 
+        - récupérer tous les fichiers (images) qui sont dans le formulaire.
+        - copie l'image et la stock dans un endroit temporaire sur le serveur
+        - on lui donnera par la suite le chemin d'accès à notre dossier
+    */
+
+    $imgName = $_FILES ['image']['name']; // nom de l'image
+    // la 1ère valeur 'image' (récupéré dans le formulaire)
+    // la 2ème valeur 'name' (toujours la même, ne change pas)
+
+    $tmpName = $_FILES ['image']['tmp_name']; // localisation temporaire sur le server
+
+
+    // ----------  DESTINATION DE L'IMAGE ---------- //
+
+    //1
+    $destination = $_SERVER['DOCUMENT_ROOT'].'/event/views/asset/img_event/'.$imgName; // destination finale de mon image
+    // $_SERVER['DOCUMENT_ROOT'] + chemin du dossier image
+    //['DOCUMENT_ROOT'] : syntaxe qui veut dire pointe à la racine du serveur, si on n'indique pas le chemin, il s'arrêra au dossier 'htdocs'
+
+    // $_SERVER['DOCUMENT_ROOT'] pointe à la racine du server c'est à dire le dossier principal (dossier racine)
+    
+    //2
+    //echo $destination;
+    move_uploaded_file($tmpName,$destination);
+    // permet de prendre l'image et de la mettre dans le dossier que l'on a pointé au dessus.
+    // 1er paramètre, la destination temporaire où a été stocker le fichier temporairement
+    // 2ème paramètre, c'est la destination que l'on souhaite
+
+
+    // ----------  APPEL DE LA METHOD ---------- //
+
     // apeler la methode inscription de la classe Event
-    Event::addEvent($titre,$prix,$resume,$dateEvent,$nbrPlace,$categorie_id);
+    Event::addEvent($titre,$prix,$resume,$dateEvent,$nbrPlace,$categorie_id,$imgName);
     // cette syntaxe uniquement pour appeler les méthodes static.
     // la méthode addEvent étant static donc on utilise le nom de la classe suivi de "::" ensuite le nom de la méthode qui est addEvent.
 

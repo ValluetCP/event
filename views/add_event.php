@@ -3,15 +3,26 @@ include_once "./inc/header.php";
 include_once "./inc/nav.php";
 require_once "../models/categorieModel.php";
 require_once "../models/eventModel.php";
-$listCategorie = Categorie::findAllCategorie();
+require_once "../models/bookModel.php";
 
+$listCategorie = Categorie::findAllCategorie();
 
 if (isset($_GET['id_event_update'])) {
     // identifiant de l'emprunt
     $id = $_GET['id_event_update'];
     // appel de la methode returnBook
     $event = Event::findEventById($id);
+
+    // récupérer le nombre total de places réservées
+    $totalPlacesReservees = Book::calculReservation($id);
+    // calculer le nombre de places disponibles
+    $placesDisponibles = $event['nbr_place'] - $totalPlacesReservees;
+} else {
+    // Si c'est un nouvel événement, initialiser les valeurs
+    $totalPlacesReservees = 0;
+    $placesDisponibles = 0;
 }
+
 
 ?>
 
@@ -52,6 +63,26 @@ if (isset($_GET['id_event_update'])) {
             <input type="number" class="form-control"  name="nbr_place" value="<?= !empty($event) ? $event["nbr_place"] : "" ?>">
         </div>
         
+
+        <!-- <div class="form-group  mb-3">
+            <label class="m-2" id="image">image</label>
+            <input type="file" class="form-control" name="image" class="file" value="<?= !empty($event) ? $event["image"] : "" ?>">
+        </div> -->
+
+        <div class="form-group mb-3">
+            <label class="m-2" id="image">Image actuelle :</label>
+            <?php if (!empty($event['image'])): ?>
+                <img src="./asset/img_event/<?=$event['image'] ?>" alt="Image actuelle" class="current-image">
+            <?php else: ?>
+                <span>Aucune image</span>
+            <?php endif; ?>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="m-2" id="image">Télécharger une nouvelle image :</label>
+            <input type="file" class="form-control" name="image" class="file">
+        </div>
+  
         <!-- <div class="form-group  mb-3">
             <label class="m-2" id="nbr_place">Nombre de place</label>
             <input type="number" class="form-control"  name="nbr_place" value="<?= !empty($event) ? $event["nbr_place"] : "" ?>" >
@@ -61,10 +92,18 @@ if (isset($_GET['id_event_update'])) {
         <div class="form-group mb-3">
             <label class="m-2">Categorie :</label>
             <select name="categorie" class="form-control">
-                <option value="">Choisir une categorie</option>
-                <?php foreach($listCategorie as $categorie){ ?>
-                    <option value="<?= $categorie['id_categorie']; ?>"><?= $categorie['categorie_name']; ?></option>
-                <?php } ?>
+
+                <?php if(!empty($event)){?>
+                    <option value=""><?= $event["categorie_name"]; ?></option>
+                <?php }else{?>
+
+                    <option value="">Choisir une categorie</option>
+                    <?php foreach($listCategorie as $categorie){ ?>
+
+                        <option value="<?= $categorie['id_categorie']; ?>"><?= $categorie['categorie_name']; ?></option>
+
+                    <?php } 
+                    }?>
             </select>
         </div>
         
@@ -77,8 +116,28 @@ if (isset($_GET['id_event_update'])) {
  
         <button type="submit" class="btn btn-primary mt-5 mb-5" name="<?= !empty($event) ? "update_event" : "add_event" ?>" value="add_event"><?= !empty($event) ? "Sauvegarder" : "Valider" ?></button>
     </form>
+
+    
+        <!-- Afficher les informations sur les places -->
+
+        <h2>Infos complémentaires</h2>
+        <div class="form-group mb-3">
+            <label class="m-2">Nombre total de places réservées :</label>
+            <span><?= !empty($totalPlacesReservees) ? $totalPlacesReservees: "0" ?></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="m-2">Nombre de places disponibles :</label>
+            <span><?= $placesDisponibles; ?></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="m-2">Nombre initial de places :</label>
+            <span><?= !empty($event) ? $event['nbr_place'] : ""; ?></span>
+        </div>
 </div>
 
 <?php
 include_once "./inc/footer.php";
 ?>
+

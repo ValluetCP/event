@@ -55,7 +55,7 @@ class Book{
         $db = Database::dbConnect();
 
         // preparation de la requête
-        $request = $db->prepare("SELECT * FROM `users` u JOIN reservation r ON u.id_utilisateur= r.user_id JOIN events e ON r.event_id = e.id_evenement JOIN categorie c ON e.categorie_id= c.id_categorie WHERE u.id_utilisateur = ?");
+        $request = $db->prepare("SELECT * FROM `users` u JOIN reservation r ON u.id_utilisateur= r.user_id JOIN events e ON r.event_id = e.id_evenement JOIN categorie c ON e.categorie_id= c.id_categorie WHERE u.id_utilisateur = ? ORDER BY e.date_event ASC");
 
         // exécuter la requête
         $bookList = null;
@@ -68,6 +68,35 @@ class Book{
             echo $e->getMessage();
         }
         return $bookList;
+    }
+
+
+    // methode pour le nombre de réservation
+    public static function calculReservation($idEvent)
+    {
+
+        // on appel la fonction dbConnect qui est dans la class Database
+        $db = Database::dbConnect();
+
+        // preparation de la requête
+        $request = $db->prepare("SELECT SUM(place_reserve) AS total_places FROM reservation WHERE event_id = ?");
+
+        // exécuter la requête
+        // $placeList = null;
+        try {
+            $request->execute([$idEvent]);
+
+            // récupère le résultat dans un tableau
+            // $placeList = $request->fetch(PDO::FETCH_ASSOC);
+            // return $placeList;
+            $result = $request->fetch(PDO::FETCH_ASSOC);
+            return $result['total_places'];
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return 0;
+        }
+        
     }
     
 }
