@@ -41,7 +41,7 @@ class Event{
         $db = Database::dbConnect();
 
         // preparation de la requête
-        $request = $db->prepare("SELECT * FROM `events` e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie;");
+        $request = $db->prepare("SELECT * FROM `events` e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie ORDER BY e.date_event ASC");
 
         // exécuter la requête
         $eventList = null;
