@@ -39,7 +39,7 @@ class Event{
 
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
-
+if(empty($_SESSION['id_user'])){
         // preparation de la requête
         $request = $db->prepare("SELECT * FROM `events` e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie ORDER BY e.date_event ASC");
 
@@ -50,9 +50,26 @@ class Event{
 
             // récupère le résultat dans un tableau
             $eventList = $request->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
+        }catch (PDOException $e) {
             echo $e->getMessage();
         }
+    }
+        else {
+            // preparation de la requête
+            $request = $db->prepare("SELECT *, SUM(place_reserve) FROM `events` e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie LEFT JOIN reservation r ON e.id_evenement = r.event_id GROUP BY titre ORDER BY e.date_event ASC;");
+
+            // exécuter la requête
+            $eventList = null;
+            try {
+                $request->execute([]);
+
+                // récupère le résultat dans un tableau
+                $eventList = $request->fetchAll(PDO::FETCH_ASSOC);
+            }catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }        
+        
         return $eventList;
     }
 

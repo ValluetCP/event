@@ -4,7 +4,7 @@ include_once "./inc/nav.php";
 require_once "../models/eventModel.php";
 require_once "../models/bookModel.php";
 $listEvent = Event::findAllEvent();
-$totalPlacesReservees = Book::calculReservation($id);
+// $totalPlacesReservees = Book::calculReservation($d);
 $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD HH:MM:SS)
 
 ?>
@@ -24,6 +24,9 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                 <!-- <th>Résumé</th> -->
                 <!-- <th>Nombre de place</th> -->
                 <th>Catégorie</th>
+                <?php if(!empty($_SESSION['id_user'])){ ?>
+                <th>Etat</th>
+                <?php } ?>
                 <th>Action</th>
                 
             </tr>
@@ -40,9 +43,19 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                     <!-- <td><?= $event['resume']; ?></td> -->
                     <!-- <td><?= $event['nbr_place']; ?></td> -->
                     <td><?= $event['categorie_name']; ?></td>
-                    <?php foreach($listEvent as $event) {?>
-                        <td>déjà réservé</td>
+                    <?php if(!empty($_SESSION['id_user'])){ ?>
+                        <?php if($event['user_id'] == $_SESSION['id_user']){ ?>
+                    <td>réservée</td>
+                    <?php } else { ?>
+                    <td></td>
+                <?php } ?>
+                <?php } ?>
+                     
+                    <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
+                        <td><a href="./add_event.php?id_event_update=<?= $event['id_evenement']; ?>">Modifier</a></td>
+                        <td><a href="traitement/action.php?id_event_delete=<?= $event['id_evenement']; ?>">Supprimer</a></td>
                     <?php } ?> 
+
                     <!-- Ajouter le nombre de particpant par évènement -->
                     <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
                 </tr>

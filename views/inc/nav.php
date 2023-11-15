@@ -19,6 +19,9 @@
             <!-- La liste des évènements  -->
             <a href="http://localhost/event/views/admin_list_event.php">Liste des évènements</a>
 
+            <!-- USER : La liste des évènements (test) -->
+            <a href="http://localhost/event/views/list_event">Test_évènements</a>
+
             <!-- Ajouter un évènement sur la plateforme -->
             <!-- <a href="http://localhost/event/views/add_event.php">Ajouter un évènement</a> -->
             
