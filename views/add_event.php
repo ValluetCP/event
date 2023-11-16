@@ -112,8 +112,6 @@ if (isset($_GET['id_event_update'])) {
         
         <input type="hidden" class="form-control"  name="categorie_id" value="<?= !empty($event) ? $event["categorie_id"] : "" ?>">
 
-        
- 
         <button type="submit" class="btn btn-primary mt-5 mb-5" name="<?= !empty($event) ? "update_event" : "add_event" ?>" value="add_event"><?= !empty($event) ? "Sauvegarder" : "Valider" ?></button>
     </form>
 

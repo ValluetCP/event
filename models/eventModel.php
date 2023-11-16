@@ -94,30 +94,63 @@ if(empty($_SESSION['id_user'])){
     }
 
 
-    // methode pour changer à partir de l'id 
-    // ADMIN -  modifier un évènement
-    public static function updateEventById($id,$titre,$prix,$resume,$dateEvent,$nbrPlace,$categorie_id){
+    // // methode pour changer à partir de l'id 
+    // // ADMIN -  modifier un évènement
+    // public static function updateEventById($id,$titre,$prix,$resume,$dateEvent,$nbrPlace,$categorie_id){
         
-        // on appel la fonction dbConnect qui est dans la class Database
-        $db = Database::dbConnect();
+    //     // on appel la fonction dbConnect qui est dans la class Database
+    //     $db = Database::dbConnect();
 
-        // preparation de la requête
-        $request =$db->prepare("UPDATE events SET titre = ?, prix = ?, resume = ?, categorie_id = ?, date_event = ?, nbr_place = ? WHERE id_evenement = ? ");
+    //     // preparation de la requête
+    //     $request =$db->prepare("UPDATE events SET titre = ?, prix = ?, resume = ?, categorie_id = ?, date_event = ?, nbr_place = ? WHERE id_evenement = ? ");
 
-        // exécuter la requête
-        try {
-            $request->execute(array($titre,$prix,$resume,$categorie_id,$dateEvent,$nbrPlace,$id));
+    //     // exécuter la requête
+    //     try {
+    //         $request->execute(array($titre,$prix,$resume,$categorie_id,$dateEvent,$nbrPlace,$id));
 
 
-            // rediriger vers la page list_event.php
-            header("Location: http://localhost/event/views/admin_list_event.php");
+    //         // rediriger vers la page list_event.php
+    //         header("Location: http://localhost/event/views/admin_list_event.php");
 
             
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
+    //     } catch (PDOException $e) {
+    //         echo $e->getMessage();
+    //     }
 
+    // }
+
+
+
+    public static function updateEventById($id, $titre, $prix, $resume, $dateEvent, $nbrPlace, $categorie_id) {
+
+        $db = Database::dbConnect();
+    
+        // Vérifiez si un fichier est téléchargé
+        if (!empty($_FILES['image']['name'])) {
+            $imgName = $_FILES['image']['name'];
+            $tmpName = $_FILES['image']['tmp_name'];
+            $destination = $_SERVER['DOCUMENT_ROOT'] . '/event/views/asset/img_event/' . $imgName;
+            
+            // Assurez-vous de gérer les erreurs lors du téléchargement du fichier
+            if (move_uploaded_file($tmpName, $destination)) {
+                // Mise à jour du chemin de l'image dans la base de données
+                $request = $db->prepare("UPDATE events SET titre = ?, prix = ?, resume = ?, categorie_id = ?, date_event = ?, nbr_place = ?, image = ? WHERE id_evenement = ?");
+                $request->execute([$titre, $prix, $resume, $categorie_id, $dateEvent, $nbrPlace, $imgName, $id]);
+                // rediriger vers la page list_event.php
+                header("Location: http://localhost/event/views/admin_list_event.php");
+            } else {
+                // Gestion de l'erreur de téléchargement
+                echo "Erreur lors du téléchargement de l'image.";
+            }
+        } else {
+            // Aucune nouvelle image, mise à jour sans modifier le champ image
+            $request = $db->prepare("UPDATE events SET titre = ?, prix = ?, resume = ?, categorie_id = ?, date_event = ?, nbr_place = ? WHERE id_evenement = ?");
+            $request->execute([$titre, $prix, $resume, $categorie_id, $dateEvent, $nbrPlace, $id]);
+            // rediriger vers la page list_event.php
+            header("Location: http://localhost/event/views/admin_list_event.php");
+        }
     }
+
 
     
     // methode pour supprimer une categorie

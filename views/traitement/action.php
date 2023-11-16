@@ -5,6 +5,7 @@ require_once "../../models/userModel.php";
 require_once "../../models/eventModel.php";
 require_once "../../models/categorieModel.php";
 require_once "../../models/bookModel.php";
+// require_once "../add_book.php";
 
 
 
@@ -143,6 +144,7 @@ if(isset($_POST['add_event'])){
 // ADMIN - Changer et modifier des infos du site - UPDATE
 
 if (isset($_POST['update_event'])) {
+    // var_dump($_FILES);die;
     // Pour les id se référer au name du formulaire
     $id = htmlspecialchars($_POST['id_evenement']);
     $titre = htmlspecialchars($_POST['titre']);
@@ -241,6 +243,27 @@ if(isset($_POST['add_book'])){
     Book::addBook($idUser,$idEvent,$placeReserve);
 }
 
+// if (isset($_POST['add_book'])) {
+//     // Récupération des données du formulaire
+//     $idUser = $_SESSION['id_user'];
+//     $idEvent = htmlspecialchars($_POST['id_event']);
+//     $placeReserve = htmlspecialchars($_POST['place_reserve']);
 
+//     // Vérification du nombre de places disponibles avant d'effectuer l'insertion
+//     $totalPlacesReservees = Book::calculReservation($idEvent);
+//     $placesDisponibles = $ficheEvent['nbr_place'] - $totalPlacesReservees;
+
+//     if ($placeReserve > 0 && $placeReserve <= $placesDisponibles) {
+//         // Le nombre de places sélectionnées est valide, effectuez l'insertion dans la base de données
+//         Book::addBook($idUser, $idEvent, $placeReserve);
+
+//         // Redirection ou autre traitement après la réservation réussie
+//         header("Location: page_de_redirection.php");
+//         exit();
+//     } else {
+//         // Le nombre de places sélectionnées n'est pas valide, gestion de l'erreur
+//         echo "Erreur : Le nombre de places sélectionnées n'est pas valide.";
+//     }
+// }
 
 
