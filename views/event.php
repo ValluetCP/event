@@ -43,10 +43,10 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
 
         <p>Tarif : <?= $ficheEvent['prix']; ?></p>
 
-        <!-- <p>Places réservées : <?= $totalPlacesReservees; ?></p> -->
-        <p>Nombre de places : <?= $ficheEvent['nbr_place']; ?></p>
+        <p>Nombre de places total: <?= $ficheEvent['nbr_place']; ?></p>
+        <p>Nombre de places réservées : <?= $totalPlacesReservees; ?></p>
+        <p>Nombre de places disponible : <?= $placesDisponibles; ?></p>
  
-        <input type="hidden" name="<?= $ficheEvent['nbr_place']; ?>" id="">
 
 
 
@@ -77,14 +77,14 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
             
             // var_dump ($totalPlacesReservees);?>
             
-            <!-- Si cette event n'est pas déjà réservé et si l'utilisateur n'a pas encore réservé cet évènement... -->
-            <?php if($totalPlacesReservees == null) {?>
+            <!-- Si cette event n'est pas déjà réservé et si l'utilisateur n'a pas encore réservé cet évènement... && empty($userReservation['user_id'])-->
+            <?php if($placesDisponibles !== 0 ) {?>
 
                 <!-- Création d'un formulaire -->
                 <form action="./traitement/action.php" method="POST">
                     
                     <input type="hidden" name="id_event" value="<?= $ficheEvent['id_evenement']; ?>">
-
+                    
                     <!-- Si l'évènement n'est pas encore passée...-->
                     <?php if ($ficheEvent['date_event'] >= $currentDate) { ?>
 

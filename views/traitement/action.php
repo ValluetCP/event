@@ -74,8 +74,8 @@ if (isset($_POST['update_user'])) {
 if (isset($_GET['id_user_delete'])) {
     // identifiant du user
     $id = $_GET['id_user_delete'];
-    // appel de la methode deleteUserById
-    $user = User::deleteUserById($id);
+    // appel de la methode desactiveUserById
+    $user = User::desactiveUserById($id);
 }
 
 
@@ -163,14 +163,35 @@ if (isset($_POST['update_event'])) {
 }
 
 
-// METHOD GET
+// -- METHOD GET -- //
 
+// Supprimer définitivement un évènement 
 
 if (isset($_GET['id_event_delete'])) {
     // identifiant du event
     $id = $_GET['id_event_delete'];
     // appel de la methode deleteEventById
     $event = Event::deleteEventById($id);
+}
+
+
+// Désactiver un évènement 
+
+if (isset($_GET['id_event_desactive'])) {
+    // identifiant du event
+    $id = $_GET['id_event_desactive'];
+    // appel de la methode desactiveEventById
+    $event = Event::desactiveEventById($id);
+}
+
+
+// Activer un évènement 
+
+if (isset($_GET['id_event_active'])) {
+    // identifiant du event
+    $id = $_GET['id_event_active'];
+    // appel de la methode activeEventById
+    $event = Event::activeEventById($id);
 }
 
 

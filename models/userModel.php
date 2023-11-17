@@ -160,7 +160,7 @@ class User
         }
     }
 
-    // methode pour supprimer un utilisateur
+    // methode pour supprimer un utilisateur de la base de donnée
     public static function deleteUserById($id)
     {
         $db = Database::dbConnect();
@@ -178,13 +178,33 @@ class User
         }
     }
 
+
+    // methode pour désactiver le compte d'un utilisateur
+    public static function desactiveUserById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("UPDATE users SET users_actif = ? WHERE id_utilisateur = ? ");
+        //executer la requete
+
+        try {
+            $request->execute([0, $id]);
+            // recuperer le resultat dans un tableau
+            header("Location: http://localhost/event/views/admin_list_user.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
+
     // methode pour rechercher un user par id
     public static function findUserById($id)
     {
         $db = Database::dbConnect();
 
         // preparer la requete
-        $request = $db->prepare("SELECT * FROM users u LEFT JOIN events e ON u.categorie_id = c.id_categorie WHERE id_utilisateur=?");
+        $request = $db->prepare("SELECT * FROM users u LEFT JOIN events e ON u.categorie_id = c.id_categorie WHERE id_utilisateur=? AND users_actif=1");
         //executer la requete
         try {
             $request->execute(array($id));;

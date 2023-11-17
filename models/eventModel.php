@@ -153,7 +153,25 @@ if(empty($_SESSION['id_user'])){
 
 
     
-    // methode pour supprimer une categorie
+    // methode pour désactiver un évènement 
+    public static function desactiveEventById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("UPDATE events SET events_actif = ? WHERE id_evenement=?");
+        //executer la requete
+
+        try {
+            $request->execute([0, $id]);
+            // recuperer le resultat dans un tableau
+            header("Location: http://localhost/event/views/admin_list_event.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+    
+    // methode pour supprimer un évènement de la bdd
     public static function deleteEventById($id)
     {
         $db = Database::dbConnect();
@@ -164,6 +182,24 @@ if(empty($_SESSION['id_user'])){
 
         try {
             $request->execute(array($id));
+            // recuperer le resultat dans un tableau
+            header("Location: http://localhost/event/views/admin_list_event.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+    
+    // methode pour activer un évènement 
+    public static function activeEventById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("UPDATE events SET events_actif = ? WHERE id_evenement=?");
+        //executer la requete
+
+        try {
+            $request->execute([1, $id]);
             // recuperer le resultat dans un tableau
             header("Location: http://localhost/event/views/admin_list_event.php");
         } catch (PDOException $e) {
