@@ -178,8 +178,8 @@ if(empty($_SESSION['id_user'])){
 
         // preparer la requete
         $request = $db->prepare("DELETE FROM events WHERE id_evenement=?");
+        
         //executer la requete
-
         try {
             $request->execute(array($id));
             // recuperer le resultat dans un tableau

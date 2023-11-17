@@ -61,7 +61,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                             <td></td>
                         <?php } ?>
                     <?php } ?>
-                     <!-- Afficher le nombre total de places réservées -->
+                    <!-- Afficher le nombre total de places réservées -->
                     <!-- <td><?= $totalPlacesReservees; ?></td> -->
                     <!-- <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
                         <td><a href="./add_event.php?id_event_update=<?= $event['id_evenement']; ?>">Modifier</a></td>

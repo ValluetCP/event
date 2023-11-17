@@ -198,16 +198,36 @@ class User
     }
 
 
+    // methode pour désactiver le compte d'un utilisateur
+    public static function activeUserById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("UPDATE users SET users_actif = ? WHERE id_utilisateur = ? ");
+        //executer la requete
+
+        try {
+            $request->execute([1, $id]);
+            // recuperer le resultat dans un tableau
+            header("Location: http://localhost/event/views/admin_list_user.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
+
     // methode pour rechercher un user par id
     public static function findUserById($id)
     {
         $db = Database::dbConnect();
 
         // preparer la requete
-        $request = $db->prepare("SELECT * FROM users u LEFT JOIN events e ON u.categorie_id = c.id_categorie WHERE id_utilisateur=? AND users_actif=1");
+        $request = $db->prepare("SELECT * FROM users u LEFT JOIN events e ON u.categorie_id = c.id_categorie WHERE id_utilisateur=?");
+        // $request = $db->prepare("SELECT * FROM users u LEFT JOIN events e ON u.categorie_id = c.id_categorie WHERE id_utilisateur=? AND users_actif=1");
         //executer la requete
         try {
-            $request->execute(array($id));;
+            $request->execute(array($id));
             // recuperer le resultat dans un tableau
             $user = $request->fetch();
             return $user;

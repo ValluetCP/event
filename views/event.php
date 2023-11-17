@@ -110,19 +110,19 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
             <?php }else{ ?> 
 
                 <?php if ($ficheEvent['date_event'] < $currentDate) { ?>
-                        <!-- Si l'évènement est passée...-->
-                        <div class="alert alert-danger" role="alert"> 
-                            <!-- le user pourra juste consulter les infos de l'event -->
-                            OUPS ! Cette évènement est déjà passé, pensez à nous laisser un avis !
-                        </div>
-                    <?php }
-                    // Si l'id session est égal à celui de la réservation...
-                    if($_SESSION['id_user'] == $userReservation['user_id']){ ?>
-                        <!-- l'évènement s'affiche comme déjà réservé...-->
-                        <div class="alert alert-warning" role="alert"> 
-                            <!-- le user pourra contacter le site pour modifier si besoin-->
-                            Pour toutes modifications de votre réservation merci de nous <a href="">contacter</a>!
-                        </div>
+                    <!-- Si l'évènement est passée...-->
+                    <div class="alert alert-danger" role="alert"> 
+                        <!-- le user pourra juste consulter les infos de l'event -->
+                        OUPS ! Cette évènement est déjà passé, pensez à nous laisser un avis !
+                    </div>
+                <?php }
+                // Si l'id session est égal à celui de la réservation...
+                if($_SESSION['id_user'] == $userReservation['user_id']){ ?>
+                    <!-- l'évènement s'affiche comme déjà réservé...-->
+                    <div class="alert alert-warning" role="alert"> 
+                        <!-- le user pourra contacter le site pour modifier si besoin-->
+                        Pour toutes modifications de votre réservation merci de nous <a href="">contacter</a>!
+                    </div>
 
                 <?php }   
             }  

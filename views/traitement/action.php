@@ -68,14 +68,35 @@ if (isset($_POST['update_user'])) {
 }
 
 
-// METHOD GET
+// -- METHOD GET -- //
 
+// Supprimer définitivement un user de la bdd
 
 if (isset($_GET['id_user_delete'])) {
     // identifiant du user
     $id = $_GET['id_user_delete'];
+    // appel de la methode deleteUserById
+    $user = User::deleteUserById($id);
+}
+
+
+// Désactiver un user
+
+if (isset($_GET['id_user_desactive'])) {
+    // identifiant du user
+    $id = $_GET['id_user_desactive'];
     // appel de la methode desactiveUserById
     $user = User::desactiveUserById($id);
+}
+
+
+// Activer un user
+
+if (isset($_GET['id_user_active'])) {
+    // identifiant du user
+    $id = $_GET['id_user_active'];
+    // appel de la methode activeUserById
+    $user = User::activeUserById($id);
 }
 
 
@@ -286,5 +307,37 @@ if(isset($_POST['add_book'])){
 //         echo "Erreur : Le nombre de places sélectionnées n'est pas valide.";
 //     }
 // }
+
+
+// -- METHOD GET -- //
+
+// Supprimer définitivement un user de la bdd
+
+if (isset($_GET['id_book_delete'])) {
+    // identifiant du book
+    $id = $_GET['id_book_delete'];
+    // appel de la methode deleteBookById
+    $book = Book::deleteBookById($id);
+}
+
+
+// Désactiver un book
+
+if (isset($_GET['id_book_desactive'])) {
+    // identifiant du book
+    $id = $_GET['id_book_desactive'];
+    // appel de la methode desactiveBookById
+    $book = Book::desactiveBookById($id);
+}
+
+
+// Activer un book
+
+if (isset($_GET['id_book_active'])) {
+    // identifiant du book
+    $id = $_GET['id_book_active'];
+    // appel de la methode activeBookById
+    $book = Book::activeBookById($id);
+}
 
 

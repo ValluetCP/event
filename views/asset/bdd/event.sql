@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 10 nov. 2023 à 16:56
+-- Généré le : ven. 17 nov. 2023 à 16:00
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -57,24 +57,28 @@ CREATE TABLE `events` (
   `prix` double NOT NULL,
   `resume` text NOT NULL,
   `categorie_id` int(11) NOT NULL,
+  `image` varchar(250) NOT NULL,
   `date_event` date NOT NULL,
-  `nbr_place` int(11) NOT NULL
+  `nbr_place` int(11) NOT NULL,
+  `events_actif` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `events`
 --
 
-INSERT INTO `events` (`id_evenement`, `titre`, `prix`, `resume`, `categorie_id`, `date_event`, `nbr_place`) VALUES
-(1, 'spectacle des lumières', 50, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 2, '0000-00-00', 0),
-(2, 'spectacle vivant', 50, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 2, '0000-00-00', 0),
-(3, 'FESTIVAL D&#039;ÉTÉ', 50, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 5, '0000-00-00', 0),
-(5, 'Salon des plantes', 50, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 2, '0000-00-00', 0),
-(6, 'douce nuit', 1860, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 9, '0000-00-00', 0),
-(7, 'a', 455000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 9, '0000-00-00', 0),
-(8, 'la suite', 8000000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 7, '2023-11-20', 0),
-(9, 'Salon des plantes', 455000, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 6, '2023-11-13', 0),
-(10, 'Un jour, une vie', 25, 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi qui neque, ab aspernatur, voluptates nesciunt exercitationem vero magnam repellat architecto explicabo minima soluta, ut enim.', 3, '2023-11-18', 30);
+INSERT INTO `events` (`id_evenement`, `titre`, `prix`, `resume`, `categorie_id`, `image`, `date_event`, `nbr_place`, `events_actif`) VALUES
+(1, 'spectacle des lumières', 50, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 2, '', '2023-11-27', 10, 1),
+(2, 'spectacle vivant', 50, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 2, '', '2023-11-27', 30, 1),
+(3, 'FESTIVAL D&#039;ÉTÉ', 50, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 5, '', '2023-11-12', 0, 1),
+(5, 'Salon des plantes', 50, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 2, '', '2023-11-16', 20, 1),
+(6, 'douce nuit', 60, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 9, 'Capture d’écran 2023-11-13 104509.jpg', '2023-11-21', 0, 1),
+(7, 'visite nocturne', 150, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 9, 'voiture.jpg', '2023-11-22', 45, 1),
+(8, 'la suite', 75, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 7, '', '2023-11-20', 20, 0),
+(9, 'Salon des plantes', 245, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque et quas repudiandae sint in exercitationem, quaerat cum ipsa qui quia, dolorum ullam vero voluptatibus ducimus beatae eos perferendis, deleniti quos quibusdam tempore. Tempore, maxime. Saepe quibusdam velit fugit, nostrum praesentium animi quaerat, doloremque illum, cupiditate consequuntur laboriosam quisquam enim ipsum.', 6, '', '2023-11-17', 0, 1),
+(10, 'Un jour, une vie', 25, 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi qui neque, ab aspernatur, voluptates nesciunt exercitationem vero magnam repellat architecto explicabo minima soluta, ut enim.', 3, 'mer.JPG', '2023-11-18', 30, 1),
+(11, 'Salon nautique', 15, 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi qui neque, ab aspernatur, voluptates nesciunt exercitationem vero magnam repellat architecto explicabo minima soluta, ut enim.', 7, 'mer.JPG', '2024-01-06', 10, 1),
+(12, 'Salon de l&#039;automobile', 13, 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi qui neque, ab aspernatur, voluptates nesciunt exercitationem vero magnam repellat architecto explicabo minima soluta, ut enim.', 9, 'voiture.jpg', '2023-11-17', 20, 1);
 
 -- --------------------------------------------------------
 
@@ -110,31 +114,35 @@ CREATE TABLE `reservation` (
   `id_reservation` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
-  `place_reserve` int(11) NOT NULL
+  `place_reserve` int(11) NOT NULL,
+  `reservation_actif` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `reservation`
 --
 
-INSERT INTO `reservation` (`id_reservation`, `user_id`, `event_id`, `place_reserve`) VALUES
-(2, 15, 1, 0),
-(3, 14, 1, 0),
-(4, 15, 5, 0),
-(5, 17, 6, 0),
-(6, 17, 8, 0),
-(7, 17, 1, 0),
-(8, 15, 9, 0),
-(9, 15, 6, 0),
-(10, 15, 1, 0),
-(11, 8, 10, 0),
-(12, 8, 10, 0),
-(13, 8, 10, 0),
-(14, 8, 10, 1),
-(15, 8, 10, 3),
-(16, 8, 10, 1),
-(17, 8, 3, 3),
-(18, 8, 3, 2);
+INSERT INTO `reservation` (`id_reservation`, `user_id`, `event_id`, `place_reserve`, `reservation_actif`) VALUES
+(2, 15, 1, 1, 1),
+(3, 14, 1, 1, 1),
+(4, 15, 5, 1, 1),
+(5, 17, 6, 1, 1),
+(6, 17, 8, 3, 1),
+(9, 15, 6, 1, 1),
+(10, 15, 1, 1, 1),
+(11, 8, 10, 1, 1),
+(12, 8, 10, 1, 1),
+(13, 8, 10, 1, 1),
+(14, 8, 10, 1, 1),
+(15, 8, 10, 3, 1),
+(16, 8, 10, 1, 1),
+(17, 8, 3, 3, 1),
+(18, 8, 3, 2, 1),
+(19, 17, 11, 3, 1),
+(20, 17, 5, 4, 1),
+(22, 17, 7, 1, 1),
+(23, 17, 12, 20, 1),
+(25, 17, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -150,24 +158,24 @@ CREATE TABLE `users` (
   `email` varchar(250) NOT NULL,
   `mdp` varchar(255) NOT NULL,
   `role` enum('admin','client') NOT NULL DEFAULT 'admin',
-  `actif` enum('ACTIF','INACTIF') NOT NULL DEFAULT 'ACTIF'
+  `users_actif` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id_utilisateur`, `nom`, `prenom`, `pseudo`, `email`, `mdp`, `role`, `actif`) VALUES
-(5, 'anna', 'anna', 'anna', 'anna@mail.com', '$2y$10$k00e92DZrfFPEIVJUi.07OLz00wtF3PEGxOGYx.dhXp', 'admin', 'ACTIF'),
-(6, 'anna', 'anna', 'anna1', 'anna1@mail.com', '$2y$10$Nj.SEJbXSyw5ybfjCDnYRenJxbXj1y5VAcHQIZWo1U9', 'admin', 'ACTIF'),
-(7, 'anna', 'anna2', 'anna2', 'anna2@mail.com', '$2y$10$KCFOv.O75Kj2OtdHgbjmnelzx8L.ZYwYsvQuj4E7B.d', 'admin', 'ACTIF'),
-(8, 'lea', 'lea', 'lea', 'lea@mail.com', '$2y$10$Hdpj1LKd9rUbljqlte/D9eTxDwYdpqiwoBae9bgkQFaI06jvFXlr2', 'admin', 'ACTIF'),
-(9, 'anna3', 'ANNA3', 'anna3', 'anna3@mail.com', '$2y$10$Hdpj1LKd9rUbljqlte/D9eTxDwYdpqiwoBae9bgkQFaI06jvFXlr2', 'admin', 'ACTIF'),
-(10, 'jeremy', 'jeremy', 'jeremy1', 'jeremy@mail.fr', '$2y$10$of6PrfF4yfeQ5Se88t3n8eje4vcR8CPc8rxlCX/CpH/HW8EqkiI4u', 'admin', 'ACTIF'),
-(11, 'ben', 'ben', 'ben1', 'ben@mail.com', '$2y$10$IvwfhW.EzIbzPKDO7XQUW.P39KjAUlAoEmK.aNLi1083iGqSyHhky', 'client', 'ACTIF'),
-(14, 'carlito', 'carl', 'carl', 'carl@mail.com', '$2y$10$zSXMj/RkoUv0pgbZD1xOueK7Rvh.Z3qukhypz15Y9AL2onU3R8vDe', 'admin', 'ACTIF'),
-(15, 'leon', 'leon', 'leon', 'leon@mail.com', '$2y$10$eDvcuowTwmnt7ogxn91x7Or3UP/C6U.TKVyb.Me8Y7eO/89hEc5Zm', 'client', 'ACTIF'),
-(17, 'louis', 'louis', 'louis', 'louis@mail.com', '$2y$10$QthSjDQhI8W.gnlLdNnWuOij8w533hArs3GmScNwqj1lJ1NneXhou', 'client', 'ACTIF');
+INSERT INTO `users` (`id_utilisateur`, `nom`, `prenom`, `pseudo`, `email`, `mdp`, `role`, `users_actif`) VALUES
+(5, 'anna', 'anna', 'anna', 'anna@mail.com', '$2y$10$k00e92DZrfFPEIVJUi.07OLz00wtF3PEGxOGYx.dhXp', 'admin', 1),
+(6, 'anna', 'anna', 'anna1', 'anna1@mail.com', '$2y$10$Nj.SEJbXSyw5ybfjCDnYRenJxbXj1y5VAcHQIZWo1U9', 'admin', 1),
+(7, 'anna', 'anna2', 'anna2', 'anna2@mail.com', '$2y$10$KCFOv.O75Kj2OtdHgbjmnelzx8L.ZYwYsvQuj4E7B.d', 'admin', 1),
+(8, 'lea', 'lea', 'lea', 'lea@mail.com', '$2y$10$Hdpj1LKd9rUbljqlte/D9eTxDwYdpqiwoBae9bgkQFaI06jvFXlr2', 'admin', 1),
+(9, 'anna3', 'ANNA3', 'anna3', 'anna3@mail.com', '$2y$10$Hdpj1LKd9rUbljqlte/D9eTxDwYdpqiwoBae9bgkQFaI06jvFXlr2', 'admin', 1),
+(10, 'jeremy', 'jeremy', 'jeremy1', 'jeremy@mail.fr', '$2y$10$of6PrfF4yfeQ5Se88t3n8eje4vcR8CPc8rxlCX/CpH/HW8EqkiI4u', 'admin', 1),
+(11, 'ben', 'ben', 'ben1', 'ben@mail.com', '$2y$10$IvwfhW.EzIbzPKDO7XQUW.P39KjAUlAoEmK.aNLi1083iGqSyHhky', 'client', 1),
+(14, 'carlito', 'carl', 'carl', 'carl@mail.com', '$2y$10$zSXMj/RkoUv0pgbZD1xOueK7Rvh.Z3qukhypz15Y9AL2onU3R8vDe', 'admin', 1),
+(15, 'leon', 'leon', 'leon', 'leon@mail.com', '$2y$10$eDvcuowTwmnt7ogxn91x7Or3UP/C6U.TKVyb.Me8Y7eO/89hEc5Zm', 'client', 1),
+(17, 'louis', 'louis', 'louis', 'louis@mail.com', '$2y$10$QthSjDQhI8W.gnlLdNnWuOij8w533hArs3GmScNwqj1lJ1NneXhou', 'client', 1);
 
 --
 -- Index pour les tables déchargées
@@ -223,7 +231,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id_evenement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_evenement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `event_date`
@@ -235,7 +243,7 @@ ALTER TABLE `event_date`
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id_reservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_reservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `users`

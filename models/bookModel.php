@@ -98,5 +98,64 @@ class Book{
         }
         
     }
+
+
+    // methode pour désactiver une réservation 
+    public static function desactiveBookById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("UPDATE reservation SET reservation_actif = ? WHERE id_reservation =?");
+        //executer la requete
+
+        try {
+            $request->execute([0, $id]);
+            // recuperer le resultat dans un tableau
+            header("Location: http://localhost/event/views/list_book.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+    
+
+
+    // methode pour activer une réservation 
+    public static function activeBookById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("UPDATE reservation SET reservation_actif = ? WHERE id_reservation =?");
+        //executer la requete
+
+        try {
+            $request->execute([1, $id]);
+            // recuperer le resultat dans un tableau
+            header("Location: http://localhost/event/views/list_book.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+    
+
+
+    // methode pour activer une réservation 
+    public static function deleteBookById($id)
+    {
+        $db = Database::dbConnect();
+
+        // preparer la requete
+        $request = $db->prepare("DELETE FROM reservation WHERE id_reservation =?");
+
+        //executer la requete
+        try {
+            $request->execute([1, $id]);
+            // recuperer le resultat dans un tableau
+            header("Location: http://localhost/event/views/list_book.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
     
 }

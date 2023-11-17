@@ -42,7 +42,6 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                                 <td colspan="4"><a href="traitement/action.php?id_event_active=<?= $event['id_evenement']; ?>">Activer l'évènement</a></td>
                                 <td>annulation</td>
                             <?php } ?>
-                            
                         </tr>
                     <?php }
                 }
