@@ -76,9 +76,11 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
         <?php } elseif(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "client"){
             
             // var_dump ($totalPlacesReservees);?>
-            
             <!-- Si cette event n'est pas déjà réservé et si l'utilisateur n'a pas encore réservé cet évènement... && empty($userReservation['user_id'])-->
-            <?php if($placesDisponibles !== 0 ) {?>
+           
+            <!-- S'il reste des places de disponible, c'est que $placesDisponibles n'est pas égale à 0 -->
+            <!-- if($placesDisponibles !== 0  $totalPlacesReservees == null) { -->
+            <?php if($placesDisponibles !== 0) {?>
 
                 <!-- Création d'un formulaire -->
                 <form action="./traitement/action.php" method="POST">
@@ -91,7 +93,12 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                         <!-- ...Choisir le nombre de places* -->
                         <label for="">Choisir le nombre de place :</label>
                         <select name="place_reserve" id="">
-                            <?php for( $i = 1; $i <= $placesDisponibles; $i++){ ?>
+
+                            <?php
+                            // Limiter le choix à 4 places
+                            $maxPlaces = min($placesDisponibles, 4);
+
+                            for( $i = 1; $i <= $maxPlaces; $i++){ ?>
                                 <option value="<?= $i; ?>"><?= $i; ?></option>
                             <?php } ?>   
                         </select><br><br>
@@ -106,7 +113,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                     <?php } ?> 
                 </form>
                 
-                
+               <!-- }elseif($totalPlacesReservees == null){ -->
             <?php }else{ ?> 
 
                 <?php if ($ficheEvent['date_event'] < $currentDate) { ?>
@@ -116,15 +123,20 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                         OUPS ! Cette évènement est déjà passé, pensez à nous laisser un avis !
                     </div>
                 <?php }
+
                 // Si l'id session est égal à celui de la réservation...
                 if($_SESSION['id_user'] == $userReservation['user_id']){ ?>
-                    <!-- l'évènement s'affiche comme déjà réservé...-->
-                    <div class="alert alert-warning" role="alert"> 
-                        <!-- le user pourra contacter le site pour modifier si besoin-->
-                        Pour toutes modifications de votre réservation merci de nous <a href="">contacter</a>!
-                    </div>
 
-                <?php }   
+                    <!-- ... et si l'event n'est pas encore passé ou fini -->
+                    <?php if ($ficheEvent['date_event'] >= $currentDate) { ?>
+
+                        <!-- l'évènement s'affiche comme déjà réservé et peut-être modifié...-->
+                        <div class="alert alert-warning" role="alert"> 
+                            <!-- le user pourra contacter le site pour modifier si besoin-->
+                            Pour toutes modifications de votre réservation merci de nous <a href="">contacter</a>!
+                        </div>
+                    <?php }   
+                }  
             }  
         } ?>  
             

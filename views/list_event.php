@@ -51,7 +51,9 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                     <td><?= $event['categorie_name']; ?></td>
                     <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
                     <?php if(!empty($_SESSION['id_user'])){ ?>
-                        <?php if($event['user_id'] == $_SESSION['id_user'] && $event['events_actif'] == 1){ ?>
+                        <?php if($event['user_id'] == $_SESSION['id_user'] && $event['events_actif'] == 1 && ($totalPlacesReservees >= $event['nbr_place'])){ ?>
+                            <td>réservée & complet</td>
+                        <?php } elseif($event['user_id'] == $_SESSION['id_user'] && $event['events_actif'] == 1){ ?>
                             <td>réservée</td>
                         <?php } elseif ($totalPlacesReservees >= $event['nbr_place']) { ?>
                             <td>complet</td>
