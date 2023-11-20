@@ -4,8 +4,7 @@ include_once "./inc/nav.php";
 require_once "../models/userModel.php";
 // // $_SESSION["user_role"] = $user["role"];
 // $user["role"] = $_SESSION["user_role"];
-
-
+$userList = User::findAllUser();
 ?>
 
 <div class="container">
@@ -40,6 +39,11 @@ require_once "../models/userModel.php";
         </div>
 
     </form>
+
+    <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "client"){?>
+
+        <a class="btn btn-info mt-4" href="traitement/action.php?id_user_desactive=<?= $_SESSION["id_user"]; ?>">Désactiver mon compte</a>
+    <?php } ?>
 
 </div>
 

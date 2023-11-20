@@ -191,7 +191,7 @@ class User
         try {
             $request->execute([0, $id]);
             // recuperer le resultat dans un tableau
-            header("Location: http://localhost/event/views/admin_list_user.php");
+            header("Location: http://localhost/event/views/home.php");
         } catch (PDOException $e) {
             $e->getMessage();
         }

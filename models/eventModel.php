@@ -25,7 +25,7 @@ class Event{
             if($_SESSION['user_role'] == 'admin')                    
                         header("Location: http://localhost/event/views/admin_list_event.php");
                     else 
-                        header("Location: http://localhost/event/views/list_event.php");
+                        header("Location: http://localhost/event/views/list_book.php");
             
         } catch (PDOException $e) {
             echo $e->getMessage();
