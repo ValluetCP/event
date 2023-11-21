@@ -281,22 +281,36 @@ if (isset($_POST['add_book'])) {
     $idEvent = htmlspecialchars($_POST['id_event']);
     $placeReserve = htmlspecialchars($_POST['place_reserve']);
 
-    // Vérification du nombre de places disponibles avant d'effectuer l'insertion
-    $totalPlacesReservees = Book::calculReservation($idEvent);
-    $placesDisponibles = Event::findEventById($idEvent)['nbr_place'] - $totalPlacesReservees;
-
-    if ($placeReserve > 0 && $placeReserve <= $placesDisponibles && $placeReserve <= 4) {
-        // Le nombre de places sélectionnées est valide, effectuez l'insertion dans la base de données
-        Book::addBook($idUser, $idEvent, $placeReserve);
-
-        // Redirection ou autre traitement après la réservation réussie
-        header("Location: http://localhost/event/views/list_event.php");
-        exit();
-    } else {
-        // Le nombre de places sélectionnées n'est pas valide, gestion de l'erreur
-        echo "Erreur : Le nombre de places sélectionnées n'est pas valide.";
-    }
+    Book::addBook($idUser, $idEvent, $placeReserve);
 }
+
+
+// -- CODE SECURITE : limiter le nombre de choix de réservation -- //
+
+// if (isset($_POST['add_book'])) {
+//     $idUser = $_SESSION['id_user'];
+//     $idEvent = htmlspecialchars($_POST['id_event']);
+//     $placeReserve = htmlspecialchars($_POST['place_reserve']);
+
+//     // Vérification du nombre de places disponibles avant d'effectuer l'insertion
+//     $totalPlacesReservees = Book::calculReservation($idEvent);
+//     $placesDisponibles = Event::findEventById($idEvent)['nbr_place'] - $totalPlacesReservees;
+
+//     if ($placeReserve > 0 && $placeReserve <= $placesDisponibles && $placeReserve <= 4) {
+//         // Le nombre de places sélectionnées est valide, effectuez l'insertion dans la base de données
+//         Book::addBook($idUser, $idEvent, $placeReserve);
+
+//         // Redirection ou autre traitement après la réservation réussie
+//         header("Location: http://localhost/event/views/list_book.php");
+//         exit();
+//     } else {
+//         // Le nombre de places sélectionnées n'est pas valide, gestion de l'erreur
+//         echo "Erreur : Le nombre de places sélectionnées n'est pas valide.";
+//     }
+// }
+
+
+// -- CODE SECURITE :  -- //
 
 // if (isset($_POST['add_book'])) {
 //     // Récupération des données du formulaire

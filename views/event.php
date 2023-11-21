@@ -31,77 +31,133 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
     
     <h2><?= ucfirst($ficheEvent['titre']); ?></h2>
 
-    
-    
-        <!-- <p>Identifiant : <?= $ficheEvent['id_evenement']; ?></p> -->
-    
-            <div><img src="./asset/img_event/<?= $ficheEvent['image']; ?>" alt=""></div>
-    
-            <p>Catégorie : <?= $ficheEvent['categorie_name']; ?></p>
-            
-            <p>Titre : <?= $ficheEvent['titre']; ?></p>
-    
-            <p>Date : <?= date('d-m-Y', strtotime($ficheEvent['date_event'])); ?></p>
-    
-            <p>Résumé : <?= $ficheEvent['resume']; ?></p>
-    
-            <p>Tarif : <?= $ficheEvent['prix']; ?></p>
-    
-            <p>Nombre de places total: <?= $ficheEvent['nbr_place']; ?></p>
-            <p>Nombre de places réservées : <?= $totalPlacesReservees; ?></p>
-            <p>Nombre de places disponible : <?= $placesDisponibles; ?></p>
-     
 
     <!-- Ajouter cette partie pour afficher l'état de l'événement -->
     <?php if (!empty($_SESSION['id_user']) && isset($userReservation['user_id'])): ?>
-    <?php if ($ficheEvent['date_event'] >= $currentDate): ?>
-        <?php if ($ficheEvent['events_actif'] == 0): ?>
-            <div class="alert alert-danger" role="alert">
-                Événement annulé.
-            </div>
-        <?php elseif ($totalPlacesReservees >= $ficheEvent['nbr_place']): ?>
-            <div class="alert alert-warning" role="alert">
+        <?php if ($ficheEvent['date_event'] >= $currentDate): ?>
+            <?php if ($ficheEvent['events_actif'] == 0): ?>
+                <div class="alert alert-secondary" role="alert">
+                    Événement annulé.
+                </div>
+            <?php elseif ($totalPlacesReservees >= $ficheEvent['nbr_place']): ?>
                 <?php if ($userReservation['user_id'] == $_SESSION['id_user']): ?>
-                    Réservation confirmée. Événement complet.
+                    <div class="alert alert-warning" role="alert">
+                        Réservation confirmée. Événement complet.
+                </div>
                 <?php else: ?>
-                    Événement complet.
-                <?php endif; ?>
-            </div>
-        <?php elseif ($userReservation['user_id'] == $_SESSION['id_user']): ?>
-            <div class="alert alert-success" role="alert">
-                Réservation confirmée.
-            </div>
+                    <div class="alert alert-danger" role="alert">
+                        Événement complet. <a href="">Me contacter si de la place se libère</a>!
+                    </div>
+                    <?php endif; ?>
+            <?php elseif ($userReservation['user_id'] == $_SESSION['id_user']): ?>
+                <div class="alert alert-success" role="alert">
+                    Réservation confirmée. Pour toutes modifications de votre réservation merci de nous <a href="">contacter</a>!
+                </div>
+            <?php endif; ?>
         <?php else: ?>
-            <!-- Le formulaire de réservation -->
-            <form action="./traitement/action.php" method="POST">
-                <input type="hidden" name="id_event" value="<?= $ficheEvent['id_evenement']; ?>">
-                <!-- Choix du nombre de places -->
-                <label for="">Choisir le nombre de place :</label>
-                <select name="place_reserve" id="">
-                    <?php
-                    // Limiter le choix à 4 places
-                    $maxPlaces = min($placesDisponibles, 4);
-                    for ($i = 1; $i <= $maxPlaces; $i++): ?>
-                        <option value="<?= $i; ?>"><?= $i; ?></option>
-                    <?php endfor; ?>   
-                </select><br><br>
-                <!-- Bouton de réservation -->
-                <button type="submit" class="btn btn-outline-warning" name="add_book">Réserver</button>
-            </form>
+            <!-- Si l'événement est passé -->
+            <div class="alert alert-info" role="alert">
+                Terminée. OUPS ! Cette évènement est déjà passé, pensez à nous laisser un avis !
+            </div>
         <?php endif; ?>
-    <?php else: ?>
-        <!-- Si l'événement est passé -->
-        <div class="alert alert-info" role="alert">
-            Terminée.
-        </div>
     <?php endif; ?>
-<?php endif; ?>
 
+
+    <!-- <p>Identifiant : <?= $ficheEvent['id_evenement']; ?></p> -->
+
+        <div><img src="./asset/img_event/<?= $ficheEvent['image']; ?>" alt=""></div>
+
+        <p>Catégorie : <?= $ficheEvent['categorie_name']; ?></p>
+        
+        <p>Titre : <?= $ficheEvent['titre']; ?></p>
+
+        <p>Date : <?= date('d-m-Y', strtotime($ficheEvent['date_event'])); ?></p>
+
+        <p>Résumé : <?= $ficheEvent['resume']; ?></p>
+
+        <p>Tarif : <?= $ficheEvent['prix']; ?></p>
+
+        <p>Nombre de places total: <?= $ficheEvent['nbr_place']; ?></p>
+        <p>Nombre de places réservées : <?= $totalPlacesReservees; ?></p>
+        <p>Nombre de places disponible : <?= $placesDisponibles; ?></p>
+ 
 
 
         
 
-       
+        <!-- Si le rôle est ADMIN ... -->
+        <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
+                        
+            <!-- ...impossible de réserver, retourne à la liste des évènements -->
+            <a class="btn btn-outline-warning" href="./list_event.php">Revenir à la liste des évènements</a>
+
+        <!-- Si le rôle est CLIENT ... -->
+        <?php } elseif(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "client"){
+            
+            // var_dump ($totalPlacesReservees);?>
+            <!-- Si cette event n'est pas déjà réservé et si l'utilisateur n'a pas encore réservé cet évènement... && empty($userReservation['user_id'])-->
+           
+            <!-- S'il reste des places de disponible, c'est que $placesDisponibles n'est pas égale à 0 -->
+            <!-- if($placesDisponibles !== 0  $totalPlacesReservees == null) { -->
+            <?php if($placesDisponibles !== 0) {?>
+
+                <!-- Création d'un formulaire -->
+                <form action="./traitement/action.php" method="POST">
+                    
+                    <input type="hidden" name="id_event" value="<?= $ficheEvent['id_evenement']; ?>">
+                    
+                    <!-- Si l'évènement n'est pas encore passée...-->
+                    <?php if ($ficheEvent['date_event'] >= $currentDate) { ?>
+
+                        <!-- ...Choisir le nombre de places* -->
+                        <label for="">Choisir le nombre de place :</label>
+                        <select name="place_reserve" id="">
+
+                            <?php
+                            // Limiter le choix à 4 places
+                            $maxPlaces = min($placesDisponibles, 4);
+
+                            for( $i = 1; $i <= $maxPlaces; $i++){ ?>
+                                <option value="<?= $i; ?>"><?= $i; ?></option>
+                            <?php } ?>   
+                        </select><br><br>
+
+                        <!-- bouton "réservé" -->
+                        <button type="submit" class="btn btn-outline-warning" name="add_book">Réserver</button>
+
+                    <!-- Sinon, si cette event est déjà réservé ... -->
+                    <?php } else {?>
+                        <!-- ...rendre impossible la réservation -->
+                        <button type="submit" class="btn btn-outline-secondary" name="add_book"disabled>Réserver</button>
+                    <?php } ?> 
+                </form>
+                
+               <!-- }elseif($totalPlacesReservees == null){ -->
+            <?php }else{ ?> 
+
+                <?php if ($ficheEvent['date_event'] < $currentDate) { ?>
+                    <!-- Si l'évènement est passée...-->
+                    <div class="alert alert-danger" role="alert"> 
+                        <!-- le user pourra juste consulter les infos de l'event -->
+                        OUPS ! Cette évènement est déjà passé, pensez à nous laisser un avis !
+                    </div>
+                <?php }
+
+                // Si l'id session est égal à celui de la réservation...
+                if($_SESSION['id_user'] == $userReservation['user_id']){ ?>
+
+                    <!-- ... et si l'event n'est pas encore passé ou fini -->
+                    <?php if ($ficheEvent['date_event'] >= $currentDate) { ?>
+
+                        <!-- l'évènement s'affiche comme déjà réservé et peut-être modifié...-->
+                        <div class="alert alert-warning" role="alert"> 
+                            <!-- le user pourra contacter le site pour modifier si besoin-->
+                            Pour toutes modifications de votre réservation merci de nous <a href="">contacter</a>!
+                        </div>
+                    <?php }   
+                }  
+            }  
+        } ?> 
     
             
 </div>
