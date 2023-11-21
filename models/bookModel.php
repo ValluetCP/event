@@ -158,26 +158,58 @@ class Book{
         }
     }
 
-
+    // Requête pour récupérer l'historique des réservations de l'utilisateur pour cet événement
     public static function getUserPreviousReservations($userId, $eventId)
-{
-    $db = Database::dbConnect();
+    {
+        $db = Database::dbConnect();
 
-    // Préparation de la requête
-    $request = $db->prepare("SELECT * FROM reservation WHERE user_id = ? AND event_id = ? ORDER BY date_reservation DESC");
+        // Préparation de la requête
+        $request = $db->prepare("SELECT * FROM reservation WHERE user_id = ? AND event_id = ? ORDER BY date_reservation DESC");
 
-    // Exécuter la requête
-    try {
-        $request->execute([$userId, $eventId]);
+        // Exécuter la requête
+        try {
+            $request->execute([$userId, $eventId]);
 
-        // Récupérer le résultat dans un tableau
-        $previousReservations = $request->fetchAll(PDO::FETCH_ASSOC);
+            // Récupérer le résultat dans un tableau
+            $previousReservations = $request->fetchAll(PDO::FETCH_ASSOC);
 
-        return $previousReservations;
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        return [];
+            return $previousReservations;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return [];
+        }
     }
-}
+
+
+    // Met à jour la quantité de places réservées en ajoutant la nouvelle quantité à l'ancienne. 
+    public static function addAnotherBook($idUser, $eventId, $placeReserve)
+    {
+        $db = Database::dbConnect();
+
+        // Vérifier s'il existe déjà une réservation pour cet utilisateur et cet événement
+        $existingReservation = self::getUserPreviousReservations($idUser, $eventId);
+
+        // Si une réservation existe, mettez à jour la quantité de places réservées
+        if (!empty($existingReservation)) {
+            $existingReservationId = $existingReservation[0]['id_reservation'];
+            $newTotalPlaces = $existingReservation[0]['place_reserve'] + $placeReserve;
+
+            // Préparation de la requête de mise à jour
+            $updateRequest = $db->prepare("UPDATE reservation SET place_reserve = ? WHERE id_reservation = ?");
+
+            try {
+                $updateRequest->execute([$newTotalPlaces, $existingReservationId]);
+
+                // Rediriger vers la page de réservation ou toute autre page appropriée
+                header("Location: http://localhost/event/views/list_book.php");
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        } else {
+            // Si aucune réservation n'existe, ajoutez une nouvelle réservation
+            self::addBook($idUser, $eventId, $placeReserve);
+        }
+    }
+
     
 }

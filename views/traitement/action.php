@@ -288,6 +288,20 @@ if (isset($_POST['add_book'])) {
 }
 
 
+// Met à jour la quantité de places réservées en ajoutant la nouvelle quantité à l'ancienne.
+if (isset($_POST['add_another_book'])) {
+    $idUser = $_SESSION['id_user'];
+    $eventId = htmlspecialchars($_POST['id_event']);
+    // $idEvent = htmlspecialchars($_POST['id_event']);
+    $placeReserve = htmlspecialchars($_POST['place_reserve']);
+
+    Book::addAnotherBook($idUser, $eventId, $placeReserve);
+    // Cette méthode commence par vérifier s'il existe déjà une réservation pour cet utilisateur et cet événement en appelant getUserPreviousReservations. Si une réservation existe, elle met à jour la quantité de places réservées en ajoutant la nouvelle quantité à l'ancienne. Sinon, elle appelle simplement la méthode addBook pour créer une nouvelle réservation.
+}
+
+
+
+
 // -- CODE SECURITE : limiter le nombre de choix de réservation -- //
 
 // if (isset($_POST['add_book'])) {

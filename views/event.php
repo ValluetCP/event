@@ -82,9 +82,6 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
     <p>Nombre de places disponible : <?= $placesDisponibles; ?></p>
  
 
-
-        
-
         <!-- Si le rôle est ADMIN ... -->
         <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
                         
@@ -139,93 +136,61 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                         <?php } else { ?>
                             <button type="submit" class="btn btn-outline-secondary" name="add_book" disabled>Réserver</button>
                         <?php } ?>
+                        <!-- MODAL -->
+                        <div class="modal fade" id="exampleModalAddReservation" tabindex="-1" aria-labelledby="exampleModalLabelAddReservation" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabelAddReservation">Ajouter une autre réservation</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Pour cette évènement, vous avez déjà une réservation</p>
+                                        <?php
+                                        // Ajoutez une requête pour récupérer l'historique des réservations de l'utilisateur pour cet événement
+                                        $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $ficheEvent['id_evenement']);
+                    
+                                        if ($userPreviousReservations) {
+                                            ?>
+                                            <p>Votre historique de réservations pour cet événement :</p>
+                                            <ul>
+                                                <?php foreach ($userPreviousReservations as $reservation) { ?>
+                                                    <li>Date de réservation : <?= date('d-m-Y H:i:s', strtotime($reservation['date_reservation'])); ?>, Quantité : <?= $reservation['place_reserve']; ?></li>
+                                                <?php } ?>
+                                            </ul>
+                                        <?php } else { ?>
+                                            <p>Vous n'avez pas encore effectué de réservation pour cet événement.</p>
+                                        <?php } ?>
+                                        <!-- Contenu de la modale, par exemple, un message d'avertissement -->
+                                        Votre message d'avertissement ici...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    
+                                        <button type="submit" class="btn btn-primary" name="add_another_book">Ajouter une autre réservation</button>
+                    
+                                        <!-- <button type="submit" class="btn btn-primary" name="add_another_book" onclick="addAnotherBook()">Ajouter une autre réservation</button> -->
+                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
                     </form>
                 
                <!-- }elseif($totalPlacesReservees == null){ -->
-            <?php }else{ ?> 
-
-                <?php if ($ficheEvent['date_event'] < $currentDate) { ?>
-                    <!-- Si l'évènement est passée...-->
-                    <div class="alert alert-danger" role="alert"> 
-                        <!-- le user pourra juste consulter les infos de l'event -->
-                        OUPS ! Cette évènement est déjà passé, pensez à nous laisser un avis !
-                    </div>
-                <?php }
-
-                // Si l'id session est égal à celui de la réservation...
-                if($_SESSION['id_user'] == $userReservation['user_id']){ ?>
-
-                    <!-- ... et si l'event n'est pas encore passé ou fini -->
-                    <?php if ($ficheEvent['date_event'] >= $currentDate) { ?>
-
-                        <!-- l'évènement s'affiche comme déjà réservé et peut-être modifié...-->
-                        <div class="alert alert-warning" role="alert"> 
-                            <!-- le user pourra contacter le site pour modifier si besoin-->
-                            Pour toutes modifications de votre réservation merci de nous <a href="">contacter</a>!
-                        </div>
-                    <?php }   
-                }  
+            <?php }
             }  
-        } ?> 
+         ?> 
     
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalAddReservation" tabindex="-1" aria-labelledby="exampleModalLabelAddReservation" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabelAddReservation">Ajouter une autre réservation</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Vous avez déjà réservé cette évènement si vous valider celle-ci viendra s’ajouter à la précédente. Cliquez sur le lien ci-dessous pour accéder à l’historique de votre réservation.</p>
-                </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Afficher l'historique des réservations</button>
-<button type="submit" class="btn btn-primary" name="add_another_book">Ajouter une autre réservation</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                <p>Pour cette évènement, vous avez déjà une réservation</p>
-                    <?php
-                    // Ajoutez une requête pour récupérer l'historique des réservations de l'utilisateur pour cet événement
-                    $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $ficheEvent['id_evenement']);
-
-                    if ($userPreviousReservations) {
-                        ?>
-                        <p>Votre historique de réservations pour cet événement :</p>
-                        <ul>
-                            <?php foreach ($userPreviousReservations as $reservation) { ?>
-                                <li>Date de réservation : <?= date('d-m-Y H:i:s', strtotime($reservation['date_reservation'])); ?>, Quantité : <?= $reservation['place_reserve']; ?></li>
-                            <?php } ?>
-                        </ul>
-                    <?php } else { ?>
-                        <p>Vous n'avez pas encore effectué de réservation pour cet événement.</p>
-                    <?php } ?>
-                    <!-- Contenu de la modale, par exemple, un message d'avertissement -->
-                    Votre message d'avertissement ici...
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#exampleModalAddReservation" data-bs-toggle="modal">Back to first</button>
-                </div>
-            </div>
-        </div>
-    </div>
-  
 </div>
 
 <script>
-    
+     function addAnotherBook() {
+        // Ajoutez ici tout code JavaScript supplémentaire si nécessaire
+
+        // Redirige vers le fichier de traitement du formulaire
+        window.location.href = "./traitement/action.php";
+    }
 </script>
 
 <?php
