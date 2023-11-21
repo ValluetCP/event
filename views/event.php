@@ -177,7 +177,26 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Pour cette évènement, vous avez déjà une réservation</p>
+                    <p>Vous avez déjà réservé cette évènement si vous valider celle-ci viendra s’ajouter à la précédente. Cliquez sur le lien ci-dessous pour accéder à l’historique de votre réservation.</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Afficher l'historique des réservations</button>
+<button type="submit" class="btn btn-primary" name="add_another_book">Ajouter une autre réservation</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <p>Pour cette évènement, vous avez déjà une réservation</p>
                     <?php
                     // Ajoutez une requête pour récupérer l'historique des réservations de l'utilisateur pour cet événement
                     $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $ficheEvent['id_evenement']);
@@ -197,12 +216,12 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                     Votre message d'avertissement ici...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" name="add_another_book">Ajouter une autre réservation</button>
+                    <button class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#exampleModalAddReservation" data-bs-toggle="modal">Back to first</button>
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
+  
 </div>
 
 <script>
