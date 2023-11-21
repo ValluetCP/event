@@ -99,38 +99,40 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
            
             <!-- S'il reste des places de disponible, c'est que $placesDisponibles n'est pas égale à 0 -->
             <!-- if($placesDisponibles !== 0  $totalPlacesReservees == null) { -->
-            <?php if($placesDisponibles !== 0) {?>
+                <?php if ($placesDisponibles !== 0) { ?>
+                    <form action="./traitement/action.php" method="POST">
+                        <input type="hidden" name="id_event" value="<?= $ficheEvent['id_evenement']; ?>">
 
-                <!-- Création d'un formulaire -->
-                <form action="./traitement/action.php" method="POST">
-                    
-                    <input type="hidden" name="id_event" value="<?= $ficheEvent['id_evenement']; ?>">
-                    
-                    <!-- Si l'évènement n'est pas encore passée...-->
-                    <?php if ($ficheEvent['date_event'] >= $currentDate) { ?>
+                        <?php if ($ficheEvent['date_event'] >= $currentDate) { ?>
+                            <?php if ($ficheEvent['events_actif'] == 1) { ?>
+                                <!-- Vérifier si l'événement n'est pas annulé -->
 
-                        <!-- ...Choisir le nombre de places* -->
-                        <label for="">Choisir le nombre de place :</label>
-                        <select name="place_reserve" id="">
+                                <label for="">Choisir le nombre de place :</label>
+                                <select name="place_reserve" id="">
+                                    <?php
+                                    $maxPlaces = min($placesDisponibles, 4);
+                                    for ($i = 1; $i <= $maxPlaces; $i++) { ?>
+                                        <option value="<?= $i; ?>"><?= $i; ?></option>
+                                    <?php } ?>
+                                </select><br><br>
 
-                            <?php
-                            // Limiter le choix à 4 places
-                            $maxPlaces = min($placesDisponibles, 4);
-
-                            for( $i = 1; $i <= $maxPlaces; $i++){ ?>
-                                <option value="<?= $i; ?>"><?= $i; ?></option>
-                            <?php } ?>   
-                        </select><br><br>
-
-                        <!-- bouton "réservé" -->
-                        <button type="submit" class="btn btn-outline-warning" name="add_book">Réserver</button>
-
-                    <!-- Sinon, si cette event est déjà réservé ... -->
-                    <?php } else {?>
-                        <!-- ...rendre impossible la réservation -->
-                        <button type="submit" class="btn btn-outline-secondary" name="add_book"disabled>Réserver</button>
-                    <?php } ?> 
-                </form>
+                                <?php if (empty($userReservation['user_id']) || $_SESSION['id_user'] != $userReservation['user_id']) { ?>
+                                    <!-- Si l'événement n'est pas déjà réservé par l'utilisateur de la session -->
+                                    <button type="submit" class="btn btn-outline-warning" name="add_book">Réserver</button>
+                                <?php } elseif ($_SESSION['id_user'] == $userReservation['user_id']) { ?>
+                                    <!-- Si l'utilisateur de la session a déjà réservé l'événement -->
+                                    <button type="submit" class="btn btn-outline-warning" name="add_another_book">Ajouter une autre réservation</button>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <!-- Si l'événement est annulé -->
+                                <div class="alert alert-secondary" role="alert">
+                                    Événement annulé. Aucune réservation possible.
+                                </div>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <button type="submit" class="btn btn-outline-secondary" name="add_book" disabled>Réserver</button>
+                        <?php } ?>
+                    </form>
                 
                <!-- }elseif($totalPlacesReservees == null){ -->
             <?php }else{ ?> 
