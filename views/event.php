@@ -65,21 +65,21 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
 
     <!-- <p>Identifiant : <?= $ficheEvent['id_evenement']; ?></p> -->
 
-        <div><img src="./asset/img_event/<?= $ficheEvent['image']; ?>" alt=""></div>
+    <div><img src="./asset/img_event/<?= $ficheEvent['image']; ?>" alt=""></div>
 
-        <p>Catégorie : <?= $ficheEvent['categorie_name']; ?></p>
-        
-        <p>Titre : <?= $ficheEvent['titre']; ?></p>
+    <p>Catégorie : <?= $ficheEvent['categorie_name']; ?></p>
+    
+    <p>Titre : <?= $ficheEvent['titre']; ?></p>
 
-        <p>Date : <?= date('d-m-Y', strtotime($ficheEvent['date_event'])); ?></p>
+    <p>Date : <?= date('d-m-Y', strtotime($ficheEvent['date_event'])); ?></p>
 
-        <p>Résumé : <?= $ficheEvent['resume']; ?></p>
+    <p>Résumé : <?= $ficheEvent['resume']; ?></p>
 
-        <p>Tarif : <?= $ficheEvent['prix']; ?></p>
+    <p>Tarif : <?= $ficheEvent['prix']; ?></p>
 
-        <p>Nombre de places total: <?= $ficheEvent['nbr_place']; ?></p>
-        <p>Nombre de places réservées : <?= $totalPlacesReservees; ?></p>
-        <p>Nombre de places disponible : <?= $placesDisponibles; ?></p>
+    <p>Nombre de places total: <?= $ficheEvent['nbr_place']; ?></p>
+    <p>Nombre de places réservées : <?= $totalPlacesReservees; ?></p>
+    <p>Nombre de places disponible : <?= $placesDisponibles; ?></p>
  
 
 
@@ -120,8 +120,15 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                                     <!-- Si l'événement n'est pas déjà réservé par l'utilisateur de la session -->
                                     <button type="submit" class="btn btn-outline-warning" name="add_book">Réserver</button>
                                 <?php } elseif ($_SESSION['id_user'] == $userReservation['user_id']) { ?>
+
                                     <!-- Si l'utilisateur de la session a déjà réservé l'événement -->
-                                    <button type="submit" class="btn btn-outline-warning" name="add_another_book">Ajouter une autre réservation</button>
+                                    <!-- <button type="submit" class="btn btn-outline-warning" name="add_another_book">Ajouter une autre réservation</button> -->
+                                    
+                                    <!-- Bouton pour afficher également la modale -->
+                                    <!-- <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->
+                                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModalAddReservation">
+                        Ajouter une autre réservation
+                    </button>
                                 <?php } ?>
                             <?php } else { ?>
                                 <!-- Si l'événement est annulé -->
@@ -161,7 +168,25 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
             }  
         } ?> 
     
-            
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalAddReservation" tabindex="-1" aria-labelledby="exampleModalLabelAddReservation" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabelAddReservation">Ajouter une autre réservation</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenu de la modale, par exemple, un message d'avertissement -->
+                    Votre message d'avertissement ici...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" name="add_another_book">Ajouter une autre réservation</button>
+                </div>
+            </div>
+        </div>
+    </div>   
 </div>
 
 <script>
