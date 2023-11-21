@@ -157,5 +157,27 @@ class Book{
             $e->getMessage();
         }
     }
+
+
+    public static function getUserPreviousReservations($userId, $eventId)
+{
+    $db = Database::dbConnect();
+
+    // Préparation de la requête
+    $request = $db->prepare("SELECT * FROM reservation WHERE user_id = ? AND event_id = ? ORDER BY date_reservation DESC");
+
+    // Exécuter la requête
+    try {
+        $request->execute([$userId, $eventId]);
+
+        // Récupérer le résultat dans un tableau
+        $previousReservations = $request->fetchAll(PDO::FETCH_ASSOC);
+
+        return $previousReservations;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return [];
+    }
+}
     
 }

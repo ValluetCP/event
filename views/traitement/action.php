@@ -273,6 +273,9 @@ if (isset($_GET['id_categorie_delete'])) {
 // return $bookList;
 // Event::findBookById($id);
 
+// Requête pour récupérer l'historique des réservations de l'utilisateur pour cet événement
+// Book::getUserPreviousReservations($_SESSION['id_user'], $ficheEvent['id_evenement']);
+
 
 // Ajouter une réservation  - INSERT INTO
 // event.php

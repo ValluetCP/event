@@ -170,13 +170,29 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
     
     <!-- Modal -->
     <div class="modal fade" id="exampleModalAddReservation" tabindex="-1" aria-labelledby="exampleModalLabelAddReservation" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabelAddReservation">Ajouter une autre réservation</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <p>Pour cette évènement, vous avez déjà une réservation</p>
+                    <?php
+                    // Ajoutez une requête pour récupérer l'historique des réservations de l'utilisateur pour cet événement
+                    $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $ficheEvent['id_evenement']);
+
+                    if ($userPreviousReservations) {
+                        ?>
+                        <p>Votre historique de réservations pour cet événement :</p>
+                        <ul>
+                            <?php foreach ($userPreviousReservations as $reservation) { ?>
+                                <li>Date de réservation : <?= date('d-m-Y H:i:s', strtotime($reservation['date_reservation'])); ?>, Quantité : <?= $reservation['place_reserve']; ?></li>
+                            <?php } ?>
+                        </ul>
+                    <?php } else { ?>
+                        <p>Vous n'avez pas encore effectué de réservation pour cet événement.</p>
+                    <?php } ?>
                     <!-- Contenu de la modale, par exemple, un message d'avertissement -->
                     Votre message d'avertissement ici...
                 </div>
