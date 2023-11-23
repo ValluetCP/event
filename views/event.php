@@ -150,7 +150,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                                         // Ajoutez une requête pour récupérer l'historique des réservations de l'utilisateur pour cet événement
                                         $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $ficheEvent['id_evenement']);
                     
-                                        if ($userPreviousReservations) {
+                                        if ($userPreviousReservations){
                                             ?>
                                             <p>Votre historique de réservations pour cet événement :</p>
                                             <ul>
