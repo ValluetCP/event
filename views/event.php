@@ -124,8 +124,8 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                                     <!-- Bouton pour afficher également la modale -->
                                     <!-- <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->
                                     <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModalAddReservation">
-                        Ajouter une autre réservation
-                    </button>
+                                        Ajouter une autre réservation
+                                    </button>
                                 <?php } ?>
                             <?php } else { ?>
                                 <!-- Si l'événement est annulé -->
@@ -185,6 +185,8 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
 </div>
 
 <script>
+    
+
      function addAnotherBook() {
         // Ajoutez ici tout code JavaScript supplémentaire si nécessaire
 
