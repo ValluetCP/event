@@ -3,8 +3,11 @@ include_once "./inc/header.php";
 include_once "./inc/nav.php";
 require_once "../models/eventModel.php";
 require_once "../models/bookModel.php";
-// require_once "../models/userModel.php";
+require_once "../models/userModel.php";
 $listEvent = Event::findAllEvent();
+$userReservation = User::userReservation($_SESSION['id_user']);
+// $userReservationIds = array_column($reservations, 'event_id');
+$userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilisez la nouvelle méthode
 // $user= User::userReservation($_SESSION['id_user']);
 // $totalPlacesReservees = Book::calculReservation($id);
 $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD HH:MM:SS)
@@ -37,9 +40,11 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
         <tbody>
             <?php foreach($listEvent as $event){
                 // Comparer la date de l'événement avec la date actuelle, si la date est déjà passé ne l'afficher ici
+
             if ($event['date_event'] >= $currentDate) { 
                 // Obtenir le nombre total de places réservées pour cet évènement
                 $totalPlacesReservees = Book::calculReservation($event['id_evenement']);
+                
                 ?>
                 <tr>
                     <td><?= $event['id_evenement']; ?></td>
@@ -50,19 +55,22 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                     <!-- <td><?= $event['nbr_place']; ?></td> -->
                     <td><?= $event['categorie_name']; ?></td>
                     <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
+
+
                     <?php if(!empty($_SESSION['id_user'])){ ?>
-                        <?php if($event['user_id'] == $_SESSION['id_user'] && $event['events_actif'] == 1 && ($totalPlacesReservees >= $event['nbr_place'])){ ?>
-                            <td>réservée & complet</td>
-                        <?php } elseif($event['user_id'] == $_SESSION['id_user'] && $event['events_actif'] == 1){ ?>
-                            <td>réservée</td>
-                        <?php } elseif ($totalPlacesReservees >= $event['nbr_place']) { ?>
-                            <td>complet</td>
-                        <?php }elseif($event['events_actif'] == 0){?>
-                            <td>annulation</td>
-                        <?php }else{?>
-                            <td></td>
+                            <?php if($event['user_id'] == $_SESSION['id_user'] && $event['events_actif'] == 1 && ($totalPlacesReservees >= $event['nbr_place'])){ ?>
+                                <td>réservée & complet</td>
+                            <?php } elseif(in_array($event['id_evenement'], $userReservationIds) && $event['events_actif'] == 1){ ?>
+                                <td>réservée</td>
+                            <?php } elseif($totalPlacesReservees >= $event['nbr_place']) { ?>
+                                <td>complet</td>
+                            <?php } elseif($event['events_actif'] == 0){?>
+                                <td>annulation</td>
+                            <?php }else{?>
+                                <td></td>
+                            <?php } ?>
                         <?php } ?>
-                    <?php } ?>
+
                     <!-- Afficher le nombre total de places réservées -->
                     <!-- <td><?= $totalPlacesReservees; ?></td> -->
                     <!-- <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>

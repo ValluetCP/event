@@ -17,6 +17,9 @@ $totalPlacesReservees = Book::calculReservation($eventId);
 $placesDisponibles = $ficheEvent['nbr_place'] - $totalPlacesReservees;
 $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD HH:MM:SS)
 
+// Ajoutez cette ligne pour récupérer l'historique des réservations de l'utilisateur pour cet événement
+$userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $eventId);
+
 // $placeList = Book::calculReservation($eventId);
 // var_dump($placeList);
 // ["SUM(place_reserve)"]=> NULL

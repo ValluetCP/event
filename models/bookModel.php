@@ -180,6 +180,19 @@ class Book{
         }
     }
 
+    // une méthode pour récupérer toutes les réservations d'un utilisateur pour un événement spécifique, triées par date de réservation
+    public static function getUserReservationsForEvent($userId, $eventId)
+    {
+        $query = "SELECT * FROM reservation WHERE user_id = :userId AND event_id = :eventId ORDER BY date_reservation ASC";
+        $conn = Database::dbConnect();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->bindParam(':eventId', $eventId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     // Met à jour la quantité de places réservées en ajoutant la nouvelle quantité à l'ancienne. 
     public static function addAnotherBook($idUser, $eventId, $placeReserve)
@@ -209,6 +222,19 @@ class Book{
             // Si aucune réservation n'existe, ajoutez une nouvelle réservation
             self::addBook($idUser, $eventId, $placeReserve);
         }
+    }
+
+
+    // La requête pour obtenir les IDs des événements réservés par un utilisateur spécifique.
+    public static function userReservationIds($userId)
+    {
+        $query = "SELECT event_id FROM reservation WHERE user_id = :userId";
+        $conn = Database::dbConnect();
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
     

@@ -218,8 +218,6 @@ if (isset($_GET['id_event_active'])) {
 
 
 
-
-
 // ------------------ CATEGORIE ------------------//
 
 
@@ -300,6 +298,58 @@ if (isset($_POST['add_another_book'])) {
 }
 
 
+// une méthode pour récupérer toutes les réservations d'un utilisateur pour un événement spécifique, triées par date de réservation
+if (isset($_POST['add_more_book'])) {
+    $userId = $_SESSION['id_user'];
+    $eventId = htmlspecialchars($_POST['id_event']);
+
+    Book::getUserReservationsForEvent($userId, $eventId);
+    
+}
+
+
+// Requête pour récupérer l'historique des réservations de l'utilisateur pour cet événement
+if (isset($_POST['historique_book'])) {
+    $userId = $_SESSION['id_user'];
+    $eventId = htmlspecialchars($_POST['id_event']);
+
+    Book::getUserPreviousReservations($userId, $eventId);
+    
+}
+
+
+
+// -- METHOD GET -- //
+
+// Supprimer définitivement un user de la bdd
+
+if (isset($_GET['id_book_delete'])) {
+    // identifiant du book
+    $id = $_GET['id_book_delete'];
+    // appel de la methode deleteBookById
+    $book = Book::deleteBookById($id);
+}
+
+
+// Désactiver un book
+
+if (isset($_GET['id_book_desactive'])) {
+    // identifiant du book
+    $id = $_GET['id_book_desactive'];
+    // appel de la methode desactiveBookById
+    $book = Book::desactiveBookById($id);
+}
+
+
+// Activer un book
+
+if (isset($_GET['id_book_active'])) {
+    // identifiant du book
+    $id = $_GET['id_book_active'];
+    // appel de la methode activeBookById
+    $book = Book::activeBookById($id);
+}
+
 
 
 // -- CODE SECURITE : limiter le nombre de choix de réservation -- //
@@ -351,37 +401,3 @@ if (isset($_POST['add_another_book'])) {
 //         echo "Erreur : Le nombre de places sélectionnées n'est pas valide.";
 //     }
 // }
-
-
-// -- METHOD GET -- //
-
-// Supprimer définitivement un user de la bdd
-
-if (isset($_GET['id_book_delete'])) {
-    // identifiant du book
-    $id = $_GET['id_book_delete'];
-    // appel de la methode deleteBookById
-    $book = Book::deleteBookById($id);
-}
-
-
-// Désactiver un book
-
-if (isset($_GET['id_book_desactive'])) {
-    // identifiant du book
-    $id = $_GET['id_book_desactive'];
-    // appel de la methode desactiveBookById
-    $book = Book::desactiveBookById($id);
-}
-
-
-// Activer un book
-
-if (isset($_GET['id_book_active'])) {
-    // identifiant du book
-    $id = $_GET['id_book_active'];
-    // appel de la methode activeBookById
-    $book = Book::activeBookById($id);
-}
-
-
