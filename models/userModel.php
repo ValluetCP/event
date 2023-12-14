@@ -242,7 +242,7 @@ class User
         $db = Database::dbConnect();
 
         // preparer la requete
-        $request = $db->prepare("SELECT * FROM `reservation` WHERE event_id=?");
+        $request = $db->prepare("SELECT * FROM `reservation` WHERE user_id=?");
         //executer la requete
         try {
             $request->execute(array($idUser));;

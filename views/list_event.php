@@ -71,6 +71,8 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                             <?php } ?>
                         <?php } ?>
 
+                        <a href=""></a>
+
                     <!-- Afficher le nombre total de places réservées -->
                     <!-- <td><?= $totalPlacesReservees; ?></td> -->
                     <!-- <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>

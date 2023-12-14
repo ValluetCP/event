@@ -287,15 +287,15 @@ if (isset($_POST['add_book'])) {
 
 
 // Met à jour la quantité de places réservées en ajoutant la nouvelle quantité à l'ancienne.
-if (isset($_POST['add_another_book'])) {
-    $idUser = $_SESSION['id_user'];
-    $eventId = htmlspecialchars($_POST['id_event']);
-    // $idEvent = htmlspecialchars($_POST['id_event']);
-    $placeReserve = htmlspecialchars($_POST['place_reserve']);
+// if (isset($_POST['add_another_book'])) {
+//     $idUser = $_SESSION['id_user'];
+//     $eventId = htmlspecialchars($_POST['id_event']);
+//     // $idEvent = htmlspecialchars($_POST['id_event']);
+//     $placeReserve = htmlspecialchars($_POST['place_reserve']);
 
-    Book::addAnotherBook($idUser, $eventId, $placeReserve);
-    // Cette méthode commence par vérifier s'il existe déjà une réservation pour cet utilisateur et cet événement en appelant getUserPreviousReservations. Si une réservation existe, elle met à jour la quantité de places réservées en ajoutant la nouvelle quantité à l'ancienne. Sinon, elle appelle simplement la méthode addBook pour créer une nouvelle réservation.
-}
+//     Book::addAnotherBook($idUser, $eventId, $placeReserve);
+//     // Cette méthode commence par vérifier s'il existe déjà une réservation pour cet utilisateur et cet événement en appelant getUserPreviousReservations. Si une réservation existe, elle met à jour la quantité de places réservées en ajoutant la nouvelle quantité à l'ancienne. Sinon, elle appelle simplement la méthode addBook pour créer une nouvelle réservation.
+// }
 
 
 // une méthode pour récupérer toutes les réservations d'un utilisateur pour un événement spécifique, triées par date de réservation
@@ -305,6 +305,28 @@ if (isset($_POST['add_more_book'])) {
 
     Book::getUserReservationsForEvent($userId, $eventId);
     
+}
+
+if (isset($_POST['add_book'])) {
+    // Récupérez les données du formulaire
+    $eventId = $_POST['id_event'];
+$placesToReserve = $_POST['place_reserve'];
+
+// Effectuez la réservation en utilisant la méthode makeReservation de la classe Book
+$reservationSuccess = Book::makeReservation($_SESSION['id_user'], $eventId, $placesToReserve);
+
+// Vérifiez si la réservation a réussi
+if ($reservationSuccess) {
+    // Définissez le message de confirmation dans la session
+    $_SESSION['reservation_confirmation'] = "Votre réservation a été confirmée avec succès!";
+} else {
+    // Gérez le cas où la réservation a échoué (par exemple, places épuisées)
+    $_SESSION['reservation_error'] = "Désolé, la réservation a échoué. Veuillez réessayer.";
+}
+
+// Redirigez l'utilisateur vers la page de détails de l'événement avec un paramètre de confirmation
+header("Location: ./event.php?event=$eventId&reservation_confirmation=" . ($reservationSuccess ? '1' : '0'));
+exit();
 }
 
 

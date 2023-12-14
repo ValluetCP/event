@@ -237,5 +237,39 @@ class Book{
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
+
+    // Méthode pour effectuer une réservation
+    public static function makeReservation($userId, $eventId, $placesToReserve) {
+        $db = Database::dbConnect();
+
+        // Vérifier s'il existe déjà une réservation pour cet utilisateur et cet événement
+        $existingReservation = self::getUserReservationsForEvent($userId, $eventId);
+
+        // Si une réservation existe, mettez à jour la quantité de places réservées
+        if (!empty($existingReservation)) {
+            $existingReservationId = $existingReservation[0]['id_reservation'];
+            $newTotalPlaces = $existingReservation[0]['place_reserve'] + $placesToReserve;
+
+            // Préparation de la requête de mise à jour
+            $updateRequest = $db->prepare("UPDATE reservation SET place_reserve = ? WHERE id_reservation = ?");
+
+            try {
+                $updateRequest->execute([$newTotalPlaces, $existingReservationId]);
+
+                // Retourne true pour indiquer que la réservation a réussi
+                return true;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                // Retourne false en cas d'échec
+                return false;
+            }
+        } else {
+            // Si aucune réservation n'existe, ajoutez une nouvelle réservation
+            self::addBook($userId, $eventId, $placesToReserve);
+
+            // Retourne true pour indiquer que la réservation a réussi
+            return true;
+        }
+    }
     
 }
