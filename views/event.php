@@ -164,7 +164,7 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                     
-                                        <button type="submit" class="btn btn-primary" name="add_book">Ajouter une autre réservation</button>
+                                        <button type="submit" class="btn btn-primary" name="add_panier">Ajouter une autre réservation</button>
                                         
                                     <!--                                         
                                         <button type="submit" class="btn btn-primary" name="add_another_book">Ajouter une autre réservation</button>

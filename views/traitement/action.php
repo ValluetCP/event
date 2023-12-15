@@ -277,13 +277,14 @@ if (isset($_GET['id_categorie_delete'])) {
 
 // Ajouter une réservation  - INSERT INTO
 // event.php
-// if (isset($_POST['add_book'])) {
-//     $idUser = $_SESSION['id_user'];
-//     $idEvent = htmlspecialchars($_POST['id_event']);
-//     $placeReserve = htmlspecialchars($_POST['place_reserve']);
+if (isset($_POST['add_book'])) {
+    $idUser = $_SESSION['id_user'];
+    $idEvent = htmlspecialchars($_POST['id_event']);
+    $placeReserve = htmlspecialchars($_POST['place_reserve']);
 
-//     Book::addBook($idUser, $idEvent, $placeReserve);
-// }
+    Book::addBook($idUser, $idEvent, $placeReserve);
+}
+
 // event.php
 if (isset($_POST['add_panier'])) {
     $idUser = $_SESSION['id_user'];
