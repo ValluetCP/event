@@ -46,6 +46,17 @@ class Book{
         }
     }
 
+    public static function addPanier($idUser,$eventId,$placeReserve){
+
+        $tab = [$idUser,$eventId,$placeReserve];
+        $_SESSION['panier'][]= $tab;
+
+        // rediriger vers la page list_user.php
+        header("Location: http://localhost/event/views/panier.php");
+        
+    }
+
+
 
     // methode pour tout afficher les évènements
     public static function findAllBookByIdUser()
