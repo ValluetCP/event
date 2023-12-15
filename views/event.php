@@ -54,10 +54,8 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
             </div>
         <?php } elseif($ficheEvent['events_actif'] == 0){?>
             <div class="alert alert-secondary" role="alert">
-                    Événement annulé.
+                Événement annulé.
             </div>
-        <?php }else{?>
-            <td></td>
         <?php } ?>
     <?php }else{ ?>
         <div class="alert alert-info" role="alert">
@@ -120,11 +118,25 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
                                     <?php } ?>
                                 </select><br><br>
 
-
+                                <?php if(!empty($_SESSION['id_user']) && $ficheEvent['date_event'] >= $currentDate){ ?>
+                                    <!-- <button type="submit" class="btn btn-outline-secondary" name="add_book" >Réserver</button> -->
+                                    <?php if(in_array($ficheEvent['id_evenement'], $userReservationIds) && $ficheEvent['events_actif'] == 1){ ?>
+                                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModalAddReservation">
+                                            Ajouter une autre réservation
+                                        </button>
+                                    
+                                    <?php } else { ?>
+                                        <button type="submit" class="btn btn-outline-warning" name="add_book" >Réserver</button>
+                                    <?php } ?>
+                                <?php } ?>
+                                    
                                 
+
+
+
                                 <?php if (empty($userReservation['user_id']) || $_SESSION['id_user'] != $userReservation['user_id']) { ?>
                                     <!-- Si l'événement n'est pas déjà réservé par l'utilisateur de la session -->
-                                    <button type="submit" class="btn btn-outline-warning" name="add_book">Réserver</button>
+                                    <!-- <button type="submit" class="btn btn-outline-warning" name="add_book">Réserver</button> -->
                                 <?php } elseif ($_SESSION['id_user'] == $userReservation['user_id']) { ?>
 
                                     <!-- Si l'utilisateur de la session a déjà réservé l'événement -->
@@ -132,9 +144,9 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
                                     
                                     <!-- Bouton pour afficher également la modale -->
                                     <!-- <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->
-                                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModalAddReservation">
+                                    <!-- <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModalAddReservation">
                                         Ajouter une autre réservation
-                                    </button>
+                                    </button> -->
                                 <?php } ?>
                             <?php } else { ?>
                                 <!-- Si l'événement est annulé -->
@@ -143,7 +155,7 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
                                 </div>
                             <?php } ?>
                         <?php } else { ?>
-                            <button type="submit" class="btn btn-outline-secondary" name="add_book" disabled>Réserver</button>
+                            <!-- <button type="submit" class="btn btn-outline-secondary" name="add_book">Réserver</button> -->
                         <?php } ?>
                         <!-- MODAL -->
                         <div class="modal fade" id="exampleModalAddReservation" tabindex="-1" aria-labelledby="exampleModalLabelAddReservation" aria-hidden="true">
