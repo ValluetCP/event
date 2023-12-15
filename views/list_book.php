@@ -38,7 +38,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                     <td><?= $book['prix']; ?></td>
                     <td><?= $book['place_reserve']; ?></td>
                     <!-- Ajouter le nombre de participants par évènement -->
-                    <td><a class="lien" href="./event.php?event=<?= $book['id_evenement']; ?>">Consulter</a></td>
+                    <td><a class="lien" href="./book.php?event=<?= $book['id_evenement']; ?>">Consulter</a></td>
                 </tr>
         <?php }
         } ?>

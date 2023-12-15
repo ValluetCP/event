@@ -58,7 +58,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
 
 
                     <?php if(!empty($_SESSION['id_user'])){ ?>
-                            <?php if($event['user_id'] == $_SESSION['id_user'] && $event['events_actif'] == 1 && ($totalPlacesReservees >= $event['nbr_place'])){ ?>
+                            <?php if(in_array($event['id_evenement'], $userReservationIds) && $event['events_actif'] == 1 && ($totalPlacesReservees >= $event['nbr_place'])){ ?>
                                 <td>réservée & complet</td>
                             <?php } elseif(in_array($event['id_evenement'], $userReservationIds) && $event['events_actif'] == 1){ ?>
                                 <td>réservée</td>

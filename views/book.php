@@ -30,7 +30,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
     <?= ($totalPlacesReservees == null) ? '<h1 class="m-5">évènement</h1>' : '<h1 class="m-5">Ma réservation</h1>'?>
     <!-- <h1 class="m-5">évènement</h1> -->
     
-    <h2><?= ucfirst($book['titre']); ?></h2>
+    <!-- <h2><?= ucfirst($book['titre']); ?></h2> -->
 
 
     <!-- Ajouter cette partie pour afficher l'état de l'événement -->
