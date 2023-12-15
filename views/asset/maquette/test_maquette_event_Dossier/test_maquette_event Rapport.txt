@@ -1,0 +1,43 @@
+Rapport d'assemblage
+
+-----------------------------------------------------------------------------
+Document :
+Nom : test_maquette_event.ai
+Mode : Couleurs RVB
+Profil colorimétrique : sRGB IEC61966-2.1
+Unité : pixels
+Dimensions : 1920 px x 1080 px
+Afficher les images en mode Tracés : INACTIF
+Mettre en évidence les polices substituées : INACTIF
+Mettre en évidence les glyphes substitués : INACTIF
+Conserver le caractère modifiable du texte
+Simuler le papier couleur : INACTIF
+
+-----------------------------------------------------------------------------
+Objets en tons directs :
+
+-----------------------------------------------------------------------------
+Polices manquantes :SANS
+
+-----------------------------------------------------------------------------
+Polices protégées non assemblées :SANS
+
+-----------------------------------------------------------------------------
+Polices :
+Karla ExtraLight Italic (TrueType)
+Karla ExtraLight (TrueType)
+Karla Light (TrueType)
+Americana BT Italic (OTF)
+AmericanaFont (OTF)
+
+-----------------------------------------------------------------------------
+Polices incorporées :
+SANS
+
+-----------------------------------------------------------------------------
+Liens manquants :
+SANS
+
+-----------------------------------------------------------------------------
+Images liées :
+SANS
