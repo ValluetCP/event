@@ -19,6 +19,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
 
 // Ajoutez cette ligne pour récupérer l'historique des réservations de l'utilisateur pour cet événement
 $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $eventId);
+$userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilisez la nouvelle méthode
 
 // $placeList = Book::calculReservation($eventId);
 // var_dump($placeList);
@@ -34,36 +35,39 @@ $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user
     
     <h2><?= ucfirst($ficheEvent['titre']); ?></h2>
 
-
-    <!-- Ajouter cette partie pour afficher l'état de l'événement -->
-    <?php if (!empty($_SESSION['id_user']) && isset($userReservation['user_id'])): ?>
-        <?php if ($ficheEvent['date_event'] >= $currentDate): ?>
-            <?php if ($ficheEvent['events_actif'] == 0): ?>
-                <div class="alert alert-secondary" role="alert">
+    <!-- Cette partie pour afficher l'état de l'événement  : réservé, annulé, complet ou terminé-->
+    <?php if(!empty($_SESSION['id_user']) && $ficheEvent['date_event'] >= $currentDate){ ?>
+        <?php if(in_array($ficheEvent['id_evenement'], $userReservationIds) && $ficheEvent['events_actif'] == 1 && ($totalPlacesReservees >= $ficheEvent['nbr_place'])){ ?>
+            <div class="alert alert-success" role="alert">
+                Réservation confirmée. Pour toutes modifications de votre réservation merci de nous <a href="">contacter</a>!
+            </div>
+            <div class="alert alert-warning" role="alert">
+                Événement complet. <a href="">Me contacter si de la place se libère</a>
+            </div>
+        <?php } elseif(in_array($ficheEvent['id_evenement'], $userReservationIds) && $ficheEvent['events_actif'] == 1){ ?>
+            <div class="alert alert-success" role="alert">
+                Réservation confirmée. Pour toutes modifications de votre réservation merci de nous <a href="">contacter</a>!
+            </div>
+        <?php } elseif($totalPlacesReservees >= $ficheEvent['nbr_place']) { ?>
+            <div class="alert alert-warning" role="alert">
+                Événement complet. <a href="">Me contacter si de la place se libère</a>!
+            </div>
+        <?php } elseif($ficheEvent['events_actif'] == 0){?>
+            <div class="alert alert-secondary" role="alert">
                     Événement annulé.
-                </div>
-            <?php elseif ($totalPlacesReservees >= $ficheEvent['nbr_place']): ?>
-                <?php if ($userReservation['user_id'] == $_SESSION['id_user']): ?>
-                    <div class="alert alert-warning" role="alert">
-                        Réservation confirmée. Événement complet.
-                </div>
-                <?php else: ?>
-                    <div class="alert alert-danger" role="alert">
-                        Événement complet. <a href="">Me contacter si de la place se libère</a>!
-                    </div>
-                    <?php endif; ?>
-            <?php elseif ($userReservation['user_id'] == $_SESSION['id_user']): ?>
-                <div class="alert alert-success" role="alert">
-                    Réservation confirmée. Pour toutes modifications de votre réservation merci de nous <a href="">contacter</a>!
-                </div>
-            <?php endif; ?>
-        <?php else: ?>
-            <!-- Si l'événement est passé -->
-            <div class="alert alert-info" role="alert">
+            </div>
+        <?php }else{?>
+            <td></td>
+        <?php } ?>
+    <?php }else{ ?>
+        <div class="alert alert-info" role="alert">
                 Terminée. OUPS ! Cette évènement est déjà passé, pensez à nous laisser un avis !
             </div>
-        <?php endif; ?>
-    <?php endif; ?>
+    <?php } ?>
+
+
+    <!-- Ajouter cette partie pour afficher l'état de l'événement -->
+    
 
 
     <!-- <p>Identifiant : <?= $ficheEvent['id_evenement']; ?></p> -->
@@ -116,6 +120,8 @@ $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user
                                     <?php } ?>
                                 </select><br><br>
 
+
+                                
                                 <?php if (empty($userReservation['user_id']) || $_SESSION['id_user'] != $userReservation['user_id']) { ?>
                                     <!-- Si l'événement n'est pas déjà réservé par l'utilisateur de la session -->
                                     <button type="submit" class="btn btn-outline-warning" name="add_book">Réserver</button>

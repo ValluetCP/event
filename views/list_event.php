@@ -58,20 +58,20 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
 
 
                     <?php if(!empty($_SESSION['id_user'])){ ?>
-                            <?php if(in_array($event['id_evenement'], $userReservationIds) && $event['events_actif'] == 1 && ($totalPlacesReservees >= $event['nbr_place'])){ ?>
-                                <td>réservée & complet</td>
-                            <?php } elseif(in_array($event['id_evenement'], $userReservationIds) && $event['events_actif'] == 1){ ?>
-                                <td>réservée</td>
-                            <?php } elseif($totalPlacesReservees >= $event['nbr_place']) { ?>
-                                <td>complet</td>
-                            <?php } elseif($event['events_actif'] == 0){?>
-                                <td>annulation</td>
-                            <?php }else{?>
-                                <td></td>
-                            <?php } ?>
+                        <?php if(in_array($event['id_evenement'], $userReservationIds) && $event['events_actif'] == 1 && ($totalPlacesReservees >= $event['nbr_place'])){ ?>
+                            <td>réservée & complet</td>
+                        <?php } elseif(in_array($event['id_evenement'], $userReservationIds) && $event['events_actif'] == 1){ ?>
+                            <td>réservée</td>
+                        <?php } elseif($totalPlacesReservees >= $event['nbr_place']) { ?>
+                            <td>complet</td>
+                        <?php } elseif($event['events_actif'] == 0){?>
+                            <td>annulation</td>
+                        <?php }else{?>
+                            <td></td>
                         <?php } ?>
+                    <?php } ?>
 
-                        <a href=""></a>
+                    <a href=""></a>
 
                     <!-- Afficher le nombre total de places réservées -->
                     <!-- <td><?= $totalPlacesReservees; ?></td> -->
