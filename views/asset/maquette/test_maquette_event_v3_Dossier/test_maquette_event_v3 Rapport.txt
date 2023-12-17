@@ -1,0 +1,133 @@
+Rapport d'assemblage
+
+-----------------------------------------------------------------------------
+Document :
+Nom : test_maquette_event_v3.ai
+Mode : Couleurs RVB
+Profil colorimétrique : sRGB IEC61966-2.1
+Unité : pixels
+Dimensions : 1920 px x 2855 px
+Afficher les images en mode Tracés : INACTIF
+Mettre en évidence les polices substituées : INACTIF
+Mettre en évidence les glyphes substitués : INACTIF
+Conserver le caractère modifiable du texte
+Simuler le papier couleur : INACTIF
+
+-----------------------------------------------------------------------------
+Objets en tons directs :
+
+-----------------------------------------------------------------------------
+Polices manquantes :SANS
+
+-----------------------------------------------------------------------------
+Polices protégées non assemblées :SANS
+
+-----------------------------------------------------------------------------
+Polices :
+Americana BT Italic (OTF)
+AmericanaFont (OTF)
+Karla ExtraLight (TrueType)
+Karla ExtraLight Italic (TrueType)
+Karla Light (TrueType)
+Karla Regular (TrueType)
+Myriad Pro (OTF)
+
+-----------------------------------------------------------------------------
+Polices incorporées :
+SANS
+
+-----------------------------------------------------------------------------
+Liens manquants :
+SANS
+
+-----------------------------------------------------------------------------
+Images liées :
+
+C:\xampp\htdocs\event\views\asset\img_event\voiture.jpg
+Type : RVB
+Bits par pixel : 24
+Couches : 3
+Taille : 749K, 430 x 595 pixels
+Dimensions : 322,5 x 446,25 points 
+Résolution : 96 x 96 pixels par pouce
+
+
+C:\xampp\htdocs\event\views\asset\img_event\voiture.jpg
+Type : RVB
+Bits par pixel : 24
+Couches : 3
+Taille : 749K, 430 x 595 pixels
+Dimensions : 322,5 x 446,25 points 
+Résolution : 96 x 96 pixels par pouce
+
+
+C:\xampp\htdocs\event\views\asset\img_inspi\coco.jpg
+Type : RVB
+Bits par pixel : 24
+Couches : 3
+Taille : 787K, 426 x 631 pixels
+Dimensions : 221 x 309,467 points 
+Résolution : 138,787 x 146,807 pixels par pouce
+
+
+C:\xampp\htdocs\event\views\asset\img_inspi\coco.jpg
+Type : RVB
+Bits par pixel : 24
+Couches : 3
+Taille : 787K, 426 x 631 pixels
+Dimensions : 434,191 x 608 points 
+Résolution : 70,642 x 74,724 pixels par pouce
+
+
+C:\xampp\htdocs\event\views\asset\img_inspi\coco.jpg
+Type : RVB
+Bits par pixel : 24
+Couches : 3
+Taille : 787K, 426 x 631 pixels
+Dimensions : 476,325 x 667 points 
+Résolution : 64,393 x 68,114 pixels par pouce
+
+
+C:\xampp\htdocs\event\views\asset\img_inspi\coco.jpg
+Type : RVB
+Bits par pixel : 24
+Couches : 3
+Taille : 787K, 426 x 631 pixels
+Dimensions : 476,325 x 667 points 
+Résolution : 64,393 x 68,114 pixels par pouce
+
+
+C:\xampp\htdocs\event\views\asset\img_inspi\steven_taylor.JPG
+Type : RVB
+Bits par pixel : 24
+Couches : 3
+Taille : 5397K, 1913 x 963 pixels
+Dimensions : 1434,75 x 722,25 points 
+Résolution : 96 x 96 pixels par pouce
+
+
+C:\xampp\htdocs\event\views\asset\img_inspi\Couleur.png
+Type : RVB transparent
+Bits par pixel : 32
+Couches : 4
+Taille : 5149K, 1468 x 898 pixels
+Dimensions : 1101 x 673,5 points 
+Résolution : 96 x 96 pixels par pouce
+
+
+C:\xampp\htdocs\event\views\asset\img_inspi\panier2.png
+Type : RVB transparent
+Bits par pixel : 32
+Couches : 4
+Taille : 1127K, 438 x 659 pixels
+Dimensions : 328,5 x 494,25 points 
+Résolution : 96 x 96 pixels par pouce
+
+
+C:\xampp\htdocs\event\views\asset\img_inspi\coco.jpg
+Type : RVB
+Bits par pixel : 24
+Couches : 3
+Taille : 787K, 426 x 631 pixels
+Dimensions : 319 x 446,697 points 
+Résolution : 96,15 x 101,706 pixels par pouce
