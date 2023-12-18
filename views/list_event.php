@@ -1,18 +1,34 @@
 <?php
 include_once "./inc/header.php";
 include_once "./inc/nav.php";
+include_once "./inc/functions.php";
 require_once "../models/eventModel.php";
 require_once "../models/bookModel.php";
 require_once "../models/userModel.php";
+require_once "../models/categorieModel.php";
+
 $listEvent = Event::findAllEvent();
+
 $userReservation = User::userReservation($_SESSION['id_user']);
 // $userReservationIds = array_column($reservations, 'event_id');
 $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilisez la nouvelle méthode
 // $user= User::userReservation($_SESSION['id_user']);
 // $totalPlacesReservees = Book::calculReservation($id);
 $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD HH:MM:SS)
+// $listCategorie = Categorie::findAllCategorie();
+// Utilisation de array_column pour extraire la colonne 'categorie_name'
+// $categories = array_column($listEvent, 'categorie_name');
+$categories = [];
+foreach ($listEvent as $event) {
+    // Récupération des valeurs de categorie_id et categorie_name
+    $categories[$event["categorie_id"]] = $event["categorie_name"];
 
+    // Stockage dans le nouveau tableau
+    // $valeursCategories[] = ["categorie_id" => $categorieId, "categorie_name" => $categorieName];
+}
 
+// Utilisation de array_unique pour obtenir les valeurs uniques
+// $categoriesUniques = array_unique($categories);
 ?>
 
 <div class="container">
@@ -23,15 +39,10 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
         <label for="categorie">Filtrer par catégorie :</label>
         <select name="categorie" id="categorie">
             <option value="">Toutes les catégories</option>
-            <?php
-            // Récupérez la liste des catégories depuis votre modèle (modifiez selon votre structure)
-            // $categories = Event::getAllCategories();
-            // $categories = Categorie::findAllCategorie();
-            $listEvent = Event::findAllEvent();
-            foreach ($listEvent as $event) {
-                echo '<option value="' . $event['categorie_id'] . '">' . $event['categorie_name'] . '</option>';
-            }
-            ?>
+            <?php foreach($categories as $key => $categorie){ ?>
+                <option value="<?= $key; ?>"><?= $categorie ?></option>
+
+            <?php } ?>
         </select>
         <button type="submit">Filtrer</button>
     </form>
@@ -40,10 +51,14 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
         // Ajoutez ce bloc pour filtrer par catégorie
         $categorieFilter = isset($_GET['categorie']) ? $_GET['categorie'] : null;
         if ($categorieFilter) {
-            $listEvent = Event::findEventsByCategory($categorieFilter);
+            // $listEvent = Event::findEventsByCategory($categorieFilter);
+            $evenementsByCategory = array_filter($listEvent, function ($evenement) use ($categorieFilter) {
+                return $evenement['categorie_id'] === (int)$categorieFilter;
+            });
+        } else{
+            $evenementsByCategory = $listEvent;
         }
     ?>
-
     <!-- pour  le comparer avec le nombre de place -->
     <h2>Prochainement</h2>
     <table class="table">
@@ -66,7 +81,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
             </tr>
         </thead>
         <tbody>
-            <?php foreach($listEvent as $event){
+            <?php foreach($evenementsByCategory as $event){
                 // Comparer la date de l'événement avec la date actuelle, si la date est déjà passé ne l'afficher ici
 
             if ($event['date_event'] >= $currentDate) { 

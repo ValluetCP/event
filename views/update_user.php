@@ -14,8 +14,7 @@ require_once "../models/userModel.php";
 
         <div class="form-group  mb-3">
             <label class="m-2" id="nom">Nom</label>
-            <input type="text" class="form-control text-uppercase"  name="nom" value="<?= $_SESSION["user_name"] ?>">
-            
+            <input type="text" class="form-control text-uppercase"  name="nom" value="<?= $_SESSION["user_name"] ?>">  
         </div>
 
         <div class="form-group  mb-3">
@@ -43,7 +42,7 @@ require_once "../models/userModel.php";
             <button type="submit" class="btn btn-primary mt-5 mb-5 me-2" name="update_user">Valider</button>   
     
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary  mt-5 mb-5 mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary  mt-5 mb-5 mx-2" data-bs-toggle="modal" data-bs-target="#exampleModalInfoUser">
               Annuler
             </button>
         </div>
@@ -51,11 +50,11 @@ require_once "../models/userModel.php";
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModalInfoUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Annulation</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabelInfoUser">Annulation</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

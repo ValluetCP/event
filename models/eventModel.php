@@ -216,11 +216,59 @@ class Event{
 
     public static function findEventsByCategory($categoryId) {
         $db = Database::dbConnect();
-        $sql = "SELECT * FROM events WHERE categorie_id = :category";
+        $sql = "SELECT * FROM events WHERE categorie_id = :categorie";
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':category', $categoryId, PDO::PARAM_INT);
+        $stmt->bindParam(':categorie', $categoryId, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function ajouterEvent() {
+
+        if (isset($_POST['ajouter_event'])) {
+        extract($_POST);
+        // Extraction des données du formulaire - Cela signifie que les valeurs des champs du formulaire deviennent des variables accessibles directement (par exemple, $qte, $id, etc.).
+
+        //Récupération de la quantité et des détails de l'événement 
+        $quantite = $_POST["qte"] ?: 1;
+        $products = $this::findEventById($_POST[$id]);
+    
+        // Gestion du panier dans la session
+        // Ces lignes vérifient si la clé 'commandes' existe dans la session. Si elle n'existe pas, un tableau vide est créé. Ensuite, le panier est récupéré à partir de la session
+        if( !array_key_exists('commandes', $_SESSION) ){
+                $_SESSION['commandes'] = [];
+            }
+           
+            $panier = $_SESSION['commandes'];        
+    
+            // Ajout de l'événement au panier 
+            $productsDejaDansPanier = false;
+            foreach ($panier as $indice => $ligne) {
+                if ($products->getId() == $ligne["products"]->getId()) {
+                    $panier[$indice]["quantite"] += $quantite;
+                    $productsDejaDansPanier = true;
+                    break;  // pour sortir de la boucle foreach
+                }
+            }
+    
+            if (!$productsDejaDansPanier) {
+                $panier[] = ["quantite" => $quantite, "products" => $products];  // on ajoute une ligne au panier => $panier est un array d'array
+            }
+    
+            // Mise à jour du panier dans la session
+            $_SESSION['commandes'] = array_merge($_SESSION['commandes'] , $panier); // je remets $panier dans la session, à l'indice 'panier'
+
+            // Calcul du nombre total d'articles dans le panier :
+            $nb = 0;
+            foreach ($panier as $ligne) {
+                $nb += $ligne["quantite"];
+            }
+    
+            // on verra la redirection plutard
+            // return $nb;
+        }
+    
     }
 
 }
