@@ -17,6 +17,7 @@ if (isset($_GET['id_event_update'])) {
     $totalPlacesReservees = Book::calculReservation($id);
     // calculer le nombre de places disponibles
     $placesDisponibles = $event['nbr_place'] - $totalPlacesReservees;
+    
 } else {
     // Si c'est un nouvel événement, initialiser les valeurs
     $totalPlacesReservees = 0;

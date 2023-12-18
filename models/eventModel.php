@@ -43,6 +43,9 @@ class Event{
             // preparation de la requête
             $request = $db->prepare("SELECT * FROM `events` e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie ORDER BY e.date_event ASC");
 
+            // Pour les utilisateurs non connectés
+            // $request = $db->prepare("SELECT e.*, c.categorie_name FROM `events` e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie ORDER BY e.date_event ASC");
+
             // exécuter la requête
             $eventList = null;
             try {
@@ -57,6 +60,9 @@ class Event{
         else {
             // preparation de la requête
             $request = $db->prepare("SELECT *, SUM(place_reserve) FROM `events` e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie LEFT JOIN reservation r ON e.id_evenement = r.event_id GROUP BY titre ORDER BY e.date_event ASC");
+
+            // Pour les utilisateurs connectés
+            // $request = $db->prepare("SELECT e.*, c.categorie_name, SUM(r.place_reserve) as total_places_reserved FROM `events` e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie LEFT JOIN reservation r ON e.id_evenement = r.event_id GROUP BY e.id_evenement ORDER BY e.date_event ASC");
 
             // exécuter la requête
             $eventList = null;
@@ -205,6 +211,16 @@ class Event{
         } catch (PDOException $e) {
             $e->getMessage();
         }
+    }
+
+
+    public static function findEventsByCategory($categoryId) {
+        $db = Database::dbConnect();
+        $sql = "SELECT * FROM events WHERE categorie_id = :category";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':category', $categoryId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

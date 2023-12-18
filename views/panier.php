@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Inclure le fichier contenant la classe Book
 require_once "../models/bookModel.php";
 require_once "../models/eventModel.php"; // Ajoutez cette ligne pour inclure la classe Event

@@ -12,10 +12,38 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
 // $totalPlacesReservees = Book::calculReservation($id);
 $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD HH:MM:SS)
 
+
 ?>
 
 <div class="container">
     <h1 class="m-5">Liste des évènements</h1>
+
+    <!-- Ajoutez le formulaire de filtre ici -->
+    <form method="get" action="">
+        <label for="categorie">Filtrer par catégorie :</label>
+        <select name="categorie" id="categorie">
+            <option value="">Toutes les catégories</option>
+            <?php
+            // Récupérez la liste des catégories depuis votre modèle (modifiez selon votre structure)
+            // $categories = Event::getAllCategories();
+            // $categories = Categorie::findAllCategorie();
+            $listEvent = Event::findAllEvent();
+            foreach ($listEvent as $event) {
+                echo '<option value="' . $event['categorie_id'] . '">' . $event['categorie_name'] . '</option>';
+            }
+            ?>
+        </select>
+        <button type="submit">Filtrer</button>
+    </form>
+
+    <?php
+        // Ajoutez ce bloc pour filtrer par catégorie
+        $categorieFilter = isset($_GET['categorie']) ? $_GET['categorie'] : null;
+        if ($categorieFilter) {
+            $listEvent = Event::findEventsByCategory($categorieFilter);
+        }
+    ?>
+
     <!-- pour  le comparer avec le nombre de place -->
     <h2>Prochainement</h2>
     <table class="table">
@@ -53,7 +81,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                     <td><?= $event['prix']; ?></td>
                     <!-- <td><?= $event['resume']; ?></td> -->
                     <!-- <td><?= $event['nbr_place']; ?></td> -->
-                    <td><?= $event['categorie_name']; ?></td>
+                    <td><?= isset($event['categorie_name']) ? $event['categorie_name'] : 'N/A'; ?></td>
                     <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
 
 
@@ -114,7 +142,8 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                         <td><?= $event['prix']; ?></td>
                         <!-- <td><?= $event['resume']; ?></td> -->
                         <!-- <td><?= $event['nbr_place']; ?></td> -->
-                        <td><?= $event['categorie_name']; ?></td>
+                        <td><?= isset($event['categorie_name']) ? $event['categorie_name'] : 'N/A'; ?></td>
+                        <!-- <td><?= $event['categorie_name']; ?></td> -->
                         <!-- Ajouter le nombre de particpant par évènement -->
                         <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
                     </tr>
