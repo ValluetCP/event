@@ -25,7 +25,7 @@ class Book{
         }
 
 
-        // methode pour inscrire une réservation
+    // methode pour inscrire une réservation
     public static function addBook($idUser,$eventId,$placeReserve){
 
         // on appel la fonction dbConnect qui est dans la class Database

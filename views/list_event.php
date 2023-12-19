@@ -8,23 +8,16 @@ require_once "../models/userModel.php";
 require_once "../models/categorieModel.php";
 
 $listEvent = Event::findAllEvent();
-
 $userReservation = User::userReservation($_SESSION['id_user']);
+
 // $userReservationIds = array_column($reservations, 'event_id');
-$userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilisez la nouvelle méthode
-// $user= User::userReservation($_SESSION['id_user']);
-// $totalPlacesReservees = Book::calculReservation($id);
+$userReservationIds = Book::userReservationIds($_SESSION['id_user']); // Utilisez la nouvelle méthode
+
 $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD HH:MM:SS)
-// $listCategorie = Categorie::findAllCategorie();
-// Utilisation de array_column pour extraire la colonne 'categorie_name'
-// $categories = array_column($listEvent, 'categorie_name');
-$categories = [];
+
 foreach ($listEvent as $event) {
     // Récupération des valeurs de categorie_id et categorie_name
     $categories[$event["categorie_id"]] = $event["categorie_name"];
-
-    // Stockage dans le nouveau tableau
-    // $valeursCategories[] = ["categorie_id" => $categorieId, "categorie_name" => $categorieName];
 }
 
 // Utilisation de array_unique pour obtenir les valeurs uniques
@@ -33,7 +26,6 @@ foreach ($listEvent as $event) {
 
 <div class="container">
     <h1 class="m-5">Liste des évènements</h1>
-
     <!-- Ajoutez le formulaire de filtre ici -->
     <form method="get" action="">
         <label for="categorie">Filtrer par catégorie :</label>
@@ -41,7 +33,6 @@ foreach ($listEvent as $event) {
             <option value="">Toutes les catégories</option>
             <?php foreach($categories as $key => $categorie){ ?>
                 <option value="<?= $key; ?>"><?= $categorie ?></option>
-
             <?php } ?>
         </select>
         <button type="submit">Filtrer</button>

@@ -22,14 +22,13 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                 <th>Résumé</th>
                 <th>Prix</th>
                 <th>Nombre de place</th>
-                <th>Action</th>
-                
+                <th>Action</th> 
             </tr>
         </thead>
         <tbody>
         <?php foreach($bookList as $book) {
             // Comparer la date de l'événement avec la date actuelle, si la date est déjà passé ne l'afficher ici
-            if ($book['date_event'] >= $currentDate) { ?>
+            if ($book['date_event'] >= $currentDate && $book['reservation_actif']) { ?>
                 <tr>
                     <td><?= date('d-m-Y', strtotime($book['date_event'])); ?></td>
                     <td><?= $book['titre']; ?></td>
@@ -40,7 +39,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                     <!-- Ajouter le nombre de participants par évènement -->
                     <td><a class="lien" href="./book.php?event=<?= $book['id_evenement']; ?>">Consulter</a></td>
                 </tr>
-        <?php }
+            <?php }
         } ?>
     </tbody>
     </table>
@@ -86,4 +85,4 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
 
 <?php
 include_once "./inc/footer.php";
-?>
+?> 
