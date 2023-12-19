@@ -5,6 +5,8 @@ require_once "../../models/userModel.php";
 require_once "../../models/eventModel.php";
 require_once "../../models/categorieModel.php";
 require_once "../../models/bookModel.php";
+
+
 // require_once "../add_book.php";
 
 
@@ -316,7 +318,7 @@ if (isset($_POST['add_another_book'])) {
     
 // }
 
-if (isset($_POST['add_book'])) {
+if (isset($_POST['add_book2'])) {
     // Récupérez les données du formulaire
     $eventId = $_POST['id_event'];
 $placesToReserve = $_POST['place_reserve'];
@@ -347,6 +349,9 @@ if (isset($_POST['historique_book'])) {
     Book::getUserPreviousReservations($userId, $eventId);
     
 }
+
+
+
 
 
 

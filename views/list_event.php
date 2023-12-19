@@ -84,11 +84,11 @@ foreach ($listEvent as $event) {
             <?php foreach($evenementsByCategory as $event){
                 // Comparer la date de l'événement avec la date actuelle, si la date est déjà passé ne l'afficher ici
 
-            if ($event['date_event'] >= $currentDate) { 
-                // Obtenir le nombre total de places réservées pour cet évènement
-                $totalPlacesReservees = Book::calculReservation($event['id_evenement']);
-                
-                ?>
+                if ($event['date_event'] >= $currentDate) { 
+                    // Obtenir le nombre total de places réservées pour cet évènement
+                    $totalPlacesReservees = Book::calculReservation($event['id_evenement']);   
+            ?>
+            
                 <tr>
                     <td><?= $event['id_evenement']; ?></td>
                     <td><?= $event['titre']; ?></td>
@@ -147,7 +147,7 @@ foreach ($listEvent as $event) {
             </tr>
         </thead>
         <tbody>
-            <?php foreach($listEvent as $event){ 
+            <?php foreach($evenementsByCategory as $event){ 
                 // Comparer la date de l'événement avec la date actuelle
                 if ($event['date_event'] < $currentDate) { ?>
                     <tr class="event-passe">

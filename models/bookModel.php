@@ -117,7 +117,7 @@ class Book{
         $db = Database::dbConnect();
 
         // preparer la requete
-        $request = $db->prepare("UPDATE reservation SET reservation_actif = ? WHERE id_reservation =?");
+        $request = $db->prepare("UPDATE reservation SET reservation_actif = ?, place_reserve = 0 WHERE id_reservation =?");
         //executer la requete
 
         try {
@@ -282,5 +282,34 @@ class Book{
             return true;
         }
     }
+
+    // Ne fonctionne pas
+    public static function cancelBook($userId, $eventIdToCancel) {
+        
+        $db = Database::dbConnect();
+
+        // Vérifier s'il existe déjà une réservation pour cet utilisateur et cet événement
+        $existingReservation = self::getUserReservationsForEvent($userId, $eventIdToCancel);
+
+        // Si une réservation existe, mettez à jour la quantité de places réservées
+        if (!empty($existingReservation)) {
+
+            // Mettez à jour la quantité de places réservées à 0 pour la réservation spécifique
+            $updateRequest = $db->prepare("UPDATE reservation SET place_reserve = 0 WHERE user_id AND event_id");
+            
+            try {
+                $updateRequest->execute([$userId, $eventIdToCancel]);
+
+                // Retourne true pour indiquer que la réservation a réussi
+                return true;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                // Retourne false en cas d'échec
+                return false;
+            }
+        }
+    }
     
+    
+
 }
