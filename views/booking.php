@@ -17,6 +17,7 @@ $bookList = Book::findAllBookByIdUser();
 $totalPlacesReservees = Book::calculReservation($eventId);
 $placesDisponibles = $ficheEvent['nbr_place'] - $totalPlacesReservees;
 $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD HH:MM:SS)
+// Book::cancelBook($userId, $eventId);
 
 // $placeList = Book::calculReservation($eventId);
 // var_dump($placeList);
@@ -84,7 +85,58 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
 
         <a class="btn btn-outline-warning" href="./list_book.php">Retour à mes réservations</a>
 
-            
+        <?php
+        $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $ficheEvent['id_evenement']);
+                    
+        if ($userPreviousReservations){
+            ?>
+            <p>Historique :</p>
+            <ul>
+                <?php foreach ($userPreviousReservations as $reservation) { ?>
+                    <li>Date de réservation : <?= date('d-m-Y H:i:s', strtotime($reservation['date_reservation'])); ?>, Quantité : <?= $reservation['place_reserve']; ?></li>
+                <?php } ?>
+            </ul>
+        <?php } else { ?>
+            <p>Vous n'avez pas encore effectué de réservation pour cet événement.</p>
+        <?php } ?>
+
+
+
+    <h2>Historique</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date & Heure de réservation</th>
+                <!-- <th>Heure</th> -->
+                <th>Quantité</th>
+                <th>Action</th>  
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+            $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $ficheEvent['id_evenement']);
+            foreach($userPreviousReservations as $reservation){ 
+                // Comparer la date de l'événement avec la date actuelle
+                if ($userPreviousReservations) { ?>
+                    <?php if($reservation['reservation_actif'] == 1){ ?>
+                        <tr>
+                            <td><?= date('d-m-Y H:i:s', strtotime($reservation['date_reservation'])); ?></td>
+                            <td><?= $reservation['place_reserve']; ?></li></td>
+                            <!-- Annuler la réservation de l'évènement -->
+                            <td><a class="lien" href="traitement/action.php?id_book_desactive=<?= $reservation['id_reservation']; ?>">Annuler</a></td>
+                        </tr>
+                    <?php } else if($reservation['reservation_actif'] == 0){ ?>
+                        <tr class="event-passe">
+                            <td><?= date('d-m-Y H:i:s', strtotime($reservation['date_reservation'])); ?></td>
+                            <!-- Réservation déjà annulé -->
+                            <td ></td>
+                            <td class="event-passe">Annulé</td>
+                        </tr>
+                    <?php } ?>
+                <?php }
+            } ?>
+        </tbody>
+    </table>    
 </div>
 
 <script>

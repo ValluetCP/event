@@ -85,23 +85,6 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
 
         <a class="btn btn-outline-warning" href="./list_book.php">Retour à mes réservations</a>
 
-        <?php
-        $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $ficheEvent['id_evenement']);
-                    
-        if ($userPreviousReservations){
-            ?>
-            <p>Historique :</p>
-            <ul>
-                <?php foreach ($userPreviousReservations as $reservation) { ?>
-                    <li>Date de réservation : <?= date('d-m-Y H:i:s', strtotime($reservation['date_reservation'])); ?>, Quantité : <?= $reservation['place_reserve']; ?></li>
-                <?php } ?>
-            </ul>
-        <?php } else { ?>
-            <p>Vous n'avez pas encore effectué de réservation pour cet événement.</p>
-        <?php } ?>
-
-
-
     <h2>Historique</h2>
     <table class="table">
         <thead>
@@ -138,6 +121,8 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
         </tbody>
     </table>    
 </div>
+
+
 
 <script>
     

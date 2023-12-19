@@ -25,7 +25,7 @@ foreach ($listEvent as $event) {
 ?>
 
 <div class="container">
-    <h1 class="m-5">Liste des évènements</h1>
+    <h1 class="m-5">Mes réservations</h1>
     <!-- Ajoutez le formulaire de filtre ici -->
     <form method="get" action="">
         <label for="categorie">Filtrer par catégorie :</label>
