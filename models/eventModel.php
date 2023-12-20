@@ -237,15 +237,15 @@ class Event{
     // }
 
 
-    public function ajouterEvent() {
+    public static function addPanier() {
 
-        if (isset($_POST['ajouter_event'])) {
+        if (isset($_POST['add_panier'])) {
         extract($_POST);
         // Extraction des données du formulaire - Cela signifie que les valeurs des champs du formulaire deviennent des variables accessibles directement (par exemple, $qte, $id, etc.).
 
         //Récupération de la quantité et des détails de l'événement 
         $quantite = $_POST["qte"] ?: 1;
-        $products = $this::findEventById($_POST[$id]);
+        $products = Event::findEventById($_POST[$id]);
     
         // Gestion du panier dans la session
         // Ces lignes vérifient si la clé 'commandes' existe dans la session. Si elle n'existe pas, un tableau vide est créé. Ensuite, le panier est récupéré à partir de la session
@@ -283,6 +283,41 @@ class Event{
         }
     
     }
+
+
+    // Dans votre classe Event (eventmodel.php)
+    public static function findSelectedEvents($userId)
+    {
+        // Vérifiez si l'utilisateur est connecté
+        if (empty($userId)) {
+            return array();  // Si l'utilisateur n'est pas connecté, retournez un tableau vide
+        }
+
+        // Connexion à la base de données
+        $db = Database::dbConnect();
+
+        // Préparation de la requête pour récupérer les événements sélectionnés par l'utilisateur
+        $request = $db->prepare("SELECT e.* FROM `events` e
+                                JOIN reservation r ON e.id_evenement = r.event_id
+                                WHERE r.user_id = :userId");
+
+        // Liaison des paramètres
+        $request->bindParam(':userId', $userId, PDO::PARAM_INT);
+
+        // Exécution de la requête
+        $selectedEvents = array();
+        try {
+            $request->execute();
+
+            // Récupération des résultats dans un tableau associatif
+            $selectedEvents = $request->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+        return $selectedEvents;
+    }
+
 
 }
 

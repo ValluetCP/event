@@ -29,8 +29,7 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
 ?>
 
 <div class="container">
-    
-    
+
     <?= ($totalPlacesReservees == null) ? '<h1 class="m-5">évènement</h1>' : '<h1 class="m-5">Ma réservation</h1>'?>
     <!-- <h1 class="m-5">évènement</h1> -->
     
@@ -127,7 +126,7 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
                                         </button>
                                     
                                     <?php } else { ?>
-                                        <button type="submit" class="btn btn-outline-warning mt-3 mb-5" name="ajouter_event" >Réserver</button>
+                                        <button type="submit" class="btn btn-outline-warning mt-3 mb-5" name="add_panier" >Réserver</button>
                                     <?php } ?>
                                 <?php } ?> 
                             <?php } ?>

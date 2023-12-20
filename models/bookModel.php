@@ -52,7 +52,7 @@ class Book{
         $_SESSION['panier'][]= $tab;
 
         // rediriger vers la page list_user.php
-        header("Location: http://localhost/event/views/panier.php");
+        header("Location: http://localhost/event/views/panier_2.php");
         
     }
 
