@@ -44,14 +44,18 @@ if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
     }
 
     // Afficher les éléments du panier
-    foreach ($panierItems as $itemId => $itemDetails) {
-        echo "Titre de l'événement : " . $itemDetails['eventDetails']['titre'] . "<br>";
-        echo "Catégorie : " . $itemDetails['eventDetails']['categorie_name'] . "<br>";
-        echo "Prix unitaire : " . $itemDetails['eventDetails']['prix'] . "<br>";
-        echo "Quantité : " . $itemDetails['quantity'] . "<br>";
-        echo "Prix total : " . $itemDetails['price'] . "<br><br>";
-        // Vous pouvez afficher d'autres détails de l'événement si nécessaire
-    }
+    foreach ($panierItems as $itemId => $itemDetails) { ?>
+        <a href="./event.php?event=<?= $itemDetails['eventDetails']['id_evenement']; ?>">
+            <div>
+                <p>Titre de l'événement :<?= $itemDetails['eventDetails']['titre']; ?></p>
+                <p>Catégorie :<?= $itemDetails['eventDetails']['categorie_name']; ?></p>
+                <p>Prix unitaire :<?= $itemDetails['eventDetails']['prix']; ?></p>
+                <p>Quantité :<?= $itemDetails['quantity']; ?></p>
+                <p>Prix total :<?= $itemDetails['price']; ?></p><br><br>
+            </div>
+        </a>
+    <?php } 
+    
 
     // Afficher le montant total en bas de la page
     echo "Montant total : " . $totalMontant . "<br>";
