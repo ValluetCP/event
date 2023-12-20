@@ -108,7 +108,7 @@ foreach ($listEvent as $event) {
                 <th>Identifiant</th>
                 <th>Titre de l'évènement</th>
                 <!-- <th>Durée</th> -->
-                <th>Tarif</th>
+                <!-- <th>Tarif</th> -->
                 <!-- <th>Résumé</th> -->
                 <!-- <th>Nombre de place</th> -->
                 <th>Catégorie</th>
@@ -116,22 +116,38 @@ foreach ($listEvent as $event) {
             </tr>
         </thead>
         <tbody>
-            <?php foreach($evenementsByCategory as $event){ 
-                // Comparer la date de l'événement avec la date actuelle
-                if ($event['date_event'] < $currentDate) { ?>
-                    <tr class="event-passe">
-                        <td><?= $event['id_evenement']; ?></td>
-                        <td><?= $event['titre']; ?></td>
-                        <!-- <td><?= $event['duree']; ?></td> -->
-                        <td><?= $event['prix']; ?></td>
-                        <!-- <td><?= $event['resume']; ?></td> -->
-                        <!-- <td><?= $event['nbr_place']; ?></td> -->
-                        <td><?= isset($event['categorie_name']) ? $event['categorie_name'] : 'N/A'; ?></td>
-                        <!-- <td><?= $event['categorie_name']; ?></td> -->
-                        <!-- Ajouter le nombre de particpant par évènement -->
-                        <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
-                    </tr>
-                <?php }
+            <?php foreach($evenementsByCategory as $event){
+                // Comparer la date de l'événement avec la date actuelle, si la date est déjà passé ne l'afficher ici
+
+                if ($event['date_event'] >= $currentDate) { 
+                    // Obtenir le nombre total de places réservées pour cet évènement
+                    $totalPlacesReservees = Book::calculReservation($event['id_evenement']);   
+            ?>
+                <tr>
+                <?php if(!empty($_SESSION['id_user'])){
+
+                    if(in_array($event['id_evenement'], $userReservationIds) && $event['events_actif'] == 1 && ($event['date_event'] < $currentDate)){ ?>
+                    
+                            <td><?= $event['id_evenement']; ?></td>
+                            <td><?= $event['titre']; ?></td>
+                            <td><?= isset($event['categorie_name']) ? $event['categorie_name'] : 'N/A'; ?></td>
+                            <td><a class="lien" href="./book.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
+                        <?php } ?>
+
+                    <?php } ?>
+
+                    <a href=""></a>
+
+                    <!-- Afficher le nombre total de places réservées -->
+                    <!-- <td><?= $totalPlacesReservees; ?></td> -->
+                    <!-- <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
+                        <td><a href="./add_event.php?id_event_update=<?= $event['id_evenement']; ?>">Modifier</a></td>
+                        <td><a href="traitement/action.php?id_event_delete=<?= $event['id_evenement']; ?>">Supprimer</a></td>
+                    <?php } ?>  -->
+
+                    <!-- Ajouter le nombre de particpant par évènement --> 
+                </tr>
+            <?php }
             } ?>
         </tbody>
     </table>
