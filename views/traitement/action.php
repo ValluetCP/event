@@ -351,10 +351,6 @@ if (isset($_POST['historique_book'])) {
 }
 
 
-
-
-
-
 // -- METHOD GET -- //
 
 // Supprimer définitivement un user de la bdd
