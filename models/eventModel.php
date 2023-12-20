@@ -216,12 +216,25 @@ class Event{
 
     public static function findEventsByCategory($categoryId) {
         $db = Database::dbConnect();
-        $sql = "SELECT * FROM events WHERE categorie_id = :categorie";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':categorie', $categoryId, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $request = $db->prepare("SELECT * FROM events WHERE categorie_id =?");
+        try {
+            $request->execute([$categoryId]);
+            return $request->fetchAll(PDO::FETCH_ASSOC);
+            // recuperer le resultat dans un tableau
+            header("Location: http://localhost/event/views/admin_list_event.php");
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
     }
+
+    // public static function findEventsByCategory($categoryId) {
+    //     $db = Database::dbConnect();
+    //     $sql = "SELECT * FROM events WHERE categorie_id = :categorie";
+    //     $stmt = $db->prepare($sql);
+    //     $stmt->bindParam(':categorie', $categoryId, PDO::PARAM_INT);
+    //     $stmt->execute();
+    //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // }
 
 
     public function ajouterEvent() {

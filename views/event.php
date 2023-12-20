@@ -196,11 +196,13 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
     <?php var_dump($associatedEvents); ?>
     <!-- Affichez les événements associés -->
     <h3>Événements associés à la catégorie </h3>
-    <ul>
-        <?php foreach ($associatedEvents as $event) { ?>
-            <li><?= $event['titre']; ?> - <?= $event['date_event']; ?> - <?= $ficheEvent['categorie_name'];?></li>
-        <?php } ?>
-    </ul> 
+        <ul>
+            <?php foreach ($associatedEvents as $event) { ?>
+                <?php if ($event['id_evenement'] != $eventId) { ?>
+                    <li><?= $event['titre']; ?> - <?= $event['date_event']; ?> - <?= $ficheEvent['categorie_name']; ?></li>
+                <?php } ?>
+            <?php } ?>
+        </ul>
     
 </div>
 
