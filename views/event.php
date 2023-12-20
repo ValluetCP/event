@@ -192,18 +192,17 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
     $associatedEvents = Event::findEventsByCategory($eventCategory);
 
     ?>
-    <?php var_dump($eventCategory); ?>
-    <?php var_dump($associatedEvents); ?>
-    <!-- Affichez les événements associés -->
+    <!-- <?php var_dump($eventCategory); ?> -->
+    <!-- <?php var_dump($associatedEvents); ?> -->
+    <!-- Affichez les événements associés sans l'événement sélectionné-->
     <h3>Événements associés à la catégorie </h3>
-        <ul>
-            <?php foreach ($associatedEvents as $event) { ?>
-                <?php if ($event['id_evenement'] != $eventId) { ?>
-                    <li><?= $event['titre']; ?> - <?= $event['date_event']; ?> - <?= $ficheEvent['categorie_name']; ?></li>
-                <?php } ?>
+    <ul>
+        <?php foreach ($associatedEvents as $event) { ?>
+            <?php if ($event['id_evenement'] != $eventId) { ?>
+                <li><?= $event['titre']; ?> - <?= $event['date_event']; ?> - <?= $ficheEvent['categorie_name']; ?></li>
             <?php } ?>
-        </ul>
-    
+        <?php } ?>
+    </ul>
 </div>
 
 <script>

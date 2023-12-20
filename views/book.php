@@ -83,7 +83,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
         <p>Nombre de places réservées : <?= $totalPlacesReservees; ?></p>
         <p>Nombre de places disponible : <?= $placesDisponibles; ?></p>
 
-        <a class="btn btn-outline-warning" href="./list_book.php">Retour à mes réservations</a>
+        <a class="btn btn-outline-warning" href="./list_book.php">Retour à la liste des réservations</a>
 
     <h2>Historique</h2>
     <table class="table">
@@ -119,7 +119,26 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                 <?php }
             } ?>
         </tbody>
-    </table>    
+    </table>
+    <?php
+    // Ajoutez ces lignes pour récupérer la catégorie de l'événement en cours
+    $eventCategory = $ficheEvent['categorie_id'];
+
+    // Ajoutez ces lignes pour trouver tous les événements associés à la catégorie
+    $associatedEvents = Event::findEventsByCategory($eventCategory);
+    ?>
+    <!-- <?php var_dump($eventCategory); ?> -->
+    <!-- <?php var_dump($associatedEvents); ?> -->
+    <!-- Affichez les événements associés sans l'événement sélectionné-->
+    <h3>Événements associés à la catégorie </h3>
+    <ul>
+        <?php foreach ($associatedEvents as $event) { ?>
+            <?php if ($event['id_evenement'] != $eventId) { ?>
+                <li><?= $event['titre']; ?> - <?= $event['date_event']; ?> - <?= $ficheEvent['categorie_name']; ?></li>
+            <?php } ?>
+        <?php } ?>
+    </ul>
+    
 </div>
 
 
