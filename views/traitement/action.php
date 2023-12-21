@@ -5,6 +5,7 @@ require_once "../../models/userModel.php";
 require_once "../../models/eventModel.php";
 require_once "../../models/categorieModel.php";
 require_once "../../models/bookModel.php";
+require_once "../inc/functions.php";
 
 
 // require_once "../add_book.php";
@@ -296,6 +297,30 @@ if (isset($_POST['add_panier'])) {
     Book::addPanier($idUser, $idEvent, $placeReserve);
 }
 
+// event.php
+// var_dump($_POST);
+// if (isset($_POST['valider_panier'])) {
+//     $idUser = $_SESSION['id_user'];
+//     $idEvenement = htmlspecialchars($_POST['id_evenement']);
+//     $titre = htmlspecialchars($_POST['titre']);
+//     $categorieName = htmlspecialchars($_POST['categorie_name']);
+//     $prix = htmlspecialchars($_POST['prix']);
+//     $quantity = htmlspecialchars($_POST['quantity']);
+//     $price = htmlspecialchars($_POST['price']);
+
+//     Book::validerPanier($idUser,$idEvenement,$titre,$categorieName,$prix,$quantity,$price);
+// }
+
+if (isset($_POST['valider_panier'])) {
+    
+    debug($_SESSION);die;
+    $idUser = $_SESSION['id_user'];
+    $idEvent = htmlspecialchars($_POST['id_evenement']);
+    $placeReserve = htmlspecialchars($_POST['quantity']);
+
+    Book::validerPanier($idUser, $idEvent, $placeReserve);
+}
+
 
 // Met à jour la quantité de places réservées en ajoutant la nouvelle quantité à l'ancienne.
 if (isset($_POST['add_another_book'])) {
@@ -433,3 +458,15 @@ if (isset($_GET['id_book_active'])) {
 //         echo "Erreur : Le nombre de places sélectionnées n'est pas valide.";
 //     }
 // }
+
+
+if (isset($_POST['add_panier'])) {
+
+    extract($_POST);
+
+    $tab = [$idUser,$eventId,$placeReserve];
+        $_SESSION['panier'][]= $tab;
+
+        // création du panier dans la session
+        header("Location: http://localhost/event/views/panier_2.php");
+}

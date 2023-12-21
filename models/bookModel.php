@@ -46,6 +46,50 @@ class Book{
         }
     }
 
+
+    // methode pour inscrire une réservation
+    public static function validerPanier($idUser,$eventId,$placeReserve){
+
+        // on appel la fonction dbConnect qui est dans la class Database
+        $db = Database::dbConnect();
+
+        // preparation de la requête
+        $request =$db->prepare("INSERT INTO `reservation`(`user_id`, `event_id`, `place_reserve`) VALUES (?,?,?)");
+
+        // exécuter la requête
+        try {
+            $request->execute(array($idUser,$eventId,$placeReserve));
+
+            // rediriger vers la page list_user.php
+            header("Location: http://localhost/event/views/list_book.php");
+            
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+    // methode pour inscrire une réservation
+    // public static function validerPanier($idUser,$idEvenement,$titre,$categorieName,$prix,$quantity,$price){
+
+    //     // on appel la fonction dbConnect qui est dans la class Database
+    //     $db = Database::dbConnect();
+
+    //     // preparation de la requête
+    //     $request =$db->prepare("INSERT INTO `reservation`(`user_id`, `event_id`, `place_reserve`) VALUES (?,?,?)");
+
+    //     // exécuter la requête
+    //     try {
+    //         $request->execute(array($idUser,$idEvenement,$titre,$categorieName,$prix,$quantity,$price));
+
+    //         // rediriger vers la page list_user.php
+    //         header("Location: http://localhost/event/views/list_book.php");
+            
+    //     } catch (PDOException $e) {
+    //         echo $e->getMessage();
+    //     }
+    // }
+
     public static function addPanier($idUser,$eventId,$placeReserve){
 
         $tab = [$idUser,$eventId,$placeReserve];

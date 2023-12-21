@@ -1,7 +1,6 @@
 <?php
 include_once "./inc/header.php";
 include_once "./inc/nav.php";
-include_once "./inc/functions.php";
 // Inclure le fichier contenant la classe Book
 require_once "../models/bookModel.php";
 require_once "../models/eventModel.php"; // Ajoutez cette ligne pour inclure la classe Event
@@ -15,7 +14,7 @@ if (isset($_SESSION['id_user'], $_GET['event'], $_POST['place_reserve'])) {
 // Récupérer les événements dans le panier
 if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
     // Utiliser un tableau associatif pour éviter les doublons
-    $panierItems = [];
+    $panierItems = array();
     $totalMontant = 0;
 
     foreach ($_SESSION['panier'] as $item) {
@@ -43,30 +42,24 @@ if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
         // Ajouter le prix total de l'événement au total général
         $totalMontant += $panierItems[$eventId]['price'];
     }
+
+    // Afficher les éléments du panier
+    foreach ($panierItems as $itemId => $itemDetails) { ?>
+        <a href="./event.php?event=<?= $itemDetails['eventDetails']['id_evenement']; ?>">
+            <div>
+                <p>Titre de l'événement :<?= $itemDetails['eventDetails']['titre']; ?></p>
+                <p>Catégorie :<?= $itemDetails['eventDetails']['categorie_name']; ?></p>
+                <p>Prix unitaire :<?= $itemDetails['eventDetails']['prix']; ?></p>
+                <p>Quantité :<?= $itemDetails['quantity']; ?></p>
+                <p>Prix total :<?= $itemDetails['price']; ?></p><br><br>
+            </div>
+        </a>
+    <?php } 
     
 
-    // Afficher les éléments du panier?>
-    <form action="./traitement/action.php" method="post">
-        <?php foreach ($panierItems as $itemId => $itemDetails) { ?>
-            
-                <div>
-                    <p>Titre de l'événement :<?= $itemDetails['eventDetails']['titre']; ?></p>
-                    
-                    
-                    <p>Quantité :<?= $itemDetails['quantity']; ?></p>
-                </div>
-                <input type="hidden" name="id_evenement" value="<?= $itemDetails['eventDetails']['id_evenement']; ?>">
-                <input type="hidden" name="quantity" value="<?= $itemDetails['quantity']; ?>">
-                <a href="./event.php?event=<?= $itemDetails['eventDetails']['id_evenement']; ?>">Voir détail</a>
-        <?php } 
-        
-
-        // Afficher le montant total en bas de la page
-        echo "Montant total : " . $totalMontant . "<br>";?>
-
-        <button type="submit" class="btn btn-outline-warning mt-3 mb-5" name="valider_panier" >Valider</button>
-    </form>
-<?php }
+    // Afficher le montant total en bas de la page
+    echo "Montant total : " . $totalMontant . "<br>";
+}
 
 // ... Le reste de votre code panier.php ...
 ?>

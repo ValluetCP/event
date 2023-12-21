@@ -59,6 +59,7 @@ foreach ($listEvent as $event) {
                 <th>Identifiant</th>
                 <th>Titre de l'évènement</th>
                 <th>Catégorie</th>
+                <th>Date</th>
                 <th>Action</th> 
             </tr>
         </thead>
@@ -78,21 +79,14 @@ foreach ($listEvent as $event) {
                             <td><?= $event['id_evenement']; ?></td>
                             <td><?= $event['titre']; ?></td>
                             <td><?= isset($event['categorie_name']) ? $event['categorie_name'] : 'N/A'; ?></td>
-                            <td><a class="lien" href="./book.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
+                            <td><?= $event['date_event']; ?></td>
+                            <td>
+                                <a class="lien" href="./book.php?event=<?= $event['id_evenement']; ?>">Consulter</a>
+                                <a class="lien" href="./billet.php?event=<?= $event['id_evenement']; ?>">Billet</a>
+                            </td>
                         <?php } ?>
 
                     <?php } ?>
-
-                    <a href=""></a>
-
-                    <!-- Afficher le nombre total de places réservées -->
-                    <!-- <td><?= $totalPlacesReservees; ?></td> -->
-                    <!-- <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
-                        <td><a href="./add_event.php?id_event_update=<?= $event['id_evenement']; ?>">Modifier</a></td>
-                        <td><a href="traitement/action.php?id_event_delete=<?= $event['id_evenement']; ?>">Supprimer</a></td>
-                    <?php } ?>  -->
-
-                    <!-- Ajouter le nombre de particpant par évènement -->
                     
                 </tr>
             <?php }
@@ -107,11 +101,8 @@ foreach ($listEvent as $event) {
                 <!-- Table Event -->
                 <th>Identifiant</th>
                 <th>Titre de l'évènement</th>
-                <!-- <th>Durée</th> -->
-                <!-- <th>Tarif</th> -->
-                <!-- <th>Résumé</th> -->
-                <!-- <th>Nombre de place</th> -->
                 <th>Catégorie</th>
+                <th>Date</th>
                 <th>Action</th>  
             </tr>
         </thead>
@@ -131,21 +122,14 @@ foreach ($listEvent as $event) {
                             <td><?= $event['id_evenement']; ?></td>
                             <td><?= $event['titre']; ?></td>
                             <td><?= isset($event['categorie_name']) ? $event['categorie_name'] : 'N/A'; ?></td>
-                            <td><a class="lien" href="./book.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
+                            <td><?= $event['date_event']; ?></td>
+                            <td>
+                                <a class="lien" href="./book.php?event=<?= $event['id_evenement']; ?>">Consulter</a>
+                                <a class="lien" href="./billet.php?event=<?= $event['id_evenement']; ?>">Billet</a>
+                            </td>
                         <?php } ?>
 
                     <?php } ?>
-
-                    <a href=""></a>
-
-                    <!-- Afficher le nombre total de places réservées -->
-                    <!-- <td><?= $totalPlacesReservees; ?></td> -->
-                    <!-- <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
-                        <td><a href="./add_event.php?id_event_update=<?= $event['id_evenement']; ?>">Modifier</a></td>
-                        <td><a href="traitement/action.php?id_event_delete=<?= $event['id_evenement']; ?>">Supprimer</a></td>
-                    <?php } ?>  -->
-
-                    <!-- Ajouter le nombre de particpant par évènement --> 
                 </tr>
             <?php }
             } ?>
