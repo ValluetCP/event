@@ -89,9 +89,9 @@ class Event{
         $request = $db->prepare("SELECT * FROM events e LEFT JOIN categorie c ON e.categorie_id = c.id_categorie WHERE id_evenement=?");
         //executer la requete
         try {
-            $request->execute(array($id));;
+            $request->execute(array($id));
             // recuperer le resultat dans un tableau
-            $event = $request->fetch();
+            $event = $request->fetch(PDO::FETCH_ASSOC);
             return $event;
 
         } catch (PDOException $e) {

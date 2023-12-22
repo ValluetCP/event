@@ -460,13 +460,45 @@ if (isset($_GET['id_book_active'])) {
 // }
 
 
-if (isset($_POST['add_panier'])) {
-
+if (isset($_POST['add_panier2'])) {
+    
     extract($_POST);
+    $quantite = $place_reserve ?: 1;
+    debug('id_event : '. $id_event);
+    $evenement = Event::findEventById($id_event);
+    debug('events : '. $evenement );die;
+	if( !array_key_exists('reservation', $_SESSION) ){
+            $_SESSION['reservation'] = [];
+        }
+        debug('sess_reservation : '. $_SESSION['reservation']);
+       	$panier = $_SESSION['reservation'];        
+           debug($panier);
+        $eventsDejaDansPanier = false;
+        foreach ($panier as $indice => $value) {
+            debug('panier de foreach : '. $panier);
+            if ($events['id_evenement'] == $value["events"]['id_evenement']) {
+                
+            debug('id_evenement de la bdd : '. $events['id_evenement']);
+            debug('id_evenement du panier : '. $value["events"]['id_evenement']);
+                $panier[$indice]["quantite"] += $quantite;
+                $eventsDejaDansPanier = true;
+                break;  // pour sortir de la boucle foreach
+            }
+        }
 
-    $tab = [$idUser,$eventId,$placeReserve];
-        $_SESSION['panier'][]= $tab;
+        if (!$eventsDejaDansPanier) {
+            $panier[] = ["quantite" => $quantite, "events" => $events];  // on ajoute une value au panier => $panier est un array d'array
+        }
 
+		$_SESSION['reservation'] = array_merge($_SESSION['reservation'] , $panier); // je remets $panier dans la session, à l'indice 'panier'
+        $nb = 0;
+
+        foreach ($panier as $value) {
+            $nb += $value["quantite"];
+        }
+
+        debug('nb : ' . $nb);
+        debug('panier_final :' . $panier);die;
         // création du panier dans la session
         header("Location: http://localhost/event/views/panier_2.php");
 }
