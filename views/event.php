@@ -157,7 +157,7 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
                                             <p>Vous n'avez pas encore effectué de réservation pour cet événement.</p>
                                         <?php } ?>
                                         <!-- Contenu de la modale, par exemple, un message d'avertissement -->
-                                        <p><button class="btn btn-light " data-bs-toggle="popover" title="Popover title" data-bs-content="Popover body content is set in this attribute.">Annulation</button></p>
+                                        <a class="lien" href="./book.php?event=<?= $event['id_evenement']; ?>">Annuler la réservation</a>
                                         
                                     </div>
                                     <div class="modal-footer">
