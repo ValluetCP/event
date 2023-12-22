@@ -9,10 +9,8 @@ require_once "../models/categorieModel.php";
 
 $listEvent = Event::findAllEvent();
 $userReservation = User::userReservation($_SESSION['id_user']);
-
 // $userReservationIds = array_column($reservations, 'event_id');
 $userReservationIds = Book::userReservationIds($_SESSION['id_user']); // Utilisez la nouvelle méthode
-
 $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD HH:MM:SS)
 
 foreach ($listEvent as $event) {
@@ -21,7 +19,7 @@ foreach ($listEvent as $event) {
 } ?>
 
 <div class="container">
-<h1 class="m-5">Liste des évènements</h1>
+<h1 class="m-5">Mes réservations</h1>
     <!-- Ajoutez le formulaire de filtre ici -->
     <form method="get" action="">
         <label for="categorie">Filtrer par catégorie :</label>
@@ -55,8 +53,8 @@ foreach ($listEvent as $event) {
                 <tr>
                     <th>Identifiant</th>
                     <th>Titre de l\'évènement</th>
-                    <th>Tarif</th>
                     <th>Catégorie</th>
+                    <th>Date</th>
                     <th>Action</th>';
                     
         if (!empty($_SESSION['id_user'])) {
