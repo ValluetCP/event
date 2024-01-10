@@ -8,7 +8,7 @@
     $tab['contenu'] .= '<table style="width: 100%; border-collapse: collapse; margin-top: 35px; border: 1px solid black;" border="1">';
     foreach ($listEvent as $event) {
         // Correction ici : comparer avec $nom au lieu de $tabs
-        if ($event['date_event'] >= $currentDate) {
+        if ($event['date_event'] <= $currentDate) {
            
             $tab['contenu'] .= '<tr>';
             $tab['contenu'] .= '<td style="padding: 10px; border: 1px solid black;">' . $event['id_evenement'] . '</td>';

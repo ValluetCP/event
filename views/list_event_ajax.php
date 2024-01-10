@@ -20,8 +20,9 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL
 <body>
     <div>
        <div class="menu_event">
+           <a href="" id="reinitialiser_resultat">Prochainement</a>
+           <a href="" id="prochain_event">Historique</a>
             <div class="prochain">
-                <a href="" id="prochain_event">Prochainement</a>
                 <!-- Div vide pour afficher le contenu -->
                 <div id="resultat">
                     <table style="width: 100%; border-collapse: collapse; margin-top: 35px; border: 1px solid black;">
@@ -46,6 +47,9 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL
 
     
     <script>
+
+        // Stocker le contenu initial de la div resultat
+        var contenuInitial = $('#resultat').html();
 
         // Dès que la page sera complètement chargée, que le DOM (Document Objet Modèle) sera entièrement généré
         $(document).ready(function() {
@@ -75,22 +79,11 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL
                 });
             });
 
-            $('#historique_event').on('click', function(event) {
-                event.preventDefault()
-                $.ajax({
-                    url: "traitement/traitement_ajax.php", 
-                    type: "GET",  
-                    dataType: 'json', 
-                    success: function(response) {
-                        console.log(response);
-                        $('#resultat').html(response.contenu);
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        alert(xhr.status);
-                        alert(thrownError);
-                    }
-                });
-            });
+            // Réinitialiser la div resultat à son contenu initial
+    $('#reinitialiser_resultat').on('click', function(event) {
+        event.preventDefault();
+        $('#resultat').html(contenuInitial);
+    });
 
 
         });
