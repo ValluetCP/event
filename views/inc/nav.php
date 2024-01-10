@@ -60,8 +60,10 @@
 
             <!-- La liste des évènements auxquels il participe (consulter, modifier et annuler) -->
             <a href="http://localhost/event/views/list_book.php">Mes réservations</a>
-            <a href="http://localhost/event/views/panier.php">Panier</a>
+            <!-- <a href="http://localhost/event/views/panier.php">Panier</a> -->
+            <!-- <a href="http://localhost/event/views/panier_0.php">-P-</a> -->
             <a href="http://localhost/event/views/panier_2.php">Panier(0)</a>
+            <a href="http://localhost/event/views/list_event_ajax.php">Test AJAX</a>
             
             <!-- Les favoris  -->
             <!-- <a href="http://localhost/event/views/list_favoris">Liste des favoris</a> -->

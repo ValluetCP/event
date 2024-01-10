@@ -66,8 +66,6 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
 
     <!-- Ajouter cette partie pour afficher l'état de l'événement -->
     
-
-
     <!-- <p>Identifiant : <?= $ficheEvent['id_evenement']; ?></p> -->
 
     <div><img src="./asset/img_event/<?= $ficheEvent['image']; ?>" alt=""></div>
@@ -102,7 +100,7 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
             <!-- S'il reste des places de disponible, c'est que $placesDisponibles n'est pas égale à 0 -->
             <!-- if($placesDisponibles !== 0  $totalPlacesReservees == null) { -->
                 <?php if ($placesDisponibles !== 0) { ?>
-                    <form action="./traitement/action.php" method="POST">
+                    <form action="./traitement/action.php" method="POST" id="add_reservation">
                         <input type="hidden" name="id_event" value="<?= $ficheEvent['id_evenement']; ?>">
 
                         <?php if ($ficheEvent['date_event'] >= $currentDate) { ?>
@@ -158,7 +156,6 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
                                         <?php } ?>
                                         <!-- Contenu de la modale, par exemple, un message d'avertissement -->
                                         <a class="lien" href="./book.php?event=<?= $event['id_evenement']; ?>">Annuler la réservation</a>
-                                        
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -204,16 +201,32 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
     </ul>
 </div>
 
+
 <script>
-    
+$(document).ready(function() {
+  
+  
+  $("#add_reservation").on("click", (evtSubmit) => {
+    evtSubmit.preventDefault();
 
-     function addAnotherBook() {
-        // Ajoutez ici tout code JavaScript supplémentaire si nécessaire
+    var url_cart = "cart/addToCart/" + productId;
+    $.ajax({
+      url: url_cart,
+      data: "qte=" + $("#field" + productId).val(),
+      dataType: "json",
+      success: (data) => {
+        $("#nombre").html(data);
+        console.log("nb produits dans mon deuxième cart = " + data);
+      },
+      error: (jqXHR, status, error) => {
+        console.log("ERREUR AJAX", status, error);
+      },
+    });
+  });
 
-        // Redirige vers le fichier de traitement du formulaire
-        window.location.href = "./traitement/action.php";
-    }
+});
 </script>
+
 
 <?php
 include_once "./inc/footer.php";
