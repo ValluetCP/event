@@ -5,6 +5,9 @@ include_once "./inc/functions.php";
 require_once "../models/eventModel.php";
 $listEvent = Event::findAllEvent();
 $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL 
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +22,9 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL
 
 <body>
     <div>
+        
+
+        </div>
        <div class="menu_event">
            <a href="" id="reinitialiser_resultat">Prochainement</a>
            <a href="" id="prochain_event">Historique</a>
@@ -26,9 +32,12 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL
                 <!-- Div vide pour afficher le contenu -->
                 <div id="resultat">
                     <table style="width: 100%; border-collapse: collapse; margin-top: 35px; border: 1px solid black;">
-                    <?php foreach ($listEvent as $event) { 
+                        <?php foreach ($listEvent as $event) { 
+
                             if ($event['date_event'] >= $currentDate) { ?>
                                 <tr>
+                                    <td style="padding: 10px; border: 1px solid black;"><div class="bgimg" style="background-image: url('./asset/img_event/<?= $event['image']; ?>'); background-size: cover; background-position: center; width: 200px; height: 300px;"></td>
+                                    <!-- <td style="padding: 10px; border: 1px solid black;"><img src="./asset/img_event/<?= $event['image']; ?>" alt=""></td> -->
                                     <td style="padding: 10px; border: 1px solid black;"><?= $event['id_evenement']; ?></td>
                                     <td style="padding: 10px; border: 1px solid black;"><?= $event['titre']; ?></td>
                                     <td style="padding: 10px; border: 1px solid black;"><?= $event['prix']; ?></td>
