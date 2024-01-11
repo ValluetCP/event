@@ -21,6 +21,7 @@
         </div>
         <div class="listeProfil hidden">
             <a href="">Informations personnelles</a>
+            <a href="">Factures</a>
         </div>
         <div class="listeAdmin hidden">
             <a href="">Accueil</a>
@@ -29,6 +30,7 @@
             <a href="">liste des utilisateurs</a>
         </div>
         <div class="listeClient hidden">
+            <a href="">Accueil</a>
             <a href="">Retrouvez nos événements</a>
             <a href="">Vos réservations</a>
         </div>

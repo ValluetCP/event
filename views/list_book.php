@@ -71,9 +71,7 @@ foreach ($listEvent as $event) {
                     // Obtenir le nombre total de places réservées pour cet évènement
                     $totalPlacesReservees = Book::calculReservation($event['id_evenement']);   
             ?>
-            
                 <tr>
-                    
                     <?php if(!empty($_SESSION['id_user'])){ 
                         if(in_array($event['id_evenement'], $userReservationIds) && $event['events_actif'] == 1){ ?>
                             <td><?= $event['id_evenement']; ?></td>
@@ -85,9 +83,7 @@ foreach ($listEvent as $event) {
                                 <a class="lien" href="./billet.php?event=<?= $event['id_evenement']; ?>">Billet</a>
                             </td>
                         <?php } ?>
-
                     <?php } ?>
-                    
                 </tr>
             <?php }
             } ?>
