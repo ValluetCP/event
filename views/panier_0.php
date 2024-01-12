@@ -57,3 +57,10 @@ if (isset($_SESSION['reservation']) && !empty($_SESSION['reservation'])) {
     // unset($_SESSION["reservation"]);
     // unset($_SESSION["nombre"]);
 ?>
+
+
+
+
+<?php
+    include_once "./inc/footer.php";
+?>

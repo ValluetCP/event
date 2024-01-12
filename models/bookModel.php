@@ -26,25 +26,58 @@ class Book{
 
 
     // methode pour inscrire une réservation
-    public static function addBook($idUser,$eventId,$placeReserve){
+    public static function addBook(){
 
+        debug($_SESSION);
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
-
-        // preparation de la requête
-        $request =$db->prepare("INSERT INTO `reservation`(`user_id`, `event_id`, `place_reserve`) VALUES (?,?,?)");
+        foreach($_SESSION['reservation'] as $item) {
+            // preparation de la requête
+                $request =$db->prepare("INSERT INTO `reservation`(`user_id`, `event_id`, `place_reserve`) VALUES (:user_id, :event_id, :place_reserve)");
+                $request->bindValue(":user_id", $_SESSION['id_user']);
+                $request->bindValue(":event_id", $item["events"]["id_evenement"]);
+                $request->bindValue(":place_reserve", $item["quantite"]);
+        }
 
         // exécuter la requête
         try {
-            $request->execute(array($idUser,$eventId,$placeReserve));
+            $request->execute();
+            
+            // Vider le contenu du panier ()
+            unset($_SESSION["reservation"]);
+
+            // Supprime l'affichage de la quantité (sur la nav)
+            unset($_SESSION["nombre"]);
 
             // rediriger vers la page list_user.php
-            header("Location: http://localhost/event/views/list_book.php");
+            // header("Location: http://localhost/event/views/list_book.php");
             
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
+
+
+//    // methode pour inscrire une réservation
+//    public static function addBook($idUser,$eventId,$placeReserve){
+
+//     // on appel la fonction dbConnect qui est dans la class Database
+//     $db = Database::dbConnect();
+
+//     // preparation de la requête
+//     $request =$db->prepare("INSERT INTO `reservation`(`user_id`, `event_id`, `place_reserve`) VALUES (?,?,?)");
+
+//     // exécuter la requête
+//     try {
+//         $request->execute(array($idUser,$eventId,$placeReserve));
+
+//         // rediriger vers la page list_user.php
+//         header("Location: http://localhost/event/views/list_book.php");
+        
+//     } catch (PDOException $e) {
+//         echo $e->getMessage();
+//     }
+// }
 
 
     // methode pour inscrire une réservation
@@ -90,7 +123,7 @@ class Book{
     //     }
     // }
 
-    
+
 
     // public static function addPanier($idUser,$eventId,$placeReserve){
 
