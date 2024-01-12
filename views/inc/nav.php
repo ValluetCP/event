@@ -116,7 +116,7 @@
 </div>
 <ul>
   <li class="nav-item active">
-      <a class="nav-link" href="">
+      <a class="nav-link" href="http://localhost/event/views/panier_0.php">
           <i class="fa fa-shopping-cart"></i>
           <div id="nombre"><?= $_SESSION["nombre"] ?? ''; ?></div>
       </a>

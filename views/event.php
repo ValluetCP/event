@@ -123,7 +123,7 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
                                         </button>
                                     
                                     <?php } else { ?>
-                                        <button type="submit" class="btn btn-outline-warning mt-3 mb-5" name="add_panier2"  id="add_reservation" value="reserver" >Réserver</button>
+                                        <button type="submit" class="btn btn-outline-warning mt-3 mb-5" name="add_panier"  id="add_reservation" value="reserver" >Réserver</button>
                                     <?php } ?>
                                 <?php } ?> 
                             <?php } ?>
@@ -209,7 +209,7 @@ $(document).ready(function() {
     evtSubmit.preventDefault();
     var submitVal = $(this).attr("");
     var url_action = "./traitement/action.php";
-    var event_fields = $("#form_event").serialize()+ "&add_panier2=reserver";
+    var event_fields = $("#form_event").serialize()+ "&add_panier=reserver";
     
     $.ajax({
       url: url_action,

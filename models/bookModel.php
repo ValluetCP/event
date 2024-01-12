@@ -90,15 +90,17 @@ class Book{
     //     }
     // }
 
-    public static function addPanier($idUser,$eventId,$placeReserve){
+    
 
-        $tab = [$idUser,$eventId,$placeReserve];
-        $_SESSION['panier'][]= $tab;
+    // public static function addPanier($idUser,$eventId,$placeReserve){
 
-        // rediriger vers la page list_user.php
-        header("Location: http://localhost/event/views/panier_2.php");
+    //     $tab = [$idUser,$eventId,$placeReserve];
+    //     $_SESSION['panier'][]= $tab;
+
+    //     // rediriger vers la page list_user.php
+    //     header("Location: http://localhost/event/views/panier_0.php");
         
-    }
+    // }
 
 
 

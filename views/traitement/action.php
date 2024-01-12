@@ -289,13 +289,13 @@ if (isset($_POST['add_book'])) {
 }
 
 // event.php
-if (isset($_POST['add_panier'])) {
-    $idUser = $_SESSION['id_user'];
-    $idEvent = htmlspecialchars($_POST['id_event']);
-    $placeReserve = htmlspecialchars($_POST['place_reserve']);
+// if (isset($_POST['add_panier'])) {
+//     $idUser = $_SESSION['id_user'];
+//     $idEvent = htmlspecialchars($_POST['id_event']);
+//     $placeReserve = htmlspecialchars($_POST['place_reserve']);
 
-    Book::addPanier($idUser, $idEvent, $placeReserve);
-}
+//     Book::addPanier($idUser, $idEvent, $placeReserve);
+// }
 
 // event.php
 // var_dump($_POST);
@@ -460,9 +460,8 @@ if (isset($_GET['id_book_active'])) {
 // }
 
 
-if (isset($_POST['add_panier2'])) {
+if (isset($_POST['add_panier'])) {
     extract($_POST);
-
 
         $quantite = $place_reserve ?: 1;
         $events = Event::findEventById($id_event);
@@ -499,5 +498,14 @@ if (isset($_POST['add_panier2'])) {
 
 
         // création du panier dans la session
-        // header("Location: http://localhost/event/views/panier_2.php");
+        // header("Location: http://localhost/event/views/panier_0.php");
 }
+
+
+// if (isset($_POST['add_panier'])) {
+//     $idUser = $_SESSION['id_user'];
+//     $idEvent = htmlspecialchars($_POST['id_event']);
+//     $placeReserve = htmlspecialchars($_POST['place_reserve']);
+
+//     Book::addPanier($idUser, $idEvent, $placeReserve);
+// }
