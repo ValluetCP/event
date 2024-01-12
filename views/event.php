@@ -79,13 +79,14 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
 
     <p>Tarif : <?= $ficheEvent['prix']; ?></p>
 
-    <p>Nombre de places total: <?= $ficheEvent['nbr_place']; ?></p>
-    <p>Nombre de places réservées : <?= $totalPlacesReservees; ?></p>
     <p>Nombre de places disponible : <?= $placesDisponibles; ?></p>
  
 
         <!-- Si le rôle est ADMIN ... -->
         <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
+            
+            <p>Nombre de places total: <?= $ficheEvent['nbr_place']; ?></p>
+            <p>Nombre de places réservées : <?= $totalPlacesReservees; ?></p>
                         
             <!-- ...impossible de réserver, retourne à la liste des évènements -->
             <a class="btn btn-outline-warning" href="./list_event.php">Revenir à la liste des évènements</a>

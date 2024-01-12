@@ -104,7 +104,7 @@ if (isset($_GET['id_event_update'])) {
                         <option value="<?= $categorie['id_categorie']; ?>"><?= $categorie['categorie_name']; ?></option>
 
                     <?php } 
-                    }?>
+                }?>
             </select>
         </div>
         
