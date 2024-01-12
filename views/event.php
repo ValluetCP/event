@@ -8,7 +8,6 @@ require_once "../models/eventModel.php";
 require_once "../models/bookModel.php";
 require_once "../models/userModel.php";
 
-
 // $listEvent = Event::findAllEvent();
 $userReservation = User::userReservation($_GET['event']);
 $eventId = $_GET['event'];
@@ -100,7 +99,7 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
             <!-- S'il reste des places de disponible, c'est que $placesDisponibles n'est pas égale à 0 -->
             <!-- if($placesDisponibles !== 0  $totalPlacesReservees == null) { -->
                 <?php if ($placesDisponibles !== 0) { ?>
-                    <form action="./traitement/action.php" method="POST" id="add_reservation">
+                    <form id="form_event">
                         <input type="hidden" name="id_event" value="<?= $ficheEvent['id_evenement']; ?>">
 
                         <?php if ($ficheEvent['date_event'] >= $currentDate) { ?>
@@ -124,7 +123,7 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
                                         </button>
                                     
                                     <?php } else { ?>
-                                        <button type="submit" class="btn btn-outline-warning mt-3 mb-5" name="add_panier2" >Réserver</button>
+                                        <button type="submit" class="btn btn-outline-warning mt-3 mb-5" name="add_panier2"  id="add_reservation" value="reserver" >Réserver</button>
                                     <?php } ?>
                                 <?php } ?> 
                             <?php } ?>
@@ -208,11 +207,14 @@ $(document).ready(function() {
   
   $("#add_reservation").on("click", (evtSubmit) => {
     evtSubmit.preventDefault();
-
-    var url_cart = "cart/addToCart/" + productId;
+    var submitVal = $(this).attr("");
+    var url_action = "./traitement/action.php";
+    var event_fields = $("#form_event").serialize()+ "&add_panier2=reserver";
+    
     $.ajax({
-      url: url_cart,
-      data: "qte=" + $("#field" + productId).val(),
+      url: url_action,
+      data: event_fields,
+      type:'post',
       dataType: "json",
       success: (data) => {
         $("#nombre").html(data);
