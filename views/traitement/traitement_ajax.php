@@ -20,9 +20,4 @@
     }
     $tab['contenu'] .= '</table>';
     echo json_encode($tab);
-    
-    
-    
-    
-
 ?>
