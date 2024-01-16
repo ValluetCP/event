@@ -28,7 +28,7 @@ class Book{
     // methode pour inscrire une réservation
     public static function addBook(){
 
-        debug($_SESSION);
+        // debug($_SESSION);
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
         foreach($_SESSION['reservation'] as $item) {
@@ -388,7 +388,32 @@ class Book{
             }
         }
     }
-    
+
+    public static function insertReservation($userId, $eventId, $quantity)
+{
+    // Assurez-vous de traiter les données avant l'insertion dans la base de données
+    $userId = intval($userId);
+    $eventId = intval($eventId);
+    $quantity = intval($quantity);
+
+    // Utilisez une requête SQL pour insérer les données dans la table de réservation
+    $sql = "INSERT INTO reservation (user_id, event_id, place_reserve) VALUES (?, ?, ?)";
+    // Utilisez une requête préparée pour éviter les injections SQL
+    $db = Database::dbConnect();
+    $stmt = $db->prepare($sql);
+
+    // Exécutez la requête en passant les paramètres directement à execute
+    $result = $stmt->execute([$userId, $eventId, $quantity]);
+
+    // Vérifiez si l'insertion a réussi
+    if ($result) {
+        return true;
+    } else {
+        // En cas d'échec, vous pouvez gérer les erreurs ici
+        return false;
+    }
+}
+
     
 
 }
