@@ -42,13 +42,17 @@ if (isset($_SESSION['reservation']) && !empty($_SESSION['reservation'])) {
                     <p>Prix total :<?= $prixTotalEvent; ?></p><br><br>
                 </div>
             </a>
+    
             
-    <?php 
+            <?php 
     } 
-
+    
+    
     // Afficher le montant total en bas de la page
     echo "Montant total : " . $prixTotal. "<br>";
-?>
+    ?>
+
+    <a href="./commande.php" class="btn btn-outline-warning mt-3 mb-5">Valider la commande</a>
 
 <?php
     

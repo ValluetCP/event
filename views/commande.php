@@ -12,9 +12,6 @@ require_once "../models/bookModel.php";
 <?php
 // commande.php
 
-// Assurez-vous que la session est démarrée
-session_start();
-
 // Inclure les fichiers nécessaires
 require_once "../models/bookModel.php";
 
@@ -37,5 +34,8 @@ foreach ($_SESSION['reservation'] as $item) {
 
 // Effacez le panier après l'insertion dans la base de données (vous pouvez ajuster cette étape selon votre logique)
 unset($_SESSION['reservation']);
+unset($_SESSION["nombre"]);
 
 // ... Le reste de votre code pour la page de confirmation de commande ...
+?>
+<a href="./home.php" class="btn btn-outline-warning mt-3 mb-5">Retour à l'accueil</a>

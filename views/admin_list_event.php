@@ -20,7 +20,6 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                 <th >Catégorie</th>
                 <th colspan="4">Action</th>
                 <th>Etat</th>
-                
             </tr>
         </thead>
         <tbody>
@@ -51,6 +50,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
         </tbody>
     </table>
     <a href="./add_event.php" class="btn btn-outline-warning mt-2 mb-5">Ajouter un évènement</a>
+    <a href="./list_event.php" class="btn btn-outline-warning mt-2 mb-5">Visualiser la liste des évènements</a>
     <h2>Historique</h2>
     <table class="table">
         <thead>
@@ -71,7 +71,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD H
                         <td><?= $event['titre']; ?></td>
                         <td><?= $event['categorie_name']; ?></td>
                         <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
-                        <td><a href="./add_event.php?id_event_update=<?= $event['id_evenement']; ?>">Modifier</a></td>
+                        <td><a href="./add_event.php?id_event_update=<?= $event['id_evenement']; ?>">Planifier / Modifier</a></td>
                         <td><a href="traitement/action.php?id_event_desactive=<?= $event['id_evenement']; ?>">Supprimer</a></td>
                     </tr>
                 <?php }
