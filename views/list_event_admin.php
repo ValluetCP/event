@@ -130,7 +130,7 @@ foreach ($listEvent as $event) {
                         <td><?= isset($event['categorie_name']) ? $event['categorie_name'] : 'N/A'; ?></td>
                         
                         <!-- Ajouter le nombre de particpant par évènement -->
-                        <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
+                        <td><a class="lien" href="./event_admin.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
 
                         <?php if(!empty($_SESSION['id_user'])){ ?>
                         <?php if($totalPlacesReservees >= $event['nbr_place']) { ?>

@@ -70,29 +70,14 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
     <div><img src="./asset/img_event/<?= $ficheEvent['image']; ?>" alt=""></div>
 
     <p>Catégorie : <?= $ficheEvent['categorie_name']; ?></p>
-    
     <p>Titre : <?= $ficheEvent['titre']; ?></p>
-
     <p>Date : <?= date('d-m-Y', strtotime($ficheEvent['date_event'])); ?></p>
-
     <p>Résumé : <?= $ficheEvent['resume']; ?></p>
-
     <p>Tarif : <?= $ficheEvent['prix']; ?></p>
-
     <p>Nombre de places disponible : <?= $placesDisponibles; ?></p>
  
 
-        <!-- Si le rôle est ADMIN ... -->
-        <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
-            
-            <p>Nombre de places total: <?= $ficheEvent['nbr_place']; ?></p>
-            <p>Nombre de places réservées : <?= $totalPlacesReservees; ?></p>
-                        
-            <!-- ...impossible de réserver, retourne à la liste des évènements -->
-            <a class="btn btn-outline-warning" href="./list_event.php">Revenir à la liste des évènements</a>
-
-        <!-- Si le rôle est CLIENT ... -->
-        <?php } elseif(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "client"){
+        <?php if(isset($_SESSION['user_role'])){
             
             // var_dump ($totalPlacesReservees);?>
             <!-- Si cette event n'est pas déjà réservé et si l'utilisateur n'a pas encore réservé cet évènement... && empty($userReservation['user_id'])-->
@@ -129,48 +114,6 @@ $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilis
                                 <?php } ?> 
                             <?php } ?>
                         <?php } ?>
-                        <!-- MODAL -->
-                        <div class="modal fade" id="exampleModalAddReservation" tabindex="-1" aria-labelledby="exampleModalLabelAddReservation" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabelAddReservation">Pour cette évènement</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Une réservation a déjà été faite.</p>
-                                        <?php
-                                        // Ajoutez une requête pour récupérer l'historique des réservations de l'utilisateur pour cet événement
-                                        $userPreviousReservations = Book::getUserPreviousReservations($_SESSION['id_user'], $ficheEvent['id_evenement']);
-                    
-                                        if ($userPreviousReservations){
-                                            ?>
-                                            <p>Historique :</p>
-                                            <ul>
-                                                <?php foreach ($userPreviousReservations as $reservation) { ?>
-                                                    <li>Date de réservation : <?= date('d-m-Y H:i:s', strtotime($reservation['date_reservation'])); ?>, Quantité : <?= $reservation['place_reserve']; ?></li>
-                                                <?php } ?>
-                                            </ul>
-                                        <?php } else { ?>
-                                            <p>Vous n'avez pas encore effectué de réservation pour cet événement.</p>
-                                        <?php } ?>
-                                        <!-- Contenu de la modale, par exemple, un message d'avertissement -->
-                                        <a class="lien" href="./book.php?event=<?= $event['id_evenement']; ?>">Annuler la réservation</a>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    
-                                        <button type="submit" class="btn btn-primary" name="add_book">Ajouter une autre réservation</button>
-                                        
-                                    <!--                                         
-                                        <button type="submit" class="btn btn-primary" name="add_another_book">Ajouter une autre réservation</button>
-                                    -->
-                                        
-                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>   
                     </form>
                 
                <!-- }elseif($totalPlacesReservees == null){ -->

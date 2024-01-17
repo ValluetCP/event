@@ -86,7 +86,7 @@ foreach ($listEvent as $event) {
                     <!-- <td><?= $event['resume']; ?></td> -->
                     <!-- <td><?= $event['nbr_place']; ?></td> -->
                     <td><?= isset($event['categorie_name']) ? $event['categorie_name'] : 'N/A'; ?></td>
-                    <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
+                    <td><a class="lien" href="./event_client.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
 
 
                     <?php if(!empty($_SESSION['id_user'])){ ?>
@@ -141,7 +141,7 @@ foreach ($listEvent as $event) {
                         <td><?= isset($event['categorie_name']) ? $event['categorie_name'] : 'N/A'; ?></td>
                         <!-- <td><?= $event['categorie_name']; ?></td> -->
                         <!-- Ajouter le nombre de particpant par évènement -->
-                        <td><a class="lien" href="./event.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
+                        <td><a class="lien" href="./event_client.php?event=<?= $event['id_evenement']; ?>">Consulter</a></td>
 
                         <?php if(!empty($_SESSION['id_user'])){ ?>
                         <?php if(in_array($event['id_evenement'], $userReservationIds) && $event['events_actif'] == 1 && ($totalPlacesReservees >= $event['nbr_place'])){ ?>

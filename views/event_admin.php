@@ -21,6 +21,10 @@ $userPreviousReservations = Book::getUserReservationsForEvent($_SESSION['id_user
 $userReservationIds = Book::userReservationIds($_SESSION['id_user']);  // Utilisez la nouvelle méthode
 ?>
 
+
+
+<!-- PAGE "EVENT" - côté ADMIN -->
+
 <div class="container">
 
     <h2><?= ucfirst($ficheEvent['titre']); ?></h2>
