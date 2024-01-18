@@ -10,17 +10,17 @@ class User
     // pour la méthode static, pas besoin de déclarer une variable à l'inverse des contructeurs
 
     // methode pour s'inscrire
-    public static function addUser($nom,$prenom,$pseudo,$email,$password)
+    public static function addUser($imgProfil,$imgDescription,$nom,$prenom,$pseudo,$email,$password)
     {
 
         // on appel la fonction dbConnect qui est dans la class Database
         $db = Database::dbConnect();
         // preparation de la requête
-        $request = $db->prepare("INSERT INTO `users`(`nom`, `prenom`, `pseudo`, `email`, `mdp`) VALUES (?,?,?,?,?)");
+        $request = $db->prepare("INSERT INTO `users`(`img_profil`, `img_description`, `nom`, `prenom`, `pseudo`, `email`, `mdp`) VALUES (?,?,?,?,?,?,?)");
 
         // exécuter la requête
         try {
-            $request->execute(array($nom, $prenom, $pseudo, $email, $password));
+            $request->execute(array($imgProfil,$imgDescription,$nom,$prenom,$pseudo,$email, $password));
 
             // rediriger vers la page list_user.php
             header("Location: http://localhost/event/views/connexion.php");

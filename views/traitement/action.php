@@ -25,6 +25,8 @@ require_once "../inc/functions.php";
 // inscription.php
 if(isset($_POST['register'])){
     // $statut = htmlspecialchars($_POST['statut']);
+    $imgProfil = htmlspecialchars($_POST['img_profil']);
+    $imgDescription = htmlspecialchars($_POST['img_description']);
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $pseudo = htmlspecialchars($_POST['pseudo']);
@@ -36,7 +38,7 @@ if(isset($_POST['register'])){
     
     // apeler la methode inscription de la classe User
     // User::addUser($statut,$nom,$prenom,$pseudo,$email,$password,$role);
-    User::addUser($nom,$prenom,$pseudo,$email,$password);
+    User::addUser($imgProfil,$imgDescription,$nom,$prenom,$pseudo,$email,$password);
     
 }
 
