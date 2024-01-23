@@ -24,21 +24,47 @@ require_once "../inc/functions.php";
 // Ajouter un utilisateur  - INSERT INTO
 // inscription.php
 if(isset($_POST['register'])){
-    // $statut = htmlspecialchars($_POST['statut']);
-    $imgProfil = htmlspecialchars($_POST['img_profil']);
-    $imgDescription = htmlspecialchars($_POST['img_description']);
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $pseudo = htmlspecialchars($_POST['pseudo']);
     $email = htmlspecialchars($_POST['email']);
     $mdp = htmlspecialchars($_POST['mdp']);
-    // $2y$10$g4tOfTKgXZ4fKgKDC5QQROV0Qg5.VgJo8Qy2fjxCFdIL9JG3DWBSq
-    // $2y$10$8RvIgBpQrf8H8rTk94Cp3eaaubQZiwDC76/BC4rcbkC
     $password = password_hash($mdp, PASSWORD_DEFAULT);
+
+     // ----------  RECUPERER L'IMAGE ---------- //
+
+    /*objectif : 
+        - récupérer tous les fichiers (images) qui sont dans le formulaire.
+        - copie l'image et la stock dans un endroit temporaire sur le serveur
+        - on lui donnera par la suite le chemin d'accès à notre dossier
+    */
+
+    $imgName = $_FILES ['img_profil']['name']; // nom de l'image
+    // la 1ère valeur 'image' (récupéré dans le formulaire)
+    // la 2ème valeur 'name' (toujours la même, ne change pas)
+
+    $tmpName = $_FILES ['image']['tmp_name']; // localisation temporaire sur le server
+
+
+    // ----------  DESTINATION DE L'IMAGE ---------- //
+
+    //1
+    $destination = $_SERVER['DOCUMENT_ROOT'].'/event/views/asset/img_event/'.$imgName; // destination finale de mon image
+    // $_SERVER['DOCUMENT_ROOT'] + chemin du dossier image
+    //['DOCUMENT_ROOT'] : syntaxe qui veut dire pointe à la racine du serveur, si on n'indique pas le chemin, il s'arrêra au dossier 'htdocs'
+
+    // $_SERVER['DOCUMENT_ROOT'] pointe à la racine du server c'est à dire le dossier principal (dossier racine)
+    
+    //2
+    //echo $destination;
+    move_uploaded_file($tmpName,$destination);
+    // permet de prendre l'image et de la mettre dans le dossier que l'on a pointé au dessus.
+    // 1er paramètre, la destination temporaire où a été stocker le fichier temporairement
+    // 2ème paramètre, c'est la destination que l'on souhaite
     
     // apeler la methode inscription de la classe User
     // User::addUser($statut,$nom,$prenom,$pseudo,$email,$password,$role);
-    User::addUser($imgProfil,$imgDescription,$nom,$prenom,$pseudo,$email,$password);
+    User::addUser($imgName,$nom,$prenom,$pseudo,$email,$password);
     
 }
 

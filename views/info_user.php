@@ -11,6 +11,11 @@ $userList = User::findAllUser();
 <h1 class="m-5">Mes informations personnelles</h1>
     <form action="./traitement/action.php" method="post">
 
+        <!-- Voir avec Mitra - affichage image profil -->
+        <div>
+            <img src="./asset/img_event/<?= $_SESSION["user_img_profil"]; ?>" alt="">
+        </div>
+
         <div class="form-group  mb-3">
             <label class="m-2" id="nom">Nom</label>
             <input type="text" class="form-control text-uppercase"  name="nom" value="<?= $_SESSION["user_name"] ?>" disabled>

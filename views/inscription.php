@@ -5,7 +5,7 @@ include_once "./inc/nav.php";
 
 <div class="container">
     <h1 class="m-5">Inscription</h1>
-    <form action="./traitement/action.php" method="post">
+    <form action="./traitement/action.php" method="post" enctype="multipart/form-data">
 
         <!-- <div class="form-group mt-5 mb-5 d-flex justify-content-around">
             <label class="me-xl-5">Statut :</label>
@@ -18,6 +18,11 @@ include_once "./inc/nav.php";
                 <label class="form-check-label">entreprise</label>
             </div>
         </div> -->
+
+        <div class="form-group mb-3">
+            <label class="m-2" id="img_profil">Télécharger une photo de profil :</label>
+            <input type="file" class="form-control" name="img_profil" class="file">
+        </div>
         
         <div class="form-group  mb-3">
             <label class="m-2" id="nom">Nom</label>
