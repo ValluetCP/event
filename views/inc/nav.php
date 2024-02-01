@@ -3,7 +3,7 @@
         <!-- <a href="http://localhost/event/index.php">Page d'accueil</a> -->
 
         <!-- Home  -->
-        <a href="http://localhost/event/views/home.php">Accueil</a>
+        <a href="http://localhost/event/views/home">Accueil</a>
 
 
         <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == "admin"){ ?>
@@ -13,11 +13,11 @@
 
             
             <!-- Menu principale 'ADMIN' - profil (espace personnelle) -->
-            <a href="http://localhost/event/views/home_admin.php">Espace ADMIN</a>
+            <a href="http://localhost/event/views/home_admin">Espace ADMIN</a>
             <a href="http://localhost/event/views/info_user.php?id=<?= $_SESSION["id_user"]; ?>">Informations personnelles</a>
 
             <!-- La liste des évènements  -->
-            <a href="http://localhost/event/views/admin_list_event.php">Liste des évènements</a>
+            <a href="http://localhost/event/views/admin_list_event">Liste des évènements</a>
 
             <!-- USER : La liste des évènements (test) -->
             <a href="http://localhost/event/views/list_event">Test_évènements</a>
@@ -29,19 +29,19 @@
             <!-- <a href="http://localhost/event/views/modif_event.php">Modifier un évènement</a> -->
             
            <!-- Liste des catégories -->
-           <a href="http://localhost/event/views/list_categorie.php">Liste de catégories</a>
+           <a href="http://localhost/event/views/list_categorie">Liste de catégories</a>
             
             <!-- Ajouter une catégorie -->
-            <a href="http://localhost/event/views/add_categorie.php">Ajouter une categorie</a>
+            <a href="http://localhost/event/views/add_categorie">Ajouter une categorie</a>
              
             <!-- Modifier une catégorie -->
             <!-- <a href="http://localhost/event/views/modif_categorie.php">Modifier une catégorie</a> -->
 
            <!-- Liste des utilisateurs -->
-           <a href="http://localhost/event/views/list_user.php">Liste des utilisateurs</a>
+           <a href="http://localhost/event/views/list_user">Liste des utilisateurs</a>
 
            <!-- Se déconnecter  -->
-           <a href="http://localhost/event/views/logout.php">Déconnexion</a>
+           <a href="http://localhost/event/views/logout">Déconnexion</a>
 
 
 
@@ -52,20 +52,20 @@
 
 
             <!-- Menu principale 'CLIENT' - profil (espace personnelle) -->
-            <a href="http://localhost/event/views/home_client.php">Espace CLIENT</a>
-            <a href="http://localhost/event/views/info_user.php">Informations personnelles</a>
+            <a href="http://localhost/event/views/home_client">Espace CLIENT</a>
+            <a href="http://localhost/event/views/info_user">Informations personnelles</a>
 
 
             <!-- Sous-Menu 'CLIENT'  -->
 
             <!-- La liste des évènements auxquels il participe (consulter, modifier et annuler) -->
-            <a href="http://localhost/event/views/list_book.php">Mes réservations</a>
+            <a href="http://localhost/event/views/list_book">Mes réservations</a>
             <!-- <a href="http://localhost/event/views/panier.php">Panier</a> -->
             <!-- <a href="http://localhost/event/views/panier_0.php">-P-</a> -->
             <a href="http://localhost/event/views/panier_2.php">Panier(0)</a>
-            <a href="http://localhost/event/views/ajax_list_event.php">Test AJAX</a>
+            <a href="http://localhost/event/views/ajax_list_event">Test AJAX</a>
 
-            <a href="http://localhost/event/views/facture.php">Facture</a>
+            <a href="http://localhost/event/views/facture">Facture</a>
             
             <!-- Les favoris  -->
             <!-- <a href="http://localhost/event/views/list_favoris">Liste des favoris</a> -->
@@ -80,19 +80,19 @@
             <a href="http://localhost/event/views/list_event">Liste des évènements</a>
 
             <!-- Se déconnecter  -->
-            <a href="http://localhost/event/views/logout.php">Déconnexion</a>
+            <a href="http://localhost/event/views/logout">Déconnexion</a>
 
             
             <?php } else { ?>
                 
                 <!-- S'incrire  -->
-                <a href="http://localhost/event/views/inscription.php">Inscription</a>
+                <a href="http://localhost/event/views/inscription">Inscription</a>
     
                 <!-- Se connecter  -->
-                <a href="http://localhost/event/views/connexion.php">Connexion</a>
+                <a href="http://localhost/event/views/connexion">Connexion</a>
     
                 <!-- Réservations  -->
-                <a href="http://localhost/event/views/connexion.php" data-bs-toggle="modal" data-bs-target="#exampleModal">Réservations</a>
+                <a href="http://localhost/event/views/connexion" data-bs-toggle="modal" data-bs-target="#exampleModal">Réservations</a>
         <?php } ?>
         <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -116,7 +116,7 @@
 </div>
 <ul>
   <li class="nav-item active">
-      <a class="nav-link" href="http://localhost/event/views/panier_0.php">
+      <a class="nav-link" href="http://localhost/event/views/panier_0">
           <i class="fa fa-shopping-cart"></i>
           <div id="nombre"><?= $_SESSION["nombre"] ?? ''; ?></div>
       </a>
