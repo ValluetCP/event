@@ -39,11 +39,11 @@ if(isset($_POST['register'])){
         - on lui donnera par la suite le chemin d'accès à notre dossier
     */
 
-    $imgName = $_FILES ['img_profil']['name']; // nom de l'image
+    $imgName = $_FILES['img_profil']['name'].uniqid(); // nom de l'image
     // la 1ère valeur 'image' (récupéré dans le formulaire)
     // la 2ème valeur 'name' (toujours la même, ne change pas)
 
-    $tmpName = $_FILES ['image']['tmp_name']; // localisation temporaire sur le server
+    $tmpName = $_FILES['img_profil']['tmp_name']; // localisation temporaire sur le server
 
 
     // ----------  DESTINATION DE L'IMAGE ---------- //
@@ -57,14 +57,21 @@ if(isset($_POST['register'])){
     
     //2
     //echo $destination;
-    move_uploaded_file($tmpName,$destination);
+    if(move_uploaded_file($tmpName, $destination)){
+
+        try{
+            User::addUser($imgName,$nom,$prenom,$pseudo,$email,$password);
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
     // permet de prendre l'image et de la mettre dans le dossier que l'on a pointé au dessus.
     // 1er paramètre, la destination temporaire où a été stocker le fichier temporairement
     // 2ème paramètre, c'est la destination que l'on souhaite
     
     // apeler la methode inscription de la classe User
     // User::addUser($statut,$nom,$prenom,$pseudo,$email,$password,$role);
-    User::addUser($imgName,$nom,$prenom,$pseudo,$email,$password);
+    
     
 }
 
@@ -246,7 +253,20 @@ if (isset($_GET['id_event_active'])) {
     $event = Event::activeEventById($id);
 }
 
+// supprimer un évènement du panier
 
+if (isset($_POST['supprimer'])) {
+    foreach ( $_SESSION['reservation'] as $k => $v ) {
+        foreach ( $v['events'] as $k2 => $v2 ) {
+            if (array_search($_POST['id_evenement'], $v['events'])) {
+                unset($_SESSION['reservation'][$k]);                
+            }
+            break;
+        }
+        break;
+    }
+    header("Location: ../panier_0.php");
+}
 
 
 // ------------------ CATEGORIE ------------------//

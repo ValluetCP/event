@@ -62,7 +62,7 @@
             <a href="http://localhost/event/views/list_book">Mes réservations</a>
             <!-- <a href="http://localhost/event/views/panier.php">Panier</a> -->
             <!-- <a href="http://localhost/event/views/panier_0.php">-P-</a> -->
-            <a href="http://localhost/event/views/panier_2.php">Panier(0)</a>
+            <a href="http://localhost/event/views/panier_0.php">Panier(<?= $_SESSION["nombre"] ?? ''; ?>)</a>
             <a href="http://localhost/event/views/ajax_list_event">Test AJAX</a>
 
             <a href="http://localhost/event/views/facture">Facture</a>
@@ -83,43 +83,45 @@
             <a href="http://localhost/event/views/logout">Déconnexion</a>
 
             
-            <?php } else { ?>
-                
-                <!-- S'incrire  -->
-                <a href="http://localhost/event/views/inscription">Inscription</a>
-    
-                <!-- Se connecter  -->
-                <a href="http://localhost/event/views/connexion">Connexion</a>
-    
-                <!-- Réservations  -->
-                <a href="http://localhost/event/views/connexion" data-bs-toggle="modal" data-bs-target="#exampleModal">Réservations</a>
+        <?php } else { ?>
+            
+            <!-- S'incrire  -->
+            <a href="http://localhost/event/views/inscription">Inscription</a>
+
+            <!-- Se connecter  -->
+            <a href="http://localhost/event/views/connexion">Connexion</a>
+
+            <!-- Réservations  -->
+            <a href="http://localhost/event/views/connexion" data-bs-toggle="modal" data-bs-target="#exampleModal">Réservations</a>
         <?php } ?>
         <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Une inscription?</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>
-        Pour participer à nos événements , vous devez être détenteur d’un compte. Veuillez vous connecter ou bien vous inscrire.
-        </p>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-primary" href="../inscription.php" role="button">Je m'inscris</a>
-        <a class="btn btn-primary" href="../connexion.php" role="button">Je me connecte</a>
-      </div>
-    </div>
-  </div>
-</div>
-<ul>
-  <li class="nav-item active">
-      <a class="nav-link" href="http://localhost/event/views/panier_0">
-          <i class="fa fa-shopping-cart"></i>
-          <div id="nombre"><?= $_SESSION["nombre"] ?? ''; ?></div>
-      </a>
-  </li>
-</ul>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Une inscription?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>
+                Pour participer à nos événements , vous devez être détenteur d’un compte. Veuillez vous connecter ou bien vous inscrire.
+                </p>
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-primary" href="../inscription.php" role="button">Je m'inscris</a>
+                <a class="btn btn-primary" href="../connexion.php" role="button">Je me connecte</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANIER ICONE -->
+        <ul>
+          <li class="nav-item active">
+              <a class="nav-link" href="http://localhost/event/views/panier_0">
+                  <i class="fa fa-shopping-cart"></i>
+                  <div id="nombre"><?= $_SESSION["nombre"] ?? ''; ?></div>
+              </a>
+          </li>
+        </ul>
 </nav>

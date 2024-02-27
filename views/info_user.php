@@ -12,7 +12,7 @@ $userList = User::findAllUser();
     <form action="./traitement/action.php" method="post">
 
         <!-- Voir avec Mitra - affichage image profil -->
-        <div>
+        <div class="form-group  mb-3">
             <img src="./asset/img_event/<?= $_SESSION["user_img_profil"]; ?>" alt="">
         </div>
 

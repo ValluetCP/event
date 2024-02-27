@@ -39,11 +39,16 @@ if (isset($_SESSION['reservation']) && !empty($_SESSION['reservation'])) {
                     <p>Catégorie :<?= $eventDetails['categorie_name']; ?></p>
                     <p>Prix unitaire :<?= $eventDetails['prix']; ?></p>
                     <p>Quantité :<?= $item["quantite"]; ?></p>
+                    <!-- Ajoutez un lien "supprimer" avec l'identifiant de l'article dans l'URL -->
                     <p>Prix total :<?= $prixTotalEvent; ?></p><br><br>
                 </div>
             </a>
+
+            <form action="./traitement/action.php" method="post">
     
-            
+                    <input type="hidden" name="id_evenement" value="<?= $eventDetails['id_evenement'];?>">
+                    <input type="submit" name="supprimer">
+            </form>
             <?php 
     } 
     
