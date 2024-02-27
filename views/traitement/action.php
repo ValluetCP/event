@@ -256,10 +256,15 @@ if (isset($_GET['id_event_active'])) {
 // supprimer un évènement du panier
 
 if (isset($_POST['supprimer'])) {
+    var_dump($_SESSION['nombre']);
+    echo "<pre>";
+    var_dump($_SESSION['reservation']);
+    echo "</pre>";
     foreach ( $_SESSION['reservation'] as $k => $v ) {
         foreach ( $v['events'] as $k2 => $v2 ) {
             if (array_search($_POST['id_evenement'], $v['events'])) {
-                unset($_SESSION['reservation'][$k]);                
+                unset($_SESSION['reservation'][$k]);   
+                $_SESSION['nombre'] -= $v['quantite'];        
             }
             break;
         }
