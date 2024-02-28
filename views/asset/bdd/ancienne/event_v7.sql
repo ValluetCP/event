@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 28 fév. 2024 à 16:22
+-- Généré le : jeu. 18 jan. 2024 à 10:29
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -182,9 +182,7 @@ INSERT INTO `reservation` (`id_reservation`, `user_id`, `event_id`, `date_reserv
 (63, 19, 10, '2023-12-19 14:06:56', 1, 1),
 (64, 20, 7, '2023-12-20 11:20:15', 1, 1),
 (68, 20, 12, '2024-01-17 14:28:20', 3, 1),
-(69, 20, 1, '2024-01-17 14:34:44', 2, 1),
-(70, 23, 10, '2024-01-23 16:02:21', 4, 1),
-(71, 19, 1, '2024-02-27 10:32:01', 1, 1);
+(69, 20, 1, '2024-01-17 14:34:44', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -194,7 +192,6 @@ INSERT INTO `reservation` (`id_reservation`, `user_id`, `event_id`, `date_reserv
 
 CREATE TABLE `users` (
   `id_utilisateur` int(11) NOT NULL,
-  `img_profil` varchar(250) DEFAULT NULL,
   `nom` varchar(100) NOT NULL,
   `prenom` varchar(100) NOT NULL,
   `pseudo` varchar(100) NOT NULL,
@@ -208,27 +205,20 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id_utilisateur`, `img_profil`, `nom`, `prenom`, `pseudo`, `email`, `mdp`, `role`, `users_actif`) VALUES
-(5, '', 'anna', 'anna', 'anna', 'anna@mail.com', '$2y$10$k00e92DZrfFPEIVJUi.07OLz00wtF3PEGxOGYx.dhXp', 'admin', 1),
-(6, '', 'anna', 'anna', 'anna1', 'anna1@mail.com', '$2y$10$Nj.SEJbXSyw5ybfjCDnYRenJxbXj1y5VAcHQIZWo1U9', 'admin', 1),
-(7, '', 'anna', 'anna2', 'anna2', 'anna2@mail.com', '$2y$10$KCFOv.O75Kj2OtdHgbjmnelzx8L.ZYwYsvQuj4E7B.d', 'admin', 1),
-(8, '', 'lea', 'lea', 'lea', 'lea@mail.com', '$2y$10$Hdpj1LKd9rUbljqlte/D9eTxDwYdpqiwoBae9bgkQFaI06jvFXlr2', 'admin', 1),
-(9, '', 'anna3', 'ANNA3', 'anna3', 'anna3@mail.com', '$2y$10$Hdpj1LKd9rUbljqlte/D9eTxDwYdpqiwoBae9bgkQFaI06jvFXlr2', 'admin', 1),
-(10, '', 'jeremy', 'jeremy', 'jeremy1', 'jeremy@mail.fr', '$2y$10$of6PrfF4yfeQ5Se88t3n8eje4vcR8CPc8rxlCX/CpH/HW8EqkiI4u', 'admin', 1),
-(11, '', 'ben', 'ben', 'ben1', 'ben@mail.com', '$2y$10$IvwfhW.EzIbzPKDO7XQUW.P39KjAUlAoEmK.aNLi1083iGqSyHhky', 'client', 1),
-(14, '', 'carlito', 'carl', 'carl', 'carl@mail.com', '$2y$10$zSXMj/RkoUv0pgbZD1xOueK7Rvh.Z3qukhypz15Y9AL2onU3R8vDe', 'admin', 1),
-(15, '', 'leon', 'leon', 'leon', 'leon@mail.com', '$2y$10$eDvcuowTwmnt7ogxn91x7Or3UP/C6U.TKVyb.Me8Y7eO/89hEc5Zm', 'client', 1),
-(17, '', 'louis', 'louis', 'louis', 'louis@mail.com', '$2y$10$QthSjDQhI8W.gnlLdNnWuOij8w533hArs3GmScNwqj1lJ1NneXhou', 'client', 1),
-(18, '', 'clara', 'clara', 'clara', 'clara@mail.com', '$2y$10$Cl1TNvAEU69S6a7ZS81F4uwFQwke.OrDV5FUJddL6R5JCwObVeTVm', 'client', 1),
-(19, '', 'jean', 'jean', 'jean', 'jean@mail.com', '$2y$10$/OIvxukXkuknXAcAR2CtsOoitVsw50.s/bX0RD8okLDf4VcMiKn1u', 'client', 1),
-(20, '', 'MARC', 'marc', 'marc', 'marc@mail.com', '$2y$10$VbO1DZeYaxcJlsw1XVXdfeU/uTj.NnPykTNa5qa/tiGu51sFTxMMe', 'client', 1),
-(21, '', 'ANNE', 'anne', 'anne', 'anne@mail.com', '$2y$10$6bfMJ2BGfmPfobns.ggv/.tUg3h5PJKokTRpyROKNbf0U7IvxpkzG', 'admin', 1),
-(22, 'profil.JPG', 'test', 'test', 'test', 'test@mail.com', '$2y$10$Opm/A3CVKAH4doMe2UNaUO04ga6tLJECnHsJtx0l/S/l8pAwp3jB.', 'admin', 1),
-(23, 'profil.JPG', 'test2', 'test2', 'test2', 'test2@mail.com', '$2y$10$1VSp.gS4JNPPzQ9Gp2tAJ.1e5L2P2tVTeOu5uuxrCWZQNd5SC4FBC', 'client', 1),
-(24, 'profil.JPG', 'Laure', 'laure', 'laure', 'laure@mail.com', '$2y$10$R1C452HrJLGzLRXdIzUDguB0awS81ZQ97vOL51mNQ7A2HSRA9nM2m', 'admin', 1),
-(25, 'profil.JPG', 'mike', 'mike', 'mike', 'mike@mail.com', '$2y$10$mg9rGMPj/4SwSmzJmv5KC.ke5ZrKc542Om22KTKL7.nBvUq2svQ1y', 'admin', 1),
-(26, 'profil.JPG', 'lina', 'lina', 'lina', 'lina@mail.com', '$2y$10$oRBJFNSmF0JLPfr7/ZWbXOWmioJzkn4oQm.etHBQgrCxpOKJfa6JG', 'admin', 1),
-(28, 'profil.JPG65ddbe027a774', 'nina', 'nina', 'nina', 'nina@mail.com', '$2y$10$6V7rVICXYpXdJhCxqbgOA.tlwG6orWdmRMSfFFLzqT73N.GwdqGe6', 'admin', 1);
+INSERT INTO `users` (`id_utilisateur`, `nom`, `prenom`, `pseudo`, `email`, `mdp`, `role`, `users_actif`) VALUES
+(5, 'anna', 'anna', 'anna', 'anna@mail.com', '$2y$10$k00e92DZrfFPEIVJUi.07OLz00wtF3PEGxOGYx.dhXp', 'admin', 1),
+(6, 'anna', 'anna', 'anna1', 'anna1@mail.com', '$2y$10$Nj.SEJbXSyw5ybfjCDnYRenJxbXj1y5VAcHQIZWo1U9', 'admin', 1),
+(7, 'anna', 'anna2', 'anna2', 'anna2@mail.com', '$2y$10$KCFOv.O75Kj2OtdHgbjmnelzx8L.ZYwYsvQuj4E7B.d', 'admin', 1),
+(8, 'lea', 'lea', 'lea', 'lea@mail.com', '$2y$10$Hdpj1LKd9rUbljqlte/D9eTxDwYdpqiwoBae9bgkQFaI06jvFXlr2', 'admin', 1),
+(9, 'anna3', 'ANNA3', 'anna3', 'anna3@mail.com', '$2y$10$Hdpj1LKd9rUbljqlte/D9eTxDwYdpqiwoBae9bgkQFaI06jvFXlr2', 'admin', 1),
+(10, 'jeremy', 'jeremy', 'jeremy1', 'jeremy@mail.fr', '$2y$10$of6PrfF4yfeQ5Se88t3n8eje4vcR8CPc8rxlCX/CpH/HW8EqkiI4u', 'admin', 1),
+(11, 'ben', 'ben', 'ben1', 'ben@mail.com', '$2y$10$IvwfhW.EzIbzPKDO7XQUW.P39KjAUlAoEmK.aNLi1083iGqSyHhky', 'client', 1),
+(14, 'carlito', 'carl', 'carl', 'carl@mail.com', '$2y$10$zSXMj/RkoUv0pgbZD1xOueK7Rvh.Z3qukhypz15Y9AL2onU3R8vDe', 'admin', 1),
+(15, 'leon', 'leon', 'leon', 'leon@mail.com', '$2y$10$eDvcuowTwmnt7ogxn91x7Or3UP/C6U.TKVyb.Me8Y7eO/89hEc5Zm', 'client', 1),
+(17, 'louis', 'louis', 'louis', 'louis@mail.com', '$2y$10$QthSjDQhI8W.gnlLdNnWuOij8w533hArs3GmScNwqj1lJ1NneXhou', 'client', 1),
+(18, 'clara', 'clara', 'clara', 'clara@mail.com', '$2y$10$Cl1TNvAEU69S6a7ZS81F4uwFQwke.OrDV5FUJddL6R5JCwObVeTVm', 'client', 1),
+(19, 'jean', 'jean', 'jean', 'jean@mail.com', '$2y$10$/OIvxukXkuknXAcAR2CtsOoitVsw50.s/bX0RD8okLDf4VcMiKn1u', 'client', 1),
+(20, 'MARC', 'marc', 'marc', 'marc@mail.com', '$2y$10$VbO1DZeYaxcJlsw1XVXdfeU/uTj.NnPykTNa5qa/tiGu51sFTxMMe', 'client', 1);
 
 --
 -- Index pour les tables déchargées
@@ -296,13 +286,13 @@ ALTER TABLE `event_date`
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id_reservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id_reservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Contraintes pour les tables déchargées
