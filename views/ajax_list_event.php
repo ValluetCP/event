@@ -68,7 +68,6 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL
                 event.preventDefault()
 
                 // c) Sérialiser le contenu des champs du formulaire (dans cet exemple il y a un seul champ), à l'aide de la fonction serialize() de jQuery
-                
 
                 // d) utiliser la méthode ajax de jquery pour l'affichage de la réponse
                 $.ajax({
@@ -89,10 +88,10 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL
             });
 
             // Réinitialiser la div resultat à son contenu initial
-    $('#reinitialiser_resultat').on('click', function(event) {
-        event.preventDefault();
-        $('#resultat').html(contenuInitial);
-    });
+            $('#reinitialiser_resultat').on('click', function(event) {
+                event.preventDefault();
+                $('#resultat').html(contenuInitial);
+            });
 
 
         });
