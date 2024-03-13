@@ -1,7 +1,7 @@
 <?php
 
 // require_once $_SERVER["DOCUMENT_ROOT"]."/event/models/database.php";
-require_once __DIR__."./database.php";
+require_once "database.php";
 
 class Categorie{
     // pour la méthode static, pas besoin de déclarer une variable à l'inverse des contructeurs
