@@ -3,7 +3,7 @@
     $listEvent = Event::findAllEvent();
     $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL (YYYY-MM-DD HH:MM:SS)
 
-    $tab = [];
+    // $tab = [];
     $tab['contenu'] = '';
     $tab['contenu'] .= '<table style="width: 100%; border-collapse: collapse; margin-top: 35px; border: 1px solid black;" border="1">';
     foreach ($listEvent as $event) {

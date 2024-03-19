@@ -27,7 +27,7 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL
         </div>
        <div class="menu_event">
            <a href="" id="reinitialiser_resultat">Prochainement</a>
-           <a href="" id="prochain_event">Historique</a>
+           <a href="" id="historique_event">Historique</a>
             <div class="prochain">
                 <!-- Div vide pour afficher le contenu -->
                 <div id="resultat">
@@ -64,8 +64,13 @@ $currentDate = date('Y-m-d H:i:s'); // Date actuelle au format SQL
         $(document).ready(function() {
 
             // a) utiliser la fonction on('change') de jquery afin de sélectionner un nom dans la liste déroulante : $('#personne').on('change', function()
+<<<<<<< HEAD
             $('#prochain_event').on('click', function(event) {
                 event.preventDefault();
+=======
+            $('#historique_event').on('click', function(event) {
+                event.preventDefault()
+>>>>>>> 37bbe9cd0820ca3b9e6ffc5e8da94aeed88ea5f7
 
                 // c) Sérialiser le contenu des champs du formulaire (dans cet exemple il y a un seul champ), à l'aide de la fonction serialize() de jQuery
 
