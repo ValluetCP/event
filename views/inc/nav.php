@@ -19,6 +19,8 @@
             <!-- La liste des évènements  -->
             <a href="http://localhost/event/views/admin_list_event">Liste des évènements</a>
 
+            <a href="http://localhost/event_luxury/views/ajax_list_event">Liste AJAX</a>
+
             <!-- USER : La liste des évènements (test) -->
             <a href="http://localhost/event/views/list_event">Test_évènements</a>
 
